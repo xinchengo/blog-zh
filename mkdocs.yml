@@ -1,7 +1,7 @@
 site_name: xinchengo 的博客
-site_url: https://lixinchen.cn/
-repo_url: https://github.com/xinchengo/xinchengo.github.io/
-copyright: Copyright &copy; 2024 - 2024 xinchengo
+site_url: https://xinchengo.github.io/blog-zh/
+repo_url: https://github.com/xinchengo/blog-zh/
+copyright: Copyright &copy; 2024 - 2025 xinchengo
 
 theme:
   name: "material"
