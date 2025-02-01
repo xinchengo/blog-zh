@@ -1,9 +1,5 @@
-This repository is the **old** repository for my blog on [lixinchen.cn](https://lixinchen.cn/).
+# 中文博客
 
-As the blog have been refactored several times, this repository is burdened with a large Git history. Later iterations of this blog will be stored in [xinchengo/blog-zh](https://github.com/xinchengo/blog-zh)
+这是我的中文博客。博客采用 [Material for Mkdocs](https://squidfunk.github.io/mkdocs-material/) 搭建。
 
-# xinchengo.github.io
-
-This repository contains my personal blog on [lixinchen.cn](https://lixinchen.cn/).
-
-这是我的个人博客，访问地址：[lixinchen.cn](https://lixinchen.cn/)。
+访问地址：[xinchengo.github.io/blog-zh](https://xinchengo.github.io/blog-zh)，目前还不打算使用 [lixinchen.cn](https://lixinchen.cn)。
