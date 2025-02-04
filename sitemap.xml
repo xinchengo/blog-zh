@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://xinchengo.github.io/blog-zh/</loc>
-         <lastmod>2025-02-01</lastmod>
+         <lastmod>2025-02-04</lastmod>
     </url>
     <url>
          <loc>https://xinchengo.github.io/blog-zh/ai/20250126-%E6%8E%A2%E7%A7%98%20Conditional%20GAN%20%E4%B9%8B%E5%8E%9F%E7%90%86/</loc>
-         <lastmod>2025-02-01</lastmod>
+         <lastmod>2025-02-04</lastmod>
     </url>
     <url>
          <loc>https://xinchengo.github.io/blog-zh/ai/20250127-KerasTuner%20%E4%B9%8B%E4%BD%BF%E7%94%A8/</loc>
-         <lastmod>2025-02-01</lastmod>
+         <lastmod>2025-02-04</lastmod>
+    </url>
+    <url>
+         <loc>https://xinchengo.github.io/blog-zh/ai/20250203-Hugging%20Face%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+         <lastmod>2025-02-04</lastmod>
     </url>
     <url>
          <loc>https://xinchengo.github.io/blog-zh/app-development/</loc>
-         <lastmod>2025-02-01</lastmod>
+         <lastmod>2025-02-04</lastmod>
     </url>
     <url>
          <loc>https://xinchengo.github.io/blog-zh/app-development/20250121-%E5%88%9D%E6%8E%A2%20Web%20App%20%E5%AE%9E%E7%8E%B0/</loc>
-         <lastmod>2025-02-01</lastmod>
+         <lastmod>2025-02-04</lastmod>
     </url>
     <url>
          <loc>https://xinchengo.github.io/blog-zh/linux/20250120-Arch%20Linux%20%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
-         <lastmod>2025-02-01</lastmod>
+         <lastmod>2025-02-04</lastmod>
     </url>
 </urlset>
