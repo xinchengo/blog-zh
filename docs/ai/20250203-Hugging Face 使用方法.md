@@ -99,9 +99,7 @@ image
 - `pipeline.enable_vae_tiling()`：生成很大的图片的时候可以采用此选项。
 - `pipeline.enable_model_cpu_offload()` 和 `pipeline.enable_sequential_cpu_offload()`：都是把部分参数存在内存里，根据需要“搬运”到显存中去，但这两个选项的程度不同，后者对显存的节省程度最大，对性能的影响也最大。
 
-### 挑战运行更大的模型
-
-!!! warning "此处内容待完成"
+学会这些优化方法之后，就可以尝试运行更大的模型了。
 
 ## 微调模型和上传自己的模型
 
