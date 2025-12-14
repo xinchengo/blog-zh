@@ -1,0 +1,1266 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2025/01/21/%E5%88%9D%E6%8E%A2-web-app-%E5%AE%9E%E7%8E%B0/">
+      
+      
+        <link rel="prev" href="../../../../2024/01/26/conditional-gan/">
+      
+      
+        <link rel="next" href="../../27/kerastuner-%E7%9A%84%E4%BD%BF%E7%94%A8/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>初探 Web App 实现 - xinchengo 的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#web-app" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="xinchengo 的博客" class="md-header__button md-logo" aria-label="xinchengo 的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            xinchengo 的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              初探 Web App 实现
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xinchengo/blog-zh/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="xinchengo 的博客" class="md-nav__button md-logo" aria-label="xinchengo 的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    xinchengo 的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xinchengo/blog-zh/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    博客
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    归档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    归档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        明确目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一步：一个显示替代关系的列表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一步：一个显示替代关系的列表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        准备 ChatGPT 提示词润色器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正式与 Copilot 对话
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二步：区分同级替代与高级替代
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二步：区分同级替代与高级替代">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析同级替代和高级替代的判定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动手修改代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三步：优化界面
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../.." class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-01-21 00:00:00+00:00" class="md-ellipsis">2025年1月21日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 9 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+  
+
+
+<h1 id="web-app">初探 Web App 实现</h1>
+<div class="admonition warning">
+<p class="admonition-title">本文正在编写中，并且可能长时间处于这一状态</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">声明</p>
+<p>经过两天的实践，作者已经发现在现在的条件下，把<strong>朴素的想法转化为一个使用的程序</strong>仍然是一个<strong>复杂</strong>的过程。</p>
+<p>目前 Copilot 已经可以在短时间内<strong>生成初始代码</strong>，但是对于<strong>前端界面</strong>的编写，Copilot 还是相当无力的。因为 Copilot 是文字界面，你很难准确地用语言表达你对前端设计的想法。这一部分我也耗费了大量的时间。</p>
+<p>当前这个课程替代助手还停留在“<strong>展示所有替代关系</strong>”的阶段，短时间内不打算进行进一步的开发。</p>
+</div>
+<!-- more -->
+
+<p>相信很多科大的学生都用过<a href="https://ti.u5tc.cn/#/">Vtix在线答题</a>来准备入学考试和思想道德与法治的机试。</p>
+<p>上过计算机程序设计 A 进阶班的同学都写过大作业。大作业的难度相信大家都深有体会，很多代码动辄几千行甚至上万行。比如我写的游戏<a href="https://github.com/xinchengo/GameDemo">《蛇卷卷和鱼摆摆》</a>就有 <a href="https://github.com/xinchengo/GameDemo/graphs/contributors">3000 行代码</a>，其中编写过程中还删除了一半的源代码。虽然很多大作业在实现难度上远大于<a href="https://ti.u5tc.cn/#/">Vtix在线答题</a>、<a href="https://paike.feixu.site/">蜗壳排课工具</a>，但是在实用性上却没有一个可以比上这两个轻量级的工具——很多大作业在开发完毕后就停止维护了，而这两个工具至今还是在科大校园中广为人知——虽然它们都是名副其实的“轻量级”工具，后者的代码量甚只有几百行。</p>
+<p>这两个在学校受欢迎项目的例子表明，开发项目并不追求项目本身有多复杂，而是要能<strong>找准用户的需求点</strong>。这一点在 <a href="https://github.com/features/copilot">Github Copilot</a> 等代码辅助生成工具飞速发展的今天显得尤为重要，因为它拉低了软件编写的门槛——它使得好的想法、好的点子能够更快地<strong>转化为现实</strong>。</p>
+<p>在这个寒假之际我就以常见的静态 Web App 为例，探讨如果有一个好的点子，如何快速地把自己的点子转化为 Web App。</p>
+<p>由于博主本人之前从来没有接触过 <a href="https://react.dev/">React</a>, <a href="https://vuejs.org/">Vue</a> 等 Javascript 框架（虽然听说过它们的名字），甚至没有什么 Javascript 编程的经历。这次初探的过程应该可以很好的反映初学者第一次接触静态网页开发的心理状态，也希望能给其他初学者带来指引的作用。</p>
+<p>在下面的例子中，我将尽可能地使用 <a href="https://github.com/features/copilot">Github Copilot</a> 作为辅助工具简化开发过程。</p>
+<h2 id="_1">明确目标</h2>
+<p>我将以一个<strong>课程替代助手</strong>为例，探讨如何简单地实现一个 Web App，将想法转化为现实。现在我先解释课程替代助手具体是什么。</p>
+<p><a href="https://catalog.ustc.edu.cn/query/substitute">USTC 教务处网站——公共查询——替代课程查询</a>这个网站中列举了 USTC 课程之间的<strong>替代关系</strong>。替代关系分为两种——<strong>同级替代</strong>和<strong>高级替代</strong>；同级替代关系表示 A 和 B 两组课程可以相互替换，而高级替代关系表示 A 这组课程可以替代 B 这组课程，但反之不然。</p>
+<p>（下面是我的理解，不一定是正确的）替代关系可以用替换来理解，比如说，你选择了 <code>A,B,C,D</code> 四组课程，存在一个替代关系 <code>B,C&lt;-&gt;E,F</code>，还有一个替代关系 <code>B&lt;-&gt;G</code>，那么 <code>A,B,C,D</code> 等价于 <code>A,E,F,D</code> 或者 <code>A,G,C,D</code>，但是不等价于 <code>A,G,E,F,D</code>。总之，<strong>一门课程只能计算一次</strong>。</p>
+<p>我计划实现的应用是一个课程替代助手——就是说，以<a href="https://catalog.ustc.edu.cn/query/substitute">教务处官方查询界面</a>为范本，实现如下功能：</p>
+<ul>
+<li>过滤掉不活跃/不存在的课程，即，近两年的培养方案中没有出现过的课程。</li>
+<li>输入一个课程或者一组课程，显示所有跟这组课程相关的替代关系（包括能够根据传递性推断出的替代关系）</li>
+</ul>
+<p>我们其实可以根据教务处官方网站得到的资料，预处理出一张过滤掉不活跃或者不存在的课程后的清单。之后在执行这个静态 Web App 的时候，直接查询预处理的表就可以了。这个做法实际上是一种<strong>归约</strong>的思想，将一个复杂的问题化归为一个更简单的问题。所以也可以根据这个画出实现这个项目的<strong>路线图</strong>：</p>
+<ol>
+<li>实现<a href="https://catalog.ustc.edu.cn/query/substitute">教务处替代课程查询</a>中的最基本功能，即，根据一张列表显示课程替代关系；</li>
+<li>实现教务处<a href="https://catalog.ustc.edu.cn/query/substitute">教务处替代课程查询</a>中的搜索功能，即，使用课程名称与编号查询与其有关的替代关系；</li>
+<li>实现数据的预处理，比如过滤不活跃/不存在的课程，以及输入一个课程或者一组课程，显示所有跟这组课程相关的替代关系。</li>
+</ol>
+<h2 id="_2">第一步：一个显示替代关系的列表</h2>
+<div class="admonition abstract">
+<p class="admonition-title">摘要</p>
+<p>通过简单的提示词交流，Copilot 很快生成了一个具有基本显示替代关系功能的原型界面。</p>
+</div>
+<p>先根据<a href="https://nextjs.org/docs/app/getting-started/installation">Next.js 安装教程</a>中提供的方法，新建一个名为 <code>ustc-csh</code> 的 <code>create-next-app@latest</code> 模板项目。</p>
+<h3 id="chatgpt">准备 ChatGPT 提示词润色器</h3>
+<p>我现在开始使用 <a href="https://chatgpt.com/">ChatGPT</a> 和 <a href="https://github.com/features/copilot">Github Copilot</a> 进行辅助开发。我们考虑让 ChatGPT 先修改我的提示词，再把修改后的提示词喂给 Copilot，以下是我草拟的用于“修改我的提示词”的 ChatGPT 的提示词：</p>
+<blockquote>
+<p>You are a professional prompt engineer especially experienced in prompting with AI code assistants.</p>
+<p>In the following conversations, I will give you some prompts I have written for Github Copilot Chat in VS Code, to assist the development of a static web application in Next.js and React.</p>
+<p>Because English is not my native language, the prompts may contain improper phrases or grammar mistakes. And your job is to eliminate them. Also, I'm not experienced in coding with AI, so you may have to modify the prompts to better elicit the performance of coding assistants.</p>
+</blockquote>
+<p>由于<a href="https://arxiv.org/abs/2402.14531">有研究</a>表明使用礼貌的语言有助于 ChatGPT 等工具产生高质量的回复，我们先用 ChatGPT 对这一段提示词进行修改，让提示词变得更加礼貌，使用提示词：</p>
+<blockquote>
+<p>Please rewrite the following paragraph to make it more polite:</p>
+<p>[OMMITTED]</p>
+</blockquote>
+<p>输入 ChatGPT 后，我得到了以下修改版本的提示词，这是我<a href="https://chatgpt.com/share/6790af6d-2e80-8001-a17a-4b66cbba0556">与这个 GPT 的聊天记录</a>：</p>
+<blockquote>
+<p>You are a highly skilled prompt engineer with specialized experience in working with AI code assistants.</p>
+<p>In our upcoming discussions, I will be sharing some prompts I’ve created for GitHub Copilot Chat within VS Code, which are intended to support the development of a static web application using Next.js and React.</p>
+<p>As English is not my first language, there may be occasional phrasing or grammatical errors in my prompts. I would greatly appreciate your assistance in correcting these. Additionally, since I am still learning to work effectively with AI coding assistants, I may need your expertise in adjusting the prompts to maximize their performance.</p>
+</blockquote>
+<p>将这一个提示词输入新的 ChatGPT 对话，我们就可以得到一个<strong>提示词润色器</strong>了，后面由于篇幅原因，我只列举我和 Github Copilot 的对话，喂给 Copilot 的提示词大多已经过 ChatGPT 润色。</p>
+<h3 id="copilot">正式与 Copilot 对话</h3>
+<p>我：</p>
+<blockquote>
+<p>@workspace I want to create a static web app using the create-next-app@latest template in this workspace.</p>
+<p>The app will read course substitution data from an attached list.json file. Each entry in this file represents a substitution scheme, where Course Group A can be swapped with Course Group B.</p>
+<p>The web app should display this data in a responsive grid layout, showing the substitution relationships clearly.</p>
+</blockquote>
+<p>Github Copilot:</p>
+<blockquote>
+<p>To create a static web app using the <code>create-next-app@latest</code> template and display the course substitution data from <code>list.json</code> in a responsive grid layout, follow these steps:</p>
+<ol>
+<li><strong>Initialize the Next.js project</strong>:
+   <div class="highlight"><pre><span></span><code>npx<span class="w"> </span>create-next-app@latest<span class="w"> </span>my-static-web-app
+<span class="nb">cd</span><span class="w"> </span>my-static-web-app
+</code></pre></div></li>
+<li><strong>Add <code>list.json</code> to the public directory</strong>: Place your <code>list.json</code> file in the public directory of your Next.js project.</li>
+<li><strong>Modify</strong> page.tsx to fetch and display the data**: Update the <code>Home</code> component to fetch the data from <code>list.json</code> and display it in a responsive grid layout.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Course</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">cn</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">en</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">period</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">credits</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Substitution</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">substituteCourses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">originalCourses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">Home</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">substitutions</span><span class="p">,</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">&lt;</span><span class="nt">Substitution</span><span class="err">[]</span><span class="p">&gt;([]);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;/list.json&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;container mx-auto p-4&quot;</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">h1</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-2xl font-bold mb-4&quot;</span><span class="p">&gt;</span><span class="nx">Course</span><span class="w"> </span><span class="nx">Substitutions</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4&quot;</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">substitutions</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">substitution</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;border p-4 rounded shadow&quot;</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-xl font-semibold mb-2&quot;</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="nx">Substitution</span><span class="w"> </span><span class="err">#</span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span>
+<span class="w">            </span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">h3</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;font-medium&quot;</span><span class="p">&gt;</span><span class="nx">Original</span><span class="w"> </span><span class="nx">Courses</span><span class="o">:</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">ul</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-disc list-inside&quot;</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">originalCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">}&gt;</span>
+<span class="w">                    </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">cn</span><span class="p">}</span><span class="w"> </span><span class="p">({</span><span class="nx">course</span><span class="p">.</span><span class="nx">en</span><span class="p">})</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span>
+<span class="w">                  </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">))}</span>
+<span class="w">              </span><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;mt-2&quot;</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">h3</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;font-medium&quot;</span><span class="p">&gt;</span><span class="nx">Substitute</span><span class="w"> </span><span class="nx">Courses</span><span class="o">:</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">ul</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-disc list-inside&quot;</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">substituteCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">}&gt;</span>
+<span class="w">                    </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">cn</span><span class="p">}</span><span class="w"> </span><span class="p">({</span><span class="nx">course</span><span class="p">.</span><span class="nx">en</span><span class="p">})</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span>
+<span class="w">                  </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">))}</span>
+<span class="w">              </span><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">))}</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol>
+<li><strong>Add Tailwind CSS for styling</strong>:
+   Install Tailwind CSS and configure it in your project.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>tailwindcss<span class="w"> </span>postcss<span class="w"> </span>autoprefixer
+npx<span class="w"> </span>tailwindcss<span class="w"> </span>init<span class="w"> </span>-p
+</code></pre></div>
+<p>Update <code>tailwind.config.js</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/** @type {import(&#39;tailwindcss&#39;).Config} */</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;./pages/**/*.{js,ts,jsx,tsx}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;./components/**/*.{js,ts,jsx,tsx}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;./app/**/*.{js,ts,jsx,tsx}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">extend</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Add Tailwind directives to your CSS file (<code>app/globals.css</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">base</span><span class="p">;</span>
+<span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">components</span><span class="p">;</span>
+<span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">utilities</span><span class="p">;</span>
+</code></pre></div>
+<ol>
+<li><strong>Run the development server</strong>:
+   <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div></li>
+</ol>
+<p>Now, your Next.js app should fetch the course substitution data from <code>list.json</code> and display it in a responsive grid layout.</p>
+</blockquote>
+<p>我：</p>
+<blockquote>
+<p>@workspace /fix ./app/page.tsx:1:21
+Ecmascript file had an error</p>
+<blockquote>
+<p>1 | import { useEffect, useState } from 'react';</p>
+</blockquote>
+<pre><code>|                     ^^^^^^^^
+</code></pre>
+<p>2 |
+3 | interface Course {
+4 | id: number;</p>
+<p>You're importing a component that needs <code>useState</code>. This React hook only works in a client component. To fix, mark the file (or its parent) with the <code>"use client"</code> directive.</p>
+<p>Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client</p>
+</blockquote>
+<p>Github Copilot：</p>
+<blockquote>
+<p>You're importing a component that needs <code>useState</code>. This React hook only works in a client component. To fix, mark the file (or its parent) with the <code>"use client"</code> directive.</p>
+<p>Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client</p>
+<p>Workspace: To fix the error, you need to add the <code>"use client"</code> directive at the top of your <code>page.tsx</code> file. This will ensure that the file is treated as a client component, allowing the use of React hooks like <code>useState</code> and <code>useEffect</code>.</p>
+<p>Here is the updated code:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;use client&quot;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Course</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">cn</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">en</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">period</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">credits</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Substitution</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">substituteCourses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">originalCourses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">Home</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">substitutions</span><span class="p">,</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">&lt;</span><span class="nt">Substitution</span><span class="err">[]</span><span class="p">&gt;([]);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;/list.json&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;container mx-auto p-4&quot;</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">h1</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-2xl font-bold mb-4&quot;</span><span class="p">&gt;</span><span class="nx">Course</span><span class="w"> </span><span class="nx">Substitutions</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4&quot;</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">substitutions</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">substitution</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;border p-4 rounded shadow&quot;</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-xl font-semibold mb-2&quot;</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="nx">Substitution</span><span class="w"> </span><span class="err">#</span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span>
+<span class="w">            </span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">h3</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;font-medium&quot;</span><span class="p">&gt;</span><span class="nx">Original</span><span class="w"> </span><span class="nx">Courses</span><span class="o">:</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">ul</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-disc list-inside&quot;</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">originalCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">}&gt;</span>
+<span class="w">                    </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">cn</span><span class="p">}</span><span class="w"> </span><span class="p">({</span><span class="nx">course</span><span class="p">.</span><span class="nx">en</span><span class="p">})</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span>
+<span class="w">                  </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">))}</span>
+<span class="w">              </span><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;mt-2&quot;</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">h3</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;font-medium&quot;</span><span class="p">&gt;</span><span class="nx">Substitute</span><span class="w"> </span><span class="nx">Courses</span><span class="o">:</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">ul</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-disc list-inside&quot;</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">substituteCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">}&gt;</span>
+<span class="w">                    </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">cn</span><span class="p">}</span><span class="w"> </span><span class="p">({</span><span class="nx">course</span><span class="p">.</span><span class="nx">en</span><span class="p">})</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span>
+<span class="w">                  </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="w">                </span><span class="p">))}</span>
+<span class="w">              </span><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">))}</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</blockquote>
+<p>Github Copilot：</p>
+<p>To fix the error, you need to add the <code>"use client"</code> directive at the top of your <code>page.tsx</code> file. This will ensure that the file is treated as a client component, allowing the use of React hooks like <code>useState</code> and <code>useEffect</code>.</p>
+<p>Here is the updated code:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;use client&quot;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Course</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">cn</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">en</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">period</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">credits</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Substitution</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">substituteCourses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">originalCourses</span><span class="o">:</span><span class="w"> </span><span class="kt">Course</span><span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">Home</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">substitutions</span><span class="p">,</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="o">&lt;</span><span class="nx">Substitution</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/list.json&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;container mx-auto p-4&quot;</span><span class="o">&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-2xl font-bold mb-4&quot;</span><span class="o">&gt;</span><span class="nx">Course</span><span class="w"> </span><span class="nx">Substitutions</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4&quot;</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">substitutions</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">substitution</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;border p-4 rounded shadow&quot;</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="nx">h2</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-xl font-semibold mb-2&quot;</span><span class="o">&gt;</span><span class="nx">Substitution</span><span class="w"> </span><span class="err">#</span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="w">              </span><span class="o">&lt;</span><span class="nx">h3</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;font-medium&quot;</span><span class="o">&gt;</span><span class="nx">Original</span><span class="w"> </span><span class="nx">Courses</span><span class="o">:&lt;</span><span class="err">/h3&gt;</span>
+<span class="w">              </span><span class="o">&lt;</span><span class="nx">ul</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;list-disc list-inside&quot;</span><span class="o">&gt;</span>
+<span class="w">                </span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">originalCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="o">&lt;</span><span class="nx">li</span><span class="w"> </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">                    </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">cn</span><span class="p">}</span><span class="w"> </span><span class="p">({</span><span class="nx">course</span><span class="p">.</span><span class="nx">en</span><span class="p">})</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span>
+<span class="w">                  </span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+<span class="w">                </span><span class="p">))}</span>
+<span class="w">              </span><span class="o">&lt;</span><span class="err">/ul&gt;</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;mt-2&quot;</span><span class="o">&gt;</span>
+<span class="w">              </span><span class="o">&lt;</span><span class="nx">h3</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;font-medium&quot;</span><span class="o">&gt;</span><span class="nx">Substitute</span><span class="w"> </span><span class="nx">Courses</span><span class="o">:&lt;</span><span class="err">/h3&gt;</span>
+<span class="w">              </span><span class="o">&lt;</span><span class="nx">ul</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;list-disc list-inside&quot;</span><span class="o">&gt;</span>
+<span class="w">                </span><span class="p">{</span><span class="nx">substitution</span><span class="p">.</span><span class="nx">substituteCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="o">&lt;</span><span class="nx">li</span><span class="w"> </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">                    </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">cn</span><span class="p">}</span><span class="w"> </span><span class="p">({</span><span class="nx">course</span><span class="p">.</span><span class="nx">en</span><span class="p">})</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">{</span><span class="nx">course</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span>
+<span class="w">                  </span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+<span class="w">                </span><span class="p">))}</span>
+<span class="w">              </span><span class="o">&lt;</span><span class="err">/ul&gt;</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">          </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">        </span><span class="p">))}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>效果还是很<strong>开幕雷击</strong>的：在一次修改错误之后，Copilot 就给出了一个基本的列举而课程替代关系的界面。总体效果还是挺令人满意的。</p>
+<p><img alt="效果" src="./assets//20250122.png" /></p>
+<h2 id="_3">第二步：区分同级替代与高级替代</h2>
+<div class="admonition abstract">
+<p class="admonition-title">摘要</p>
+<p>我研究了替代课程查询界面的源码，发现同级替代的存储方式就是两个不同方向的高级替代。</p>
+</div>
+<p>对于想直接知道答案的人，判定的方法是：如果一组关系在列表中出现了两遍，那么它就是相互替代关系，否则就是高级替代关系。</p>
+<h3 id="_4">分析同级替代和高级替代的判定</h3>
+<p>现在存在的一个“小”问题是：找不到同级替代和高级替代的判定依据。在<a href="https://catalog.ustc.edu.cn/query/substitute">替代课程查询页面</a>打开浏览器的开发者工具，并用 Network 工具监控流量，能够发现学校替代关系数据的 Json 存储在<a href="https://catalog.ustc.edu.cn/api/teach/course-substitute-pool/list">该链接</a>中（需要 Cookie 才能访问），这个地址下的 <code>list.json</code> 是不包括替代等级的。</p>
+<p>解决的方法有两个：</p>
+<ol>
+<li>不用 <code>list.json</code>，而是直接在替代课程界面爬取替代关系信息。优点是直观，方便；</li>
+<li>分析渲染界面使用的 JavaScript 代码，找出判定替代关系为同级替代还是高级替代的方法。这种方法比较难。</li>
+</ol>
+<p>我选择使用第二种方法。学校的<a href="https://catalog.ustc.edu.cn/query/substitute">教务处公共查询网站</a>是用 <a href="https://vuejs.org/">Vue</a> 开发的，渲染界面所用到的 JavaScript 源代码集中在一个 500 多 kB 大，名叫 <code>index-BF8iaBe7.js</code> 的文件里，是用 Vue 生成的（好在混淆不多），非常难以读懂。想要从这个文件逆向工程得到渲染方式，想必十分困难。考过计算机程序设计 A 期末考试的同学可能会觉得，这简直就是阅读程序题超级加强版。</p>
+<p>但是找到答案之后会恍然大悟。我打开 <code>index-BF8iaBe7.js</code> 后，用 <a href="https://prettier.io/">Prettier</a> 将其格式化后，通过搜索 <code>substituteCourses</code>（部分变量名没有混淆的好处），我们找到了第 17981-17997 行，内容如下：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">aO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">te</span><span class="p">.</span><span class="nx">sortBy</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">oO</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">substituteCourses</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">code</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="nx">t</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+<span class="w">          </span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">            </span><span class="nx">i</span><span class="p">.</span><span class="nx">substituteCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">l</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">code</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span>
+<span class="w">              </span><span class="nx">s</span><span class="p">.</span><span class="nx">originalCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">l</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">code</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">            </span><span class="nx">i</span><span class="p">.</span><span class="nx">originalCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">l</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">code</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span>
+<span class="w">              </span><span class="nx">s</span><span class="p">.</span><span class="nx">substituteCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">l</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">code</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="nx">o</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">interchangeable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}),</span>
+<span class="w">      </span><span class="nx">n</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span>
+</code></pre></div>
+<p>代码很难懂，但是使用 VS Code 的 Copilot Explain 功能处理之后，可以得到：</p>
+<p>Copilot：</p>
+<blockquote>
+<p>The function <code>aO</code> is an arrow function that processes an array <code>e</code> of objects, presumably representing courses with their substitutes. The function begins by mapping each element of <code>e</code> through a function <code>oO</code> and then sorting the resulting array by the code of the first substitute course in each element. This sorted array is stored in the variable <code>t</code>.</p>
+<p>Next, an empty array <code>n</code> is initialized to store the processed results. The function then iterates over each element <code>s</code> in the sorted array <code>t</code> using the <code>forEach</code> method. For each element <code>s</code>, it attempts to find an existing element <code>o</code> in the array <code>n</code> that has the same set of substitute courses and original courses, based on their codes. This comparison is done by mapping the courses to their codes, joining them into a single string, and comparing these strings.</p>
+<p>If a matching element <code>o</code> is found, the property <code>interchangeable</code> of <code>o</code> is set to <code>true</code>. If no matching element is found, the current element <code>s</code> is added to the array <code>n</code>. Finally, the function returns the array <code>n</code>, which now contains the processed and possibly modified elements from the original array <code>e</code>.</p>
+<p>This function essentially groups courses based on their substitute and original courses, marking them as interchangeable if they match certain criteria.</p>
+</blockquote>
+<p>从解释里我们可以模模糊糊地猜到：如果一个替代关系在 JSON 文件中<strong>出现了两遍</strong>，顺序相反，那么这两组课程之间就可以相互替代，否则就是高级替代。验证之后，发现真的是这个样子！仔细思考也可以发现，这种存储方式实际上是很自然的。</p>
+<h3 id="_5">动手修改代码</h3>
+<p>如果问我为什么现在不用 Copilot 提示词修改代码，我给出的理由是：现在基本的框架已经搭成了，写提示词花的时间太长。</p>
+<p>此处的不用 Copilot 提示词修改代码并不等于不使用 Copilot，一些解释代码，提取函数等功能还是使用很多的，但是由于过于零碎，此处不再展开了。</p>
+<p>借助 Github Copilot，我实现了去重的 <code>mergeInterchangeable()</code> 函数，代码如下：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">mergeInterchangeable</span><span class="p">(</span><span class="nx">substitution</span><span class="o">:</span><span class="w"> </span><span class="nx">Substitution</span><span class="p">[])</span><span class="o">:</span><span class="w"> </span><span class="nx">Substitution</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// If there exist two substitution rules</span>
+<span class="w">  </span><span class="c1">// A -&gt; B and B -&gt; A</span>
+<span class="w">  </span><span class="c1">// Merge them into a single interchangeable rule</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">substitutionMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">&lt;</span><span class="nt">string</span><span class="err">,</span><span class="w"> </span><span class="na">Substitution</span><span class="p">&gt;();</span>
+
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">sub</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">substitution</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Sort the course IDs to create a unique key</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">keyOriginal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sub</span><span class="p">.</span><span class="nx">originalCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">sort</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">keySubstitute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sub</span><span class="p">.</span><span class="nx">substituteCourses</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">course</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">course</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">sort</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">keyOriginal</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">keySubstitute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">keyOriginal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">keySubstitute</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">keySubstitute</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">keyOriginal</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// If the key already exists, mark it as interchangeable</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">substitutionMap</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">existing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">substitutionMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span><span class="o">!</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">existing</span><span class="p">.</span><span class="nx">interchangeable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">substitutionMap</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">sub</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">substitutionMap</span><span class="p">.</span><span class="nx">values</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>并将主函数中读取 <code>./list.json</code> 的函数改成了这样，在对读到的 JSON 进行去重之后再进行赋值：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;/list.json&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// Parse the response as JSON</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">    </span><span class="c1">// Merge interchangeable substitutions</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">rawData</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">mergeInterchangeable</span><span class="p">(</span><span class="nx">rawData</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+</code></pre></div>
+<h2 id="_6">第三步：优化界面</h2>
+<div class="admonition abstract"></div>
+<p>这一步也是最难的一步，因为在这里 Github Copilot 真的帮不了太多忙了。优化界面的方法主要靠修改 <a href="https://tailwindcss.com/docs/installation">Tailwind</a> 的标签，比如，给一个 <code>&lt;div&gt;</code> 对象写上 <code>&lt;div class="bg-sky-100"&gt;</code> 会将背景变成浅蓝色。在 <a href="https://tailwindcss.com/">Tailwind CSS 库</a>中，所有的属性设置都是靠这种打标签的方式进行的。</p>
+<p>由于我需要做到的是想让它变成什么样子就变成什么样子，在这里 Copilot 反而帮不了什么忙了，比如要把文字设成粗体，变成蓝色，加间距，需要加什么样子的标签，需要在文档中翻来翻去。加上我非常不熟练，这一个步骤可能花费了我最长的时间。做完这步后，效果如下图所示：</p>
+<p><img alt="效果" src="./assets/20250123.png" /></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年2月1日 02:14:40 UTC">2025年2月1日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年2月1日 02:14:40 UTC">2025年2月1日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+
+  <script src="https://giscus.app/client.js"
+    data-repo="xinchengo/blog-zh"
+    data-repo-id="R_kgDONynfkQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDONynfkc4CmhkQ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - 2025 xinchengo
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/xinchengo/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2773315798&site=qq&menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M434.1 420.4c-11.5 1.4-44.9-52.7-44.9-52.7 0 31.3-16.1 72.2-51 101.8 16.8 5.2 54.8 19.2 45.8 34.4-7.3 12.3-125.5 7.9-159.6 4-34.1 3.8-152.3 8.3-159.6-4-9-15.2 28.9-29.2 45.8-34.4-34.9-29.5-51.1-70.4-51.1-101.8 0 0-33.3 54.1-44.9 52.7-5.4-.6-12.4-29.6 9.3-99.7 10.3-33 22-60.5 40.1-105.8C60.9 98 109.2-.1 224.3-.1 338-.1 387.5 96 384.6 214.9c18.1 45.2 29.9 72.9 40.1 105.8 21.8 70.1 14.7 99.1 9.3 99.7z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.sections", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
