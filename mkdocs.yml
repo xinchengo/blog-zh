@@ -16,7 +16,7 @@ theme:
 
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
-      scheme: default 
+      scheme: default
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -39,10 +39,10 @@ theme:
 markdown_extensions:
   # Mathjax support
   - pymdownx.arithmatex:
-        generic: true
+      generic: true
   # Enable ~~Strikethrough~~
   - pymdownx.tilde
-  
+
   # Admonition (call-out) support
   - admonition
   - pymdownx.details
@@ -54,7 +54,7 @@ markdown_extensions:
 
 plugins:
   # - privacy: # Disabled because it affects Mathjax font support
-  #     assets_exclude: 
+  #     assets_exclude:
   #       - unpkg.com/mathjax@3/*
   #       - giscus.app/*
   # Add suppport for adding the date of last update and creation of a document
@@ -64,6 +64,8 @@ plugins:
   - meta # support for .meta.yml
   - search:
       lang: zh
+  - blog:
+      blog_dir: .
 
 extra_javascript:
   # Mathjax support
@@ -76,3 +78,4 @@ extra:
       link: https://github.com/xinchengo/
     - icon: fontawesome/brands/qq
       link: http://wpa.qq.com/msgrd?v=3&uin=2773315798&site=qq&menu=yes
+

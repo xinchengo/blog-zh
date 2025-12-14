@@ -1,3 +1,7 @@
+---
+date: 2025-01-27
+---
+
 # KerasTuner 的使用
 
 !!! warning "本文正在编写中"
@@ -8,6 +12,7 @@
 
 本文章为我为“科学与社会”研讨课之需要，对 [KerasTuner](https://keras.io/keras_tuner/) 的学习笔记。部分内容摘录、翻译自其[官方网站](https://keras.io/keras_tuner/)。
 
+<!-- more -->
 
 KerasTuner 是一个通用目的的超参数调节库，它和 Keras 的工作流有着紧密的集成。
 
@@ -39,3 +44,4 @@ def build_model(hp : keras_tuner.HyperParameters):
 ```
 
 之后我们就可以用 `RandomSearch`、`BayesianOptimization`、`Hyperband` 等方法进行搜索，具体的使用方法在[这里](https://keras.io/keras_tuner/getting_started/#start-the-search)有很好的讲解，这里就不翻译了。
+

@@ -1,8 +1,14 @@
+---
+date: 2024-01-20
+---
+
 # Arch Linux 安装与配置
 
 这篇文章记录了我安装 Arch Linux 的经过，以及维护 Arch Linux 的一些小技巧，以便之后遇到问题时回溯我最初安装的经过。
 
 安装 Arch Linux 其实并不算困难，因为 [Arch Linux 的官网](https://archlinux.org/)上有相当详细的[安装教程](https://wiki.archlinux.org/title/Installation_guide)，何况官方的安装镜像里有一个自带的“图形化”安装器`archinstall`。
+
+<!-- more -->
 
 ## 安装系统
 
@@ -25,14 +31,14 @@
 
 先更新 `locale`：
 
-   - `sudo vim /etc/locale.gen`，解除 `zh-CN.UTF-8 UTF-8` 前的注释
-   - `sudo locale-gen`
+- `sudo vim /etc/locale.gen`，解除 `zh-CN.UTF-8 UTF-8` 前的注释
+- `sudo locale-gen`
 
 再安装中文字体：
-   
+
 ```bash
 sudo pacman -Syu adobe-source-han-sans-cn-fonts\
-    adobe-source-han-serif-cn-fonts\ 
+    adobe-source-han-serif-cn-fonts\
     noto-fonts-cjk wqy-microhei\
     wqy-microhei-lite wqy-bitmapfont\
     wqy-zenhei ttf-arphic-ukai\
@@ -94,6 +100,7 @@ sudo mount -o subvol=@.snapshots /dev/<sdX> /.snapshots/ # <sdX> 应换成你的
 此时自动快照就已经配置好了，如果要修改自动快照的保存数量（多少个每小时快照，每日快照……），那么在 `sudo vim /etc/snapper/configs/root` 中修改即可。
 
 常用的管理命令有（更多的见[官方文档](https://wiki.archlinux.org/title/Snapper)）：
+
 - `snapper -c <config> list`：列举按照 `config` 配置备份的镜像。
 - `snapper -c <config> create --description <desc>`：手动创建一个信息为 `desc` 的快照，注意这个快照不会被自动删除。
 - `snapper -c <config> create --command <cmd>`：执行 `cmd` 这个重要命令，并在命令执行前和执行后创建一对快照。

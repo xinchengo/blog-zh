@@ -1,3 +1,7 @@
+---
+date: 2024-01-26
+---
+
 # Conditional GAN
 
 !!! warning "本文正在编写中"
@@ -9,6 +13,8 @@
 本篇博客是我“科学与社会”研讨课的一部分。本文作为个人的学习笔记可能不是非常详细，具体请参考[链接](https://keras.io/examples/generative/conditional_gan/)。
 
 本文介绍了 Conditional GAN，Wasserstein 比较**浅要的理解**，以及 WGAN-GP (添加梯度惩罚项的一种 Wasserstein GAN) 的**实现心得**。
+
+<!-- more -->
 
 ## 为什么要 Conditional GAN
 
@@ -58,7 +64,6 @@ $$
 - $D(\boldsymbol x|\boldsymbol y;\theta_{d})$：一个由参数 $\theta_{d}$ 定义的鉴别器，$\boldsymbol x$ 是待鉴别数据，$\boldsymbol y$ 是附加信息。
 
 类似的，我们要最优化的是：
-
 
 $$
 \min_G \max_D V(D, G) = \mathbb{E}_{\boldsymbol{x} \sim p_{\text{data}}(\boldsymbol{x})}[\log D(\boldsymbol{x})] + \mathbb{E}_{\boldsymbol{z} \sim p_{\boldsymbol{z}}(\boldsymbol{z})}[\log (1 - D(G(\boldsymbol{z})))].
@@ -125,43 +130,43 @@ Wasserstein GAN 最小化的目标就是（近似的）Wasserstein 距离，这�
 
 1. [**总变差距离**](https://en.wikipedia.org/wiki/Total_variation_distance_of_probability_measures) (**Total Variation**, TV)：
 
-    如果 $\mathbb P,\mathbb Q$ 这两个分布有着概率密度函数 $p,q$，那么它们的**总变差距离**定义为：
+   如果 $\mathbb P,\mathbb Q$ 这两个分布有着概率密度函数 $p,q$，那么它们的**总变差距离**定义为：
 
-    $$
-    \delta(\mathbb P,\mathbb Q)=\frac{1}{2}\int_{-\infty}^{+\infty} |p(x)-q(x)|\mathrm dx
-    $$
+   $$
+   \delta(\mathbb P,\mathbb Q)=\frac{1}{2}\int_{-\infty}^{+\infty} |p(x)-q(x)|\mathrm dx
+   $$
 
-    从直观上理解，如果把 $y=p(x),y=q(x)$ 画出来，它们的总变差距离就是两个函数之间包围的面积。在后面为了方便，我们又记 $\delta(\mathbb P,\mathbb Q)=||\mathbb P - \mathbb Q||_{TV}$。
+   从直观上理解，如果把 $y=p(x),y=q(x)$ 画出来，它们的总变差距离就是两个函数之间包围的面积。在后面为了方便，我们又记 $\delta(\mathbb P,\mathbb Q)=||\mathbb P - \mathbb Q||_{TV}$。
 
 2. [**Kullback-Leibler 散度**](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) (KL)：
 
-    如果 $\mathbb P,\mathbb Q$ 这两个分数有着概率密度函数 $p,q$，那么 Q 到 P 的相对熵（即 **KL 散度**）被定义为：
+   如果 $\mathbb P,\mathbb Q$ 这两个分数有着概率密度函数 $p,q$，那么 Q 到 P 的相对熵（即 **KL 散度**）被定义为：
 
-    $$
-    \begin{aligned}
-    D_{KL}(\mathbb P||\mathbb Q)&=\int_{-\infty}^{+\infty}p(x)\log\left(\frac{p(x)}{q(x)}\right)\mathrm dx \\
-    &=\mathbb E_{x\sim \mathbb P}\left[\log\frac{p(x)}{q(x)}\right]
-    \end{aligned}
-    $$
+   $$
+   \begin{aligned}
+   D_{KL}(\mathbb P||\mathbb Q)&=\int_{-\infty}^{+\infty}p(x)\log\left(\frac{p(x)}{q(x)}\right)\mathrm dx \\
+   &=\mathbb E_{x\sim \mathbb P}\left[\log\frac{p(x)}{q(x)}\right]
+   \end{aligned}
+   $$
 
-    在这个定义下，KL 散度在很多情况下都不存在，而且即使存在也很可能不是对称的（考虑 $\exists x,q(x)=0$）。为了让这个散度变得对称，我们又定义了一个**Jensen-Shannon 散度**，即：
+   在这个定义下，KL 散度在很多情况下都不存在，而且即使存在也很可能不是对称的（考虑 $\exists x,q(x)=0$）。为了让这个散度变得对称，我们又定义了一个**Jensen-Shannon 散度**，即：
 
-    $$
-    \begin{gather*}
-    D_{JS}(\mathbb P||\mathbb Q)=D_{KL}(\mathbb P||\mathbb M)+D_{KL}(\mathbb Q||\mathbb M)\\
-    M=(\mathbb P+\mathbb Q)/2
-    \end{gather*}
-    $$
+   $$
+   \begin{gather*}
+   D_{JS}(\mathbb P||\mathbb Q)=D_{KL}(\mathbb P||\mathbb M)+D_{KL}(\mathbb Q||\mathbb M)\\
+   M=(\mathbb P+\mathbb Q)/2
+   \end{gather*}
+   $$
 
 3. [**动土者距离**](https://en.wikipedia.org/wiki/Earth_mover%27s_distance) (Earth Mover's distance, EMD)：
 
-    如果 $\mathbb P,\mathbb Q$ 这两个分布有着概率密度函数 $p,q,P(x)=\int_{-\infty}^xp(t)\mathrm dt,Q(x)=\int_{-\infty}^q(t)\mathrm dt$，则它们的**动土者距离**为：
+   如果 $\mathbb P,\mathbb Q$ 这两个分布有着概率密度函数 $p,q,P(x)=\int_{-\infty}^xp(t)\mathrm dt,Q(x)=\int_{-\infty}^q(t)\mathrm dt$，则它们的**动土者距离**为：
 
-    $$
-    W_1(\mathbb P,\mathbb Q)=\int_{-\infty}^{\infty}|P(x)-Q(x)|\mathrm dx
-    $$
+   $$
+   W_1(\mathbb P,\mathbb Q)=\int_{-\infty}^{\infty}|P(x)-Q(x)|\mathrm dx
+   $$
 
-    动土者距离是计算机科学上的称谓，在数学领域，一般把这种距离称为 [**Wasserstein-1 距离**](https://en.wikipedia.org/wiki/Wasserstein_metric)或者 **Kantorovich–Rubinstein 距离**。从直观上理解，如果把 $y=p(x),y=q(x)$ 的图像画出来，动土者距离就相当于把 $p(x)$ “搬运”成 $q(x)$ 最小需要耗费的代价（只计水平方向上的）。
+   动土者距离是计算机科学上的称谓，在数学领域，一般把这种距离称为 [**Wasserstein-1 距离**](https://en.wikipedia.org/wiki/Wasserstein_metric)或者 **Kantorovich–Rubinstein 距离**。从直观上理解，如果把 $y=p(x),y=q(x)$ 的图像画出来，动土者距离就相当于把 $p(x)$ “搬运”成 $q(x)$ 最小需要耗费的代价（只计水平方向上的）。
 
 ### 不同距离的强弱
 
@@ -170,11 +175,11 @@ Wasserstein GAN 最小化的目标就是（近似的）Wasserstein 距离，这�
 记 $\mathbb P$ 是一个一维的概率分布，$\left\{\mathbb P_n\right\}$ 是一个概率分布的序列，$\mathbb P$ 有着概率密度函数 $p$，$\mathbb P_i$ 有着概率密度函数 $p_i$，则，考虑它们在 $n\to\infty$ 的极限：
 
 1. 以下两个命题等价：
-    - $\delta(\mathbb P_n,\mathbb P)\to 0$
-    - $D_{JS}(\mathbb P_n,\mathbb P)\to 0$
+   - $\delta(\mathbb P_n,\mathbb P)\to 0$
+   - $D_{JS}(\mathbb P_n,\mathbb P)\to 0$
 2. 以下两个命题等价：
-    - $W_1(\mathbb P_n,\mathbb P)\to 0$
-    - $\mathbb P_n\xrightarrow{\mathcal D}\mathbb P$，其中 $\xrightarrow{\mathcal D}$ 代表**依分布收敛** (convergence in distribution)，即，$p_n(x)$ **逐点收敛**于 $p(x)$
+   - $W_1(\mathbb P_n,\mathbb P)\to 0$
+   - $\mathbb P_n\xrightarrow{\mathcal D}\mathbb P$，其中 $\xrightarrow{\mathcal D}$ 代表**依分布收敛** (convergence in distribution)，即，$p_n(x)$ **逐点收敛**于 $p(x)$
 3. 若 $D_{KL}(\mathbb P_n||\mathbb P)\to 0$ 或 $D_{KL}(\mathbb P_n||\mathbb P)\to 0$，则 1 中命题成立。
 4. 若 1 中命题成立，则 2 中命题成立。
 
@@ -184,23 +189,22 @@ Wasserstein GAN 最小化的目标就是（近似的）Wasserstein 距离，这�
 
 1. $(\delta(\mathbb P_n,\mathbb P)\Rightarrow D_{JS}(\mathbb P_n,\mathbb P)\to 0):$
 
-    记 $\mathbb P_m=\frac{1}{2}\mathbb P_n+\frac{1}{2}\mathbb P$（注意这个 $\mathbb P_m$ 和 $Pn$ 是有关的），则：
+   记 $\mathbb P_m=\frac{1}{2}\mathbb P_n+\frac{1}{2}\mathbb P$（注意这个 $\mathbb P_m$ 和 $Pn$ 是有关的），则：
 
-    $$
-    \begin{aligned}
-    \delta(\mathbb P_m,\mathbb P_n) &= ||\mathbb P_m - \mathbb P_n||_{TV}\\
-    &= ||\frac{1}{2}\mathbb P+\frac{1}{2}\mathbb P_n-\mathbb P_n||_{TV}\\
-    &= \frac{1}{2}||\mathbb P-\mathbb P_n||_{TV}\\
-    &= \frac{1}{2}\delta(\mathbb P_n,\mathbb P) \le \delta(\mathbb P_n, \mathbb P)
-    \end{aligned}
-    $$
+   $$
+   \begin{aligned}
+   \delta(\mathbb P_m,\mathbb P_n) &= ||\mathbb P_m - \mathbb P_n||_{TV}\\
+   &= ||\frac{1}{2}\mathbb P+\frac{1}{2}\mathbb P_n-\mathbb P_n||_{TV}\\
+   &= \frac{1}{2}||\mathbb P-\mathbb P_n||_{TV}\\
+   &= \frac{1}{2}\delta(\mathbb P_n,\mathbb P) \le \delta(\mathbb P_n, \mathbb P)
+   \end{aligned}
+   $$
 
-    !!! warning "此处证明待完成"
-
+   !!! warning "此处证明待完成"
 
 ### 如何使用 EM 距离
 
-以上的定理使用[测度论](https://en.wikipedia.org/wiki/Measure_(mathematics))的知识，可以扩展到更高维度的情形下仍然成立。所以，在 GAN 的训练中，使用 Wasserstein-1 距离比起 Kullback-Leibler 散度显然是一个更好的选择。现在的问题就是，如何训练一个 GAN 使得它近似地让 Wasserstein-1 距离达到最小。
+以上的定理使用[测度论](<https://en.wikipedia.org/wiki/Measure_(mathematics)>)的知识，可以扩展到更高维度的情形下仍然成立。所以，在 GAN 的训练中，使用 Wasserstein-1 距离比起 Kullback-Leibler 散度显然是一个更好的选择。现在的问题就是，如何训练一个 GAN 使得它近似地让 Wasserstein-1 距离达到最小。
 
 在一般情况下，上文中 Wasserstein-1 距离的定义可以扩展为：(Kantorovich-Rubinstein 对偶性)
 
@@ -230,13 +234,12 @@ $$
 
 其中这个 $\hat{\boldsymbol{x}}$ 是一个随机的在真实和虚假照片中插值得到的照片。
 
-
-
 ## 总结
 
 - Conditonal GAN：和一般的 GAN 一样，但是在生成器和鉴别器的输入中**加入附加信息**。
 - Wasserstein GAN：
-    - 传统的 GAN 训练的**目标函数**相当于让生成器分布与真实分布的 **Kullback-Leibler 散度**最小。
-    - 但是 Kullback-Leibler 散度是一个很强的距离，实践中很难对其进行优化。
-    - 使用 **Wasserstein-1 距离**作为替代会让训练简单很多。
-    - 实践上，需要在**改变目标函数**的同时，保障鉴别器的神经网络符合 **Lipschitz 条件**。
+  - 传统的 GAN 训练的**目标函数**相当于让生成器分布与真实分布的 **Kullback-Leibler 散度**最小。
+  - 但是 Kullback-Leibler 散度是一个很强的距离，实践中很难对其进行优化。
+  - 使用 **Wasserstein-1 距离**作为替代会让训练简单很多。
+  - 实践上，需要在**改变目标函数**的同时，保障鉴别器的神经网络符合 **Lipschitz 条件**。
+
