@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2025/02/03/hugging-face-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2025/12/15/%E7%A9%BA%E6%98%8E%E6%B5%81%E4%BC%A0/">
       
       
-        <link rel="prev" href="../../../01/27/kerastuner-%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <link rel="prev" href="../../09/%E9%9D%92%E5%86%A5%E4%B8%8A%E6%B2%B3%E5%9B%BE/">
       
-      
-        <link rel="next" href="../../08/home-assistant-%E4%B9%8B%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>Hugging Face 使用方法 - xinchengo 的博客</title>
+        <title>空明流传 - xinchengo 的博客</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hugging-face" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -112,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hugging Face 使用方法
+              空明流传
             
           </span>
         </div>
@@ -496,10 +494,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        前言
+        题记
       
     </span>
   </a>
@@ -507,88 +505,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diffusers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用 Diffusers 进行文生图
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用 Diffusers 进行文生图">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        从小模型开始
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        减少显存使用
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="减少显存使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        量化
+        可能有用的资料
       
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光流入门
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="光流入门">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        其它的优化方法
+        连续性方程
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        微调模型和上传自己的模型
+        连续性方程的局限
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#hugging-face-cli" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Hugging Face CLI
+        额外的方程？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="额外的方程？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lucas-kanade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lucas-Kanade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horn-schunck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horn-Schunck
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        效果
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        深度学习中的光流
       
     </span>
   </a>
@@ -632,7 +652,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-02-03 00:00:00+00:00" class="md-ellipsis">2025年2月3日</time>
+                        <time datetime="2025-12-15 00:00:00+00:00" class="md-ellipsis">2025年12月15日</time>
                       </div>
                     </li>
                     
@@ -671,95 +691,132 @@
   
 
 
-<h1 id="hugging-face">Hugging Face 使用方法</h1>
+<h1 id="_1">空明流传</h1>
 <div class="admonition warning">
 <p class="admonition-title">本文正在编写中</p>
 </div>
-<div class="admonition info">
-<p class="admonition-title">声明</p>
-<p>由于该文章为本人大一时为<a href="https://www.teach.ustc.edu.cn/?attachment_id=17309">“科学与社会”研讨课</a>学习需要而创作。由于作者才疏学浅，在严谨性上可能存在缺陷。</p>
-</div>
-<h2 id="_1">前言</h2>
-<p>严格上来说，“使用 AI 做自己想做的事”和“理解、学习 AI 的原理”是两件截然不同的事情。这个难度的区别就好比在 <a href="https://store.steampowered.com/">Steam</a> 上下载<a href="https://store.steampowered.com/app/2358720/Black_Myth_Wukong/">《黑神话·悟空》</a>和编写这样的游戏一样。</p>
-<p>使用 <a href="https://huggingface.co/">Hugging Face</a> 中现成的模型完成文生图、图生图等任务明显属于前者，它的难度并不没有很多人想象中的那么大。我书写本篇文章的目的就是来证明使用现有的工具完成自己想完成的任务对于<strong>有一定计算机基础的人</strong>来说并不是遥不可及的事情，恰恰相反——我相信，在不远的将来，个性化计算 (personalized computing) 将会逐渐走近现实，人们将会对他们周围的电子产品有更多的自主权和控制权，能够熟练的运用电子产品完成自己想做的事情。</p>
+<h2 id="_2">题记</h2>
+<p>最近在阅读<a href="https://arxiv.org/abs/2512.00425">论文</a>的时候遇到了 Optical Flow（光流）这个名词。据导师说，光流可以达成一种“外观和动作的解耦”，“从动作之中提取更纯粹的物理规律，但不是唯一的方式”。我觉得这个算法在计算机视觉中还是挺重要的，有必要更深入地了解。这篇文章记录我的学习过程。</p>
 <!-- more -->
 
-<h2 id="diffusers">使用 Diffusers 进行文生图</h2>
-<div class="admonition info">
-<p class="admonition-title">声明</p>
-<p>如果你想要进行的是 AI 绘画，而后续不想与 Hugging Face 打太多交道，也不想训练自己的模型，那么 <a href="https://github.com/comfyanonymous/ComfyUI">Comfy UI</a> 是一个更好的选择，请直接学习它，忽略本教程。</p>
-</div>
 <blockquote>
-<p>🤗 Diffusers 是一个用于生成图像、音频甚至分子3D结构的最先进预训练扩散模型的首选库。无论您是在<strong>寻找一个简单的推理解决方案</strong>，还是想训练自己的扩散模型，🤗 Diffusers 都是一个支持两者的模块化工具箱。我们的库设计时注重<strong>可用性</strong>而非性能，<strong>简单</strong>性而非易用性，以及可定制性而非抽象性。</p>
-<p>——使用 <a href="https://chat.deepseek.com/">DeepSeek</a> 翻译自 <a href="https://huggingface.co/docs/diffusers/index">Diffusers 官方教程</a></p>
+<p>桂棹兮兰桨，击空明兮溯流光。——《赤壁赋》</p>
 </blockquote>
-<p>Hugging Face 的官网给出了一部详细的 <a href="https://huggingface.co/docs/diffusers/index">Diffusers 库使用教程</a>。这个教程涵盖的范围包括从使用现成的模型生成图片，到使用数据训练自己的模型的各方各面（不包括原理）。官网上的教程非常详细，是优秀的学习资源。本文旨在从与原教程不同的角度，即实用的态度，来看待 Diffusers 这款工具。</p>
-<p>首先根据<a href="https://huggingface.co/docs/diffusers/installation">教程</a>安装好 Diffusers，这是以下所有实践的前提。</p>
-<h3 id="_2">从小模型开始</h3>
-<p>Pipeline 是 Diffusers 库为我们方便运行各种模型（不限于文生图模型）提供的一个有用的工具。以下大部分内容翻译自<a href="https://huggingface.co/docs/diffusers/quicktour">官方教程的《概览》部分</a>，如果想对 Pipeline 有更深的了解可以参考这个 <a href="https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb">Google Colab</a>。</p>
-<div class="admonition warning">
-<p class="admonition-title">请注意您的显卡内存</p>
-<p>以下示例要求 <strong>8 GB 及以上</strong>的显卡内存才能正常运行！如果你的显卡内存低于这个值，请移步下一节。</p>
-</div>
-<p>这是<a href="https://huggingface.co/docs/diffusers/quicktour#diffusionpipeline">官网中教程</a>中的第一个生成图片的示例，这个例子消耗了 7700 MiB 的显存（<code>nvidia-smi</code> 中结果）：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">diffusers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiffusionPipeline</span>
-
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">DiffusionPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;stable-diffusion-v1-5/stable-diffusion-v1-5&quot;</span><span class="p">,</span> <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;An image of a squirrel in Picasso style&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">image</span>
-</code></pre></div>
-<details class="note">
-<summary>一张生成结果</summary>
-<p><img alt="生成结果" src="../../../../assets/20250204.png" /></p>
-</details>
-<p>这个示例做的是：</p>
+<p>空明流的名字更有诗意，听起来也很好玩的样子。很巧的是，光流中有一个很有名的算法叫做 RAFT，也和《赤壁赋》的背景比较贴切。</p>
+<h2 id="_3">可能有用的资料</h2>
 <ul>
-<li>第三行代码做的是从 Hugging Face 官网的存储库上下载 <code>stable-diffusion-v1-5</code> 这个模型（如果本地没有缓存的话），再把模型加载到 <code>pipeline</code> 里。</li>
-<li>第四行代码把这个 <code>pipeline</code> 加载在<a href="https://www.nvidia.com">英伟达</a>显卡上。</li>
-<li>第五行代码根据提示词，运行这个 <code>pipeline</code>，生成了一张图片。</li>
-<li>最后一行代码展示了这张图片。</li>
+<li>Stanford CS231A 课程中的<a href="https://web.stanford.edu/class/cs231a/course_notes/09-optical-flow.pdf">光流笔记</a></li>
 </ul>
-<p><code>DiffusionPipeline</code>，顾名思义就是运行扩散模型 (diffusion) 模型的流水线，这是真哥哥 Diffusers 库中最基本的 Pipeline！也就是说，其他所有的“流水线”都是它的派生。出于本文性质原因，这里不用篇幅专门介绍什么是扩散模型。很多模型在 Diffusers 库中都有相应的 Pipeline，<a href="https://huggingface.co/docs/diffusers/api/pipelines/overview#diffusers-summary">这里</a>有一个详细的表格。</p>
-<h3 id="_3">减少显存使用</h3>
-<p>你可能会发现刚才的 <code>stable-diffusion-v1-5</code> 已经是一个比较小的模型了——在未经优化的情况下能够在 8GB 显存的显卡上运行。可是，Hugging Face 还有那么多模型没有办法运行怎么办？（如果你尝试在家用电脑上运行过官网上的教程，你可能碰到过很多 <code>OutOfMemoryError</code>）幸运的是，我们可以从模型本身和运行方式上入手，缩小运行模型所需要的显存占用。</p>
-<h4 id="_4">量化</h4>
-<p>量化 (quantization) 的意思是，用较少的信息来表示数据，同时尽量不损失过多的准确性。比如说，如果一个模型的权重以 <code>torch.float32</code> 存储，把它们量化为 <code>torch.float16</code> 就可以使模型大小减半，从而容易更容易存储并减少内存使用。较低的精度还可以加速推理过程。这类方法之所以常用是因为在很多机器学习模型中，参数的精度并不重要（或者至少不处于关键位置）</p>
-<p>具体量化的使用方法参见 <a href="https://huggingface.co/docs/diffusers/v0.32.2/en/quantization/overview">官方文档的《量化》章节</a>。量化有很多方法，除了用 16 位浮点数其中官方文档中介绍的有 bitsandbytes、gguf 和 torchao。</p>
-<p>下面我们改进了上面的代码，使用了 16 位浮点数量化优化以上示例的内存，把内存占用从未经优化的 7700 MiB 优化到了 3980 MiB！</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">diffusers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiffusionPipeline</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">DiffusionPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="s2">&quot;stable-diffusion-v1-5/stable-diffusion-v1-5&quot;</span><span class="p">,</span>
-    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
-    <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;An image of a squirrel in Picasso style&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">image</span>
-</code></pre></div>
-<details class="note">
-<summary>一张生成结果</summary>
-<p><img alt="生成结果" src="../../../../assets/20250204-2.png" /></p>
-<p>可以看到，量化并没有明显地降低生成质量（虽然这张照片和上面一张一样，都是稍微挑过的，不太严谨，但是结论是对的）</p>
+<h2 id="_4">光流入门</h2>
+<h3 id="_5">连续性方程</h3>
+<blockquote>
+<p>对，亮度也可以看成一种密度。</p>
+</blockquote>
+<p>视频中连续帧的图像满足什么样的性质呢？用物理上的思路，我们尝试在其中构造出一种“守恒”的量。</p>
+<p>比如“亮度守恒”（brightness constancy），假设图片中的物体只是移动而没有发生任何其他的变化（这当然是非常理想的情况），在这个情况下，移动前的像素点亮度和移动后的像素点亮度不发生变化：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+I(x, y, t) &amp;= I(x + \Delta x, y +  \Delta y, t + \Delta t) \\
+&amp;= I(x, y, t) + \nabla I\cdot (\Delta x, \Delta y, \Delta t) + \cdots \\
+&amp;\approx I + \nabla I \cdot (\Delta x, \Delta y, \Delta t)
+\end{aligned}
+\]</div>
+<p>在小运动假设下（small motion assumption），<span class="arithmatex">\(\Delta t \to 0\)</span>，上面的一阶近似是可行的，可以推出：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+0 &amp;= \nabla I \cdot (\Delta x, \Delta y, \Delta z)\\
+&amp;= \frac{\partial I}{\partial x}\frac{\Delta x}{\Delta t} + \frac{\partial I}{\partial y} \frac{\Delta y}{\Delta t} + \frac{\partial I}{\partial t} \\
+&amp;= I_x u + I_y v + I_t \\
+\implies &amp; \nabla I \cdot \boldsymbol{u}+\frac{\partial I}{\partial t} = 0
+\end{aligned}
+\]</div>
+<p>这个散度的形式可以看作物理中各种“流函数”的一种推广，可以类比流体力学中的连续性方程：</p>
+<div class="arithmatex">\[
+\nabla \cdot (\rho\boldsymbol{v}) + \frac{\partial\rho}{\partial t} = 0
+\]</div>
+<h3 id="_6">连续性方程的局限</h3>
+<p>当然，光靠这个连续性方程解不出这个 <span class="arithmatex">\(I\)</span>，事实上，它只确定了<strong>法向流</strong>（normal flow），即，<span class="arithmatex">\(\boldsymbol{u}\)</span> 在 <span class="arithmatex">\(\nabla I\)</span> 方向的分量。</p>
+<details class="notes">
+<summary>怎么求法向流？</summary>
+<div class="arithmatex">\[
+\frac{\nabla I}{\| \nabla I \|} \cdot \boldsymbol{u} = \frac{-I_t}{\| \nabla I \|}
+\]</div>
+<p>左边是 <span class="arithmatex">\(\boldsymbol{u}\)</span> 在梯度方向的法向分量，而右边就是我们想求的值。</p>
 </details>
-<p>使用精心设计、更加激进的量化方法，可以进一步地优化模型占用的内存，具体参见<a href="https://huggingface.co/docs/diffusers/quantization/bitsandbytes">官方文档中关于 bitsandbytes 的介绍</a>。</p>
-<h4 id="_5">其它的优化方法</h4>
-<p>具体参见<a href="https://huggingface.co/docs/diffusers/optimization/memory">官方文档的《优化内存》章节</a>，下面是对这些优化方法的极其粗略的介绍：</p>
+<p>我们难以确定切向分量，这个问题被称为光圈问题（aperture problem）。为了解决这个问题，很多不同的方法都被提出。</p>
+<h3 id="_7">额外的方程？</h3>
+<p>类比流体的粘滞性，这些方程大致的出发点都是——相邻的像素点的速度具有某种接近的关系。</p>
+<blockquote>
+<p>简要概括：</p>
 <ul>
-<li><code>pipeline.enable_vae_slicing()</code>：生成多张图片时内存不够可以采用此选项。</li>
-<li><code>pipeline.enable_vae_tiling()</code>：生成很大的图片的时候可以采用此选项。</li>
-<li><code>pipeline.enable_model_cpu_offload()</code> 和 <code>pipeline.enable_sequential_cpu_offload()</code>：都是把部分参数存在内存里，根据需要“搬运”到显存中去，但这两个选项的程度不同，后者对显存的节省程度最大，对性能的影响也最大。</li>
+<li>连续性 + 空域光滑性：Lucas-Kanade 方法</li>
+<li>连续性 + 全局光滑性：Horn-Schunck 方法</li>
 </ul>
-<p>学会这些优化方法之后，就可以尝试运行更大的模型了。</p>
-<h2 id="_6">微调模型和上传自己的模型</h2>
-<div class="admonition warning">
-<p class="admonition-title">此处内容待完成</p>
+</blockquote>
+<h4 id="lucas-kanade">Lucas-Kanade</h4>
+<div class="admonition notes">
+<p class="admonition-title">翻译提醒</p>
+<p>注意翻译成中文应翻译成“卢卡斯-金出方法”，因为 Kanade 指日本计算机学家<a href="https://en.wikipedia.org/wiki/Takeo_Kanade">金出武雄</a>。</p>
 </div>
-<h2 id="hugging-face-cli">Hugging Face CLI</h2>
-<div class="admonition warning">
-<p class="admonition-title">此处内容待完成</p>
-</div>
+<p>引入空域光滑性前提（spatial smoothness assumption），我们认为对于一个小的“窗口”中的所有像素，它们共享一个光流 <span class="arithmatex">\(\boldsymbol{u}\)</span>，而我们要对这个光流做最小二乘估计，形式化地：</p>
+<div class="arithmatex">\[
+\begin{gather}
+\arg \min_{\boldsymbol{u}} \|A\boldsymbol{u} - \boldsymbol{b}\| \\
+A \triangleq
+  \begin{bmatrix}
+    I_x(p_1) &amp; I_y(p_1) \\
+    \vdots &amp; \vdots \\
+    I_x(p_n) &amp; I_y(p_n)
+  \end{bmatrix}, \quad
+B \triangleq
+  \begin{bmatrix}
+    - I_t(p_1) \\ \vdots \\ - I_t(p_n)
+  \end{bmatrix}
+\end{gather}
+\]</div>
+<p>这可以看作让窗口中的每个点都尽可能满足“连续性方程”（由于假设了光流相等，这些方程一般不能同时被满足），其最小二乘估计为：</p>
+<div class="arithmatex">\[
+\boldsymbol{u} = (A^TA)^{-1}A^T\boldsymbol{b}
+\]</div>
+<p>通常我们对每个像素点取一个 <span class="arithmatex">\(N\times N\)</span> 邻域。这样，我们就得到 Lucas-Kanade 算法的全流程了。</p>
+<details class="notes" open="open">
+<summary>几个需要注意的地方</summary>
+<p>其实 Lucas-Kanade 算法还有不少值得深究的地方，一个值得注意的就是最小二乘估计中的“求逆”操作，<span class="arithmatex">\(A^TA\)</span> 并不一定是一个性态很好的矩阵。</p>
+<div class="arithmatex">\[
+G = A^T A = \sum_{p\in W}\begin{bmatrix}I^2_x &amp; I^xI^y \\ I_xI_y &amp; I^2_y\end{bmatrix}
+\]</div>
+<p>矩阵 <span class="arithmatex">\(G\)</span> 被称为结构张量（structure tensor）或二阶矩矩阵，事实上，<span class="arithmatex">\(G\)</span> 就是 <span class="arithmatex">\(W\)</span> 所有像素 Hessian 矩阵之和。</p>
+<p>只有当 <span class="arithmatex">\(G\)</span> 可逆且为良态矩阵时，这个最小二乘估计才可以进行。这就要求其两个特征值 <span class="arithmatex">\(\lambda_1, \lambda_2\)</span> 都不是太小。</p>
+<p>而对结构矩阵 <span class="arithmatex">\(G\)</span> 进行分析也是很多边缘检测器的原理，比如，Shi-Tomasi 角检测器使用的就是 <span class="arithmatex">\(\min(\lambda_1, \lambda_2) &gt; \tau\)</span> 来判断当前点是否为角点。Harris 角检测器使用的则是 <span class="arithmatex">\(det(G) - k(trace(G))^2 &gt; \tau\)</span> 来判断，它们都反映着结构矩阵 <span class="arithmatex">\(G\)</span> 是否良态。</p>
+<p>因此 Lucas-Kanade 算法不适用与图像平坦的区域，只适用于角点的情况；Lucas-Kanade 算法的应用基本上会与角点检测结合在一起。</p>
+<p>其实这还是一个很深的话题，但是出于本文目的，我就不再深入了。</p>
+</details>
+<h4 id="horn-schunck">Horn-Schunck</h4>
+<blockquote>
+<p>水很深，关于 Euler-Lagrange 方程的内容，之后有缘再说吧。</p>
+</blockquote>
+<p>Horn-Schunck 方法则是引入了全局光滑性前提（global smoothness assumption），它假设整幅图像的光流场都是光滑的。</p>
+<p>它最小化一个能量泛函（energy functional）：</p>
+<div class="arithmatex">\[
+E(u, v) = \iint \left( (I_x u + I_y v + I_t)^2 + \lambda \left( \|\nabla u\|^2 + \|\nabla v\|^2 \right) \right) \mathrm d x \mathrm d y
+\]</div>
+<p>由变分法理论可知，能量泛函的极小值满足欧拉-拉格朗日方程（Euler-Lagrange equation）：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+I_x (I_x u + I_y v + I_t) - \lambda \nabla^2 u &amp;= 0 \\
+I_y (I_x u + I_y v + I_t) - \lambda \nabla^2 v &amp;= 0
+\end{aligned}
+\]</div>
+<p>这个方程组可以通过迭代法求数值解。</p>
+<h3 id="_8">效果</h3>
+<p>==TBC==</p>
+<h2 id="_9">深度学习中的光流</h2>
+<p>我们刚才讲了那么半天，都离不开“亮度守恒”、“连续性方程”这个条件，其实不妨更深入地想一想更本质的是什么。</p>
+<p>更普遍的来说，光流可以看作是从两帧图像 <span class="arithmatex">\(I_1, I_2\)</span> 到一个位移场 <span class="arithmatex">\(\boldsymbol{u}\)</span> 的映射：</p>
+<div class="arithmatex">\[
+\boldsymbol{u} = f_{\theta}(I_1, I_2)
+\]</div>
+<p>==TBC==</p>
 
 
 
@@ -782,7 +839,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 15:27:22 UTC">2025年12月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 15:27:48 UTC">2025年12月15日</span>
   </span>
 
     
@@ -792,7 +849,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年2月4日 14:26:54 UTC">2025年2月4日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 15:27:48 UTC">2025年12月15日</span>
   </span>
 
     
