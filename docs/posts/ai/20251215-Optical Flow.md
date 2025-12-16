@@ -4,8 +4,6 @@ date: 2025-12-15
 
 # 空明流传
 
-!!! warning "本文正在编写中"
-
 ## 题记
 
 最近在阅读[论文](https://arxiv.org/abs/2512.00425)的时候遇到了 Optical Flow（光流）这个名词。据导师说，光流可以达成一种“外观和动作的解耦”，“从动作之中提取更纯粹的物理规律，但不是唯一的方式”。我觉得这个算法在计算机视觉中还是挺重要的，有必要更深入地了解。这篇文章记录我的学习过程。
@@ -108,25 +106,7 @@ $$
 \boldsymbol{u} = (A^TA)^{-1}A^T\boldsymbol{b}
 $$
 
-通常我们对每个像素点取一个 $N\times N$ 邻域。这样，我们就得到 Lucas-Kanade 算法的全流程了。
-
-???+notes "几个需要注意的地方"
-
-    其实 Lucas-Kanade 算法还有不少值得深究的地方，一个值得注意的就是最小二乘估计中的“求逆”操作，$A^TA$ 并不一定是一个性态很好的矩阵。
-
-    $$
-    G = A^T A = \sum_{p\in W}\begin{bmatrix}I^2_x & I^xI^y \\ I_xI_y & I^2_y\end{bmatrix}
-    $$
-
-    矩阵 $G$ 被称为结构张量（structure tensor）或二阶矩矩阵，事实上，$G$ 就是 $W$ 所有像素 Hessian 矩阵之和。
-
-    只有当 $G$ 可逆且为良态矩阵时，这个最小二乘估计才可以进行。这就要求其两个特征值 $\lambda_1, \lambda_2$ 都不是太小。
-
-    而对结构矩阵 $G$ 进行分析也是很多边缘检测器的原理，比如，Shi-Tomasi 角检测器使用的就是 $\min(\lambda_1, \lambda_2) > \tau$ 来判断当前点是否为角点。Harris 角检测器使用的则是 $det(G) - k(trace(G))^2 > \tau$ 来判断，它们都反映着结构矩阵 $G$ 是否良态。
-
-    因此 Lucas-Kanade 算法不适用与图像平坦的区域，只适用于角点的情况；Lucas-Kanade 算法的应用基本上会与角点检测结合在一起。
-
-    其实这还是一个很深的话题，但是出于本文目的，我就不再深入了。
+通常我们对每个像素点取一个 $N\times N$ 邻域。这样，我们就得到 Lucas-Kanade 算法的全流程了。这个算法有一些值得深究的地方，详见[附录](#Lucas-Kanade-与结构张量)
 
 #### Horn-Schunck
 
@@ -149,7 +129,7 @@ I_y (I_x u + I_y v + I_t) - \lambda \nabla^2 v &= 0
 \end{aligned}
 $$
 
-这个方程组可以通过迭代法求数值解。
+这个方程组可以通过 Gauss-Seidel 迭代法或者 Jacobi 迭代法来求解。
 
 ### 效果
 
@@ -165,4 +145,126 @@ $$
 \boldsymbol{u} = f_{\theta}(I_1, I_2)
 $$
 
-==TBC==
+在传统方法中，$f_\theta$ 由一些假设（亮度守恒、光滑性等）和优化方法（最小二乘、变分法等）所决定，而基于深度学习的光流方法中 $f_\theta$ 是一个神经网络，而我们通过设计损失函数来约束传统方法中的那些假设。
+
+### 损失函数的设计
+
+损失函数的设计主要是给出约束条件，可以类比传统方法中的各种“假设”“方程”。
+
+#### 光度损失
+
+光度损失（photometric loss）对应传统方法中的亮度守恒假设。“光度”和“亮度”是同义词：
+
+$$
+\mathcal{L}_{\text{photo}} = \sum_{x}\rho(I_1(x) - I_2(x + \boldsymbol{u}(x)))
+$$
+
+#### 光滑损失
+
+光滑损失对应 Horn-Schunck 方法中的全局光滑性假设：
+
+$$
+\mathcal{L}_{\text{smooth}} = \sum_{x}\left(|\nabla u(x)| + |\nabla u(x)|\right)
+$$
+
+对比 Horn-Schunck 方法中的能量泛函，我们发现这是一个总变差正则项（total variation regularizer），使用的是 L1 范数。传统方法使用 L2 范数的主要原因是数学上的方便（它是一个简单扩散方程的形式）；深度学习方法中不需要考虑这种问题，可以单纯考虑效果。
+
+为什么 L2 光滑项不好呢？
+
+- 运动场（motion field）是分段连续，而不是全局连续的，L2 范数会过度惩罚大梯度，从而导致边缘处的模糊；
+- L2 范数假设 $\nabla u\sim \mathcal{N}(0, \sigma^2)$，但这在该问题下是错误的；
+
+归根结底来说，这个范数选择是 Bayes 统计中先验分布选择的问题，L2 范数对应高斯先验，而 L1 范数对应拉普拉斯先验，Bayes 统计在《概率论与数理统计》中并没有涵盖，这一部分详见[附录](#最大后验估计)。
+
+在实际应用中，光滑损失通常会结合图像的边缘信息进行加权，称为边缘觉知光滑损失（edge-aware smoothness loss）：
+
+$$
+\mathcal{L}_{\text{smooth}} = \sum_{x} |\nabla u(x)| e^{-|\nabla I(x)|}
+$$
+
+边缘附近，$|\nabla I|$ 较大，光滑损失的权重较小，从而允许较大的梯度，这就是“边缘觉知”的含义。
+
+这可以看作一种对各向异性扩散（anisotropic diffusion）的模拟；相比之下，传统的 Horn-Schunck 方法使用的是各向同性扩散（isotropic diffusion）。
+
+### 光流的匹配视角
+
+光流的定义是一个两帧图像到位移场的映射，比较早期的深度学习方法大多是直接建立这种映射关系，比如 FlowNet。 FlowNet (2015) 采取的是建立直接的端到端的卷积神经网络架构：
+
+$$
+\operatorname{CNN}(I_1, I_2) \to \boldsymbol{u}
+$$
+
+然而，光流也可以从一种匹配（matching）的视角来理解。定义代价函数 $C(x, d)$ 来表示像素 $x$ 在视差 $d$ 下的匹配代价，光流预测的问题就变成了在每个像素点 $x$ 处寻找一个最优的视差 $d^*$：
+
+$$
+C(x, d) = \operatorname{sim}(F_1(x), F_2(x + d))
+$$
+
+其中 $F_1, F_2$ 是从图像 $I_1, I_2$ 中提取的特征，而不是像素本身。代价函数作为一个三维张量被称为代价体（cost volume），它的三个维度分别是图像的宽、高和视差。
+
+从这种匹配的视角出发，研究光流的求解方法就更为方便。很多后续的方法都是基于该思想提出的。
+
+## RAFT 循环全对场变换
+
+==TODO==
+
+## 附录
+
+### Lucas-Kanade 与结构张量
+
+其实 Lucas-Kanade 算法还有不少值得深究的地方，一个值得注意的就是最小二乘估计中的“求逆”操作，$A^TA$ 并不一定是一个性态很好的矩阵。
+
+$$
+G = A^T A = \sum_{p\in W}\begin{bmatrix}I^2_x & I^xI^y \\ I_xI_y & I^2_y\end{bmatrix}
+$$
+
+矩阵 $G$ 被称为结构张量（structure tensor）或二阶矩矩阵，事实上，$G$ 就是 $W$ 所有像素 Hessian 矩阵之和。
+
+只有当 $G$ 可逆且为良态矩阵时，这个最小二乘估计才可以进行。这就要求其两个特征值 $\lambda_1, \lambda_2$ 都不是太小。
+
+而对结构矩阵 $G$ 进行分析也是很多边缘检测器的原理，比如，Shi-Tomasi 角检测器使用的就是 $\min(\lambda_1, \lambda_2) > \tau$ 来判断当前点是否为角点。Harris 角检测器使用的则是 $\det(G) - k(\operatorname{tr}(G))^2 > \tau$ 来判断，它们都反映着结构矩阵 $G$ 是否良态。
+
+因此 Lucas-Kanade 算法不适用与图像平坦的区域，只适用于角点的情况；Lucas-Kanade 算法的应用基本上会与角点检测结合在一起。
+
+其实这还是一个很深的话题，但是出于本文目的，我就不再深入了。
+
+### 最大后验估计
+
+!!! warning "该部分尚未完成"
+
+我们很熟悉最大似然估计（Maximum Likelihood Estimation, MLE），而最大后验估计（Maximum A Posteriori Estimation, MAP）则是在提供先验分布的情况下，用贝叶斯定理进行的修正。
+
+$$
+x_{\text{MAP}} = \arg \max_{x} p(x | y) = \arg \max_{x} \frac{p(y | x)p(x)}{p(y)} = \arg \max_{x} p(y | x)p(x)
+$$
+
+与 MLE 不同的是，MAP 中要最大化的是后验概率，而不是“似然”，它的对数后验概率为：
+
+$$
+\log p(x | y) = \log p(y | x) + \log p(x) + C
+$$
+
+形式上，这等同于最大似然估计加上一个先验的正则项，告诉我们未知的 $x$ 的某些认知。
+
+我们假设观测值 $y$ 由真实值 $x$ 加上噪声 $\epsilon$ 得到，现在考虑噪声服从不同的分布时，MAP 的形式。在光流这个任务中，我们想要预测的是 $\boldsymbol{u}$，而噪声是 $\nabla \boldsymbol{u}$。
+
+$$
+\begin{gather}
+y = f(x) + \epsilon \\
+p(\epsilon) \triangleq p(\epsilon = y - f(x)) = p(y | x)
+\end{gather}
+$$
+
+#### Gaussian 先验
+
+我们现在认为参数 $\epsilon$ 服从高斯分布 $\mathcal{N}(0, \sigma^2)$，则：
+
+$$
+\begin{gather}
+p(\epsilon) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{\epsilon^2}{2\sigma^2}\right) \\
+\implies -\log p(\epsilon) = \frac{\epsilon^2}{2\sigma^2} + C \\
+\implies -\log p(\epsilon) \propto \epsilon^2
+\end{gather}
+$$
+
+注意 Gaussian 先验中的“先验”对应的其实是 MAP 中的“似然”部分。我们下面要说明，最小化 $\|x-y\|

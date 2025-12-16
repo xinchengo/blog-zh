@@ -42,6 +42,14 @@ markdown_extensions:
       generic: true
   # Enable ~~Strikethrough~~
   - pymdownx.tilde
+  # Enable ==Hightlight==
+  - pymdownx.mark
+
+  # Configure slugify to not strip out non-ASCIIharacters
+  - toc:
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: none
 
   # Admonition (call-out) support
   - admonition
@@ -53,10 +61,11 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 
 plugins:
-  # - privacy: # Disabled because it affects Mathjax font support
-  #     assets_exclude:
-  #       - unpkg.com/mathjax@3/*
-  #       - giscus.app/*
+  # Automatically self-host external assets
+  - privacy:
+      assets_exclude:
+        - unpkg.com/mathjax@3/*
+        - giscus.app/*
   # Add suppport for adding the date of last update and creation of a document
   - git-revision-date-localized:
       enable_creation_date: true
@@ -78,4 +87,3 @@ extra:
       link: https://github.com/xinchengo/
     - icon: fontawesome/brands/qq
       link: http://wpa.qq.com/msgrd?v=3&uin=2773315798&site=qq&menu=yes
-
