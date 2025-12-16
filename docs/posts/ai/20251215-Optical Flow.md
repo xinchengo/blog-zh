@@ -14,9 +14,22 @@ date: 2025-12-15
 
 空明流的名字更有诗意，听起来也很好玩的样子。很巧的是，光流中有一个很有名的算法叫做 RAFT，也和《赤壁赋》的背景比较贴切。
 
+!!! info "关于该文章的书写进度"
+
+    这片文章的内容可能有些支离破碎，以后也不一定能完成，也许再也不会更新；欢迎在评论区留言交流，也许这会激励我继续写下去。
+
 ## 可能有用的资料
 
 - Stanford CS231A 课程中的[光流笔记](https://web.stanford.edu/class/cs231a/course_notes/09-optical-flow.pdf)
+- RAFT 论文：[RAFT: Recurrent All-Pairs Field Transforms for Optical Flow](https://arxiv.org/abs/2003.12039)
+- 一个 Github 仓库：[Awesome Optical Flow](https://github.com/hzwer/Awesome-Optical-Flow)
+- OpenCV 的[光流教程](https://docs.opencv.org/4.12.0/d4/dee/tutorial_optical_flow.html)
+- [Open MMlab](https://github.com/open-mmlab/mmflow)：一个光流工具箱
+
+### 一些不太有用的资料
+
+- [Bad Apple!! 暂停就看不见了](https://www.bilibili.com/video/BV1gs411278Y)：虽然是 2015 年的老视频，但是思想却极其先进，可以体现 Warped Noise 的基本思想；不知道 Wraped Noise 是怎么被发明的，是不是刷 B 站猎奇视频突然想到的；
+- [Go with the flow](https://eyeline-labs.github.io/Go-with-the-Flow/)；
 
 ## 光流入门
 
@@ -75,6 +88,11 @@ $$
 >
 > - 连续性 + 空域光滑性：Lucas-Kanade 方法
 > - 连续性 + 全局光滑性：Horn-Schunck 方法
+> - 把一阶近似换成二阶近似：Gunnar-Farneback 方法
+
+Lucas-Kanade 和 Gunnar-Farneback 方法都在 [OpenCV](https://opencv.org/) 的[标准库](https://docs.opencv.org/4.12.0/d4/dee/tutorial_optical_flow.html)中有实现，而 Horn-Schunck 方法由于效果不佳，OpenCV 已经不再支持。
+
+Lucas-Kanade 由于其模型过于理想化，只有在角点处才能得到较好的效果，而 Gunnar-Farneback 方法则可以得到稠密的光流场。
 
 #### Lucas-Kanade
 
@@ -108,7 +126,41 @@ $$
 
 通常我们对每个像素点取一个 $N\times N$ 邻域。这样，我们就得到 Lucas-Kanade 算法的全流程了。这个算法有一些值得深究的地方，详见[附录](#Lucas-Kanade-与结构张量)
 
+#### Gunnar-Farneback
+
+> 使用了二阶近似，但失去了“连续性方程”的形式。
+
+有时候，一阶近似并不够好，Gunnar-Farneback 方法使用二阶近似：
+
+$$
+\begin{aligned}
+I(\boldsymbol{x}_0 + \boldsymbol{\delta}) &\approx I(\boldsymbol{x}_0) + \nabla I(\boldsymbol{x}_0)^T \boldsymbol{\delta} + \frac{1}{2}\boldsymbol{\delta}^T \nabla^2 I(\boldsymbol{x}_0) \boldsymbol{\delta} \\
+&\triangleq \boldsymbol{\delta}^T A \boldsymbol{\delta} + b^T \boldsymbol{\delta} + c
+\end{aligned}
+$$
+
+对于经过平移 $\boldsymbol{d}$ 后的图像，有：
+
+$$
+\begin{gather}
+\begin{aligned}
+I_2(\boldsymbol{x}) &= I_1(\boldsymbol{x} - \boldsymbol{d}) \\
+&\approx (\boldsymbol{x} - \boldsymbol{d})^T A_1 (\boldsymbol{x} - \boldsymbol{d}) + b_1^T (\boldsymbol{x} - \boldsymbol{d}) + c_1 \\
+&= \boldsymbol{x}^T A_1 \boldsymbol{x} + (b_1 - 2A_1\boldsymbol{d})^T \boldsymbol{x} + \left(\boldsymbol{d}^T A_1 \boldsymbol{d} - b_1^T \boldsymbol{d} + c_1\right) \\
+&= \boldsymbol{x}^T A_2 \boldsymbol{x} + b_2^T \boldsymbol{x} + c_2
+\end{aligned} \\
+\implies A_2 \approx A_1, \quad b_2 \approx b_1 - 2A_1\boldsymbol{d} \\
+\implies \boldsymbol{\hat{d}} = -\frac{1}{2} A_1^{-1}(b_2 - b_1)
+\end{gather}
+$$
+
+这样我们就得到了 Gunnar-Farneback 算法的计算公式。在实践中，类似 Lucas-Kanade 方法，对每个像素点取一个邻域对梯度和 Hessian 矩阵进行平滑处理。
+
+由于引入了二阶近似，Gunnar-Farneback 方法可以用于处理稠密的光流场，而不需要像 Lucas-Kanade 方法那样依赖角点检测。
+
 #### Horn-Schunck
+
+在实践中，Horn-Schunck 算法的表现并不优秀，往往不如 Gunnar-Farneback 算法，所以，OpenCV 在新的版本中只保留了 Gunnara-Farneback 算法。尽管如此，它的数学原理还是很有启发性的。
 
 > 水很深，关于 Euler-Lagrange 方程的内容，之后有缘再说吧。
 
@@ -130,8 +182,6 @@ I_y (I_x u + I_y v + I_t) - \lambda \nabla^2 v &= 0
 $$
 
 这个方程组可以通过 Gauss-Seidel 迭代法或者 Jacobi 迭代法来求解。
-
-### 效果
 
 ==TBC==
 
@@ -204,9 +254,43 @@ $$
 
 从这种匹配的视角出发，研究光流的求解方法就更为方便。很多后续的方法都是基于该思想提出的。
 
-## RAFT 循环全对场变换
+## RAFT 简介
 
-==TODO==
+!!! info "该部分由于作者才疏学浅，只做了非常浅表的介绍"
+
+由于这一部分内容太多，太深，我感觉自己目前不是有很多精力把它钻研透，在这里只写一个简单的介绍。
+
+> RAFT 使用一个在全分辨率、全对关系的代价体上推理的循环神经网络对一个稠密的光流场进行迭代更新。
+
+RAFT 算法的核心思想是不对每两帧图像对光流给出独立的预测，而是对其进行迭代更新。
+
+### RAFT 的架构
+
+- 特征提取器（Feature Extractor）：使用卷积神经网络从输入的两帧图像 $I_1, I_2\in \mathbb{R}^{H\times W\times 3}$ 中提取特征 $F_1, F_2\in \mathbb{R}^{h\times w\times c}$。
+- 全对关系体（All-Pairs Correlation Volume）：$\operatorname{Corr}(i,j,i^\prime, j^\prime) = F_1(i,j)^T F_2(i^\prime, j^\prime)$，它们构成一个四维张量 $\mathbb{R}^{h\times w\times h\times w}$；
+- 循环更新算子（Recurrent Update Operator）：使用一个循环神经网络（RNN）对光流场进行迭代更新。
+
+$$
+\begin{gather}
+\Delta \boldsymbol{u}_k = \operatorname{UpdateNet}(\boldsymbol{u}_k, \operatorname{Corr}, \text{其他信息}) \\
+\boldsymbol{u}_{k+1} = \boldsymbol{u}_k + \Delta \boldsymbol{u}_k
+\end{gather}
+$$
+
+RAFT 的良好表现很大程度就来源于这个迭代、渐进的过程。
+
+### RAFT 与传统方法的联系
+
+| 特点   | Horn-Schunck | RAFT         |
+| ------ | ------------ | ------------ |
+| 匹配   | 全局         | 全对         |
+| 正则化 | 显式         | 隐式         |
+| 优化   | 偏微分方程   | 循环神经网络 |
+| 分辨率 | 像素级别     | 全分辨率     |
+
+## 光流的实现和可视化
+
+### OpenCV
 
 ## 附录
 
@@ -268,3 +352,5 @@ p(\epsilon) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{\epsilon^2}{2\sigma^2
 $$
 
 注意 Gaussian 先验中的“先验”对应的其实是 MAP 中的“似然”部分。我们下面要说明，最小化 $\|x-y\|
+
+#### Laplace 先验

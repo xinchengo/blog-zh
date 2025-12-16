@@ -3,3 +3,5 @@ draft/.obsidian
 site/
 .cache/
 .DS_Store
+
+.venv/
