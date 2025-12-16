@@ -43,8 +43,8 @@
       
         
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        
+        <link rel="stylesheet" href="../../../../assets/external/fonts.googleapis.com/css.49ea35f2.css">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#arch-linux" class="md-skip">
+        <a href="#Arch-Linux-安装与配置" class="md-skip">
           跳转至
         </a>
       
@@ -494,7 +494,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#安装系统" class="md-nav__link">
     <span class="md-ellipsis">
       
         安装系统
@@ -505,7 +505,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#安装工具" class="md-nav__link">
     <span class="md-ellipsis">
       
         安装工具
@@ -517,7 +517,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#中文支持" class="md-nav__link">
     <span class="md-ellipsis">
       
         中文支持
@@ -528,7 +528,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
+  <a href="#安装-Windows-字体" class="md-nav__link">
     <span class="md-ellipsis">
       
         安装 Windows 字体
@@ -539,7 +539,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#安装必要的应用" class="md-nav__link">
     <span class="md-ellipsis">
       
         安装必要的应用
@@ -550,7 +550,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#配置系统维护工具" class="md-nav__link">
     <span class="md-ellipsis">
       
         配置系统维护工具
@@ -561,7 +561,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#snapper-btrfs" class="md-nav__link">
+  <a href="#使用-Snapper-和-Btrfs-镜像制作系统快照" class="md-nav__link">
     <span class="md-ellipsis">
       
         使用 Snapper 和 Btrfs 镜像制作系统快照
@@ -572,7 +572,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#aconfmgr" class="md-nav__link">
+  <a href="#用-Aconfmgr-管理配置文件" class="md-nav__link">
     <span class="md-ellipsis">
       
         用 Aconfmgr 管理配置文件
@@ -583,7 +583,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#systemd-boot-netbootxyz" class="md-nav__link">
+  <a href="#配置-systemd-boot-和-Netbootxyz" class="md-nav__link">
     <span class="md-ellipsis">
       
         配置 systemd-boot 和 Netboot.xyz
@@ -599,7 +599,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#其他维护" class="md-nav__link">
     <span class="md-ellipsis">
       
         其他维护
@@ -685,12 +685,12 @@
   
 
 
-<h1 id="arch-linux">Arch Linux 安装与配置</h1>
+<h1 id="Arch-Linux-安装与配置">Arch Linux 安装与配置</h1>
 <p>这篇文章记录了我安装 Arch Linux 的经过，以及维护 Arch Linux 的一些小技巧，以便之后遇到问题时回溯我最初安装的经过。</p>
 <p>安装 Arch Linux 其实并不算困难，因为 <a href="https://archlinux.org/">Arch Linux 的官网</a>上有相当详细的<a href="https://wiki.archlinux.org/title/Installation_guide">安装教程</a>，何况官方的安装镜像里有一个自带的“图形化”安装器<code>archinstall</code>。</p>
 <!-- more -->
 
-<h2 id="_1">安装系统</h2>
+<h2 id="安装系统">安装系统</h2>
 <p>官网上的<a href="https://wiki.archlinux.org/title/Installation_guide">教程</a>已经相当详细了，按照该提示下载好镜像，并烧录到 U 盘中。</p>
 <p>我下面的安装方法使用了 Arch 官方提供的 <a href="https://wiki.archlinux.org/title/Archinstall"><code>archinstall</code></a>，对于初学者配置一个<strong>供自己使用的操作系统</strong>（而不是作为练习），建议使用安装脚本而不是按照教程手动安装，因为你可能会忽略掉安装系统中需要注意的种种细节。</p>
 <p>安装时注意以下几点：</p>
@@ -699,9 +699,9 @@
 <li>文件系统选 Btrfs，一路默认设置就行了（但是可以 Disable Copy-on-Write）</li>
 </ul>
 <p>这样选好桌面环境，安装完重新启动，不出差错的话就可以直接进入带图形界面的系统了。</p>
-<h2 id="_2">安装工具</h2>
+<h2 id="安装工具">安装工具</h2>
 <p>先用 <code>sudo pacman -Syu</code> 安装好 <code>firefox</code> 浏览器。</p>
-<h3 id="_3">中文支持</h3>
+<h3 id="中文支持">中文支持</h3>
 <p>先更新 <code>locale</code>：</p>
 <ul>
 <li><code>sudo vim /etc/locale.gen</code>，解除 <code>zh-CN.UTF-8 UTF-8</code> 前的注释</li>
@@ -720,8 +720,8 @@
 sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w"> </span>fcitx5-im
 sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w"> </span>fcitx5-im<span class="w"> </span>fcitx5-chinese-addons
 </code></pre></div>
-<h3 id="windows">安装 Windows 字体</h3>
-<h3 id="_4">安装必要的应用</h3>
+<h3 id="安装-Windows-字体">安装 Windows 字体</h3>
+<h3 id="安装必要的应用">安装必要的应用</h3>
 <p>用 <a href="https://wiki.archlinux.org/title/AUR_helpers">AUR 辅助工具</a> <a href="https://github.com/Jguer/yay"><code>yay</code></a> 管理 AUR 包：</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w"> </span>git
 git<span class="w"> </span>clone<span class="w"> </span>https://aur.archlinux.org/yay.git
@@ -729,10 +729,10 @@ git<span class="w"> </span>clone<span class="w"> </span>https://aur.archlinux.or
 makepkg<span class="w"> </span>-si
 </code></pre></div>
 <p>之后就可以用 <code>yay -Syu &lt;package name&gt;</code> 安装想要安装的应用了。</p>
-<h3 id="_5">配置系统维护工具</h3>
+<h3 id="配置系统维护工具">配置系统维护工具</h3>
 <p>注意，系统维护是相当重要的！比如如果你在日后使用 Arch 的时候不小心遇到了难以恢复的问题，想要回滚到之前的版本，如果你之前已经<strong>做好了系统快照</strong>，解决问题就会方便很多。再比如说，如果你想在一台新的电脑上安装 Arch，但想保留你自己的配置，如果你使用了合适的方法做了<strong>配置管理</strong>，这个流程也会方便很多。</p>
 <p>具体的系统维护见 <a href="https://wiki.archlinux.org/title/System_maintenance">官方 Wiki</a>，但这里我也给出我自己的配置。</p>
-<h3 id="snapper-btrfs">使用 Snapper 和 Btrfs 镜像制作系统快照</h3>
+<h3 id="使用-Snapper-和-Btrfs-镜像制作系统快照">使用 Snapper 和 Btrfs 镜像制作系统快照</h3>
 <p><a href="https://wiki.archlinux.org/title/Snapper">Snapper</a> 是一款系统快照管理工具，支持制作快照，恢复快照和自动制作快照，安装方法如下：</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w"> </span>cronie<span class="w"> </span><span class="c1"># 先安装 cron（定时执行工具）</span>
 sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>cronie<span class="w"> </span><span class="c1"># 启动 cron 服务</span>
@@ -756,7 +756,7 @@ sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </sp
 <li><code>snapper -c &lt;config&gt; create --command &lt;cmd&gt;</code>：执行 <code>cmd</code> 这个重要命令，并在命令执行前和执行后创建一对快照。</li>
 <li><code>snapper -c &lt;config&gt; delete N</code>：删除 <code>N</code> 号快照。</li>
 </ul>
-<h3 id="aconfmgr">用 Aconfmgr 管理配置文件</h3>
+<h3 id="用-Aconfmgr-管理配置文件">用 Aconfmgr 管理配置文件</h3>
 <p>先 <code>yay -Syu aconfmgr-git</code> 安装 <a href="https://github.com/CyberShadow/aconfmgr">Aconfmgr</a>。</p>
 <p>之后配置排除清单（<code>~/.config/aconfmgr/10-ignores.sh</code>），因为有些目录下的文件没有必要还原，下面是一个示范的排除清单：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Btrfs snapshots</span>
@@ -798,7 +798,7 @@ IgnorePath<span class="w"> </span><span class="s1">&#39;/var/tmp/*&#39;</span>
 </code></pre></div>
 <p><code>aconfmgr save</code> 的作用就是将系统中所有变化的配置文件存储到 <code>~/.config/aconfmgr/</code>，而 <code>aconfmgr apply</code> 的作用正好相反，将 <code>~/.config/aconfmgr</code> 中的文件恢复到系统中。</p>
 <p>写好排除清单后，我们就可以执行 <code>aconfmgr save</code> 制作配置文件的备份了。注意 <code>aconfmgr</code> 并不支持回滚，需要我们用 Git 维护 <code>~/.config/aconfmgr</code> 这个目录，手动 Commit，才能支持回滚功能。</p>
-<h3 id="systemd-boot-netbootxyz">配置 systemd-boot 和 Netboot.xyz</h3>
+<h3 id="配置-systemd-boot-和-Netbootxyz">配置 systemd-boot 和 Netboot.xyz</h3>
 <p>关于 Windows 双系统见<a href="https://wiki.archlinux.org/title/Systemd-boot#Boot_from_another_disk">官方教程</a>（若 Windows 在另外一个硬盘上则需要此配置）</p>
 <p>若要支持<a href="https://wiki.archlinux.org/title/Systemd-boot#Remember_last_entry">记住上次进入的系统</a>，方法是在 <code>/boot/loader/loader.conf</code> 中加入 <code>default @saved</code>。</p>
 <p><a href="https://github.com/netbootxyz/netboot.xyz">Netboot.xyz</a> 是一个实用工具，支持在启动的时候加载各种系统，主要用于系统救援。使用的方法看了 <a href="https://wiki.archlinux.org/title/Systemd-boot#Configuration">Arch Linux 对于 <code>systemd-boot</code> 的介绍</a>应该不难学会，但是下面还是列出具体方法：</p>
@@ -815,7 +815,7 @@ sudo<span class="w"> </span>vim<span class="w"> </span>/boot/loader/entries/netb
 efi     /EFI/netboot.xyz/netboot.xyz.efi
 </code></pre></div>
 <p>写入完成以后，使用 <code>bootctl list</code> 检查新建的 <code>netboot.xyz Utilities</code> 是否已经成为一项新的启动配置。</p>
-<h2 id="_6">其他维护</h2>
+<h2 id="其他维护">其他维护</h2>
 <p><a href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages">维护已安装的程序列表</a>：<code>pacman -Qqen &gt; pkglist.txt &amp;&amp; pacman -Qqem &gt; foreignpkglist.txt</code></p>
 
 
@@ -866,20 +866,7 @@ efi     /EFI/netboot.xyz/netboot.xyz.efi
   <h2 id="__comments">评论</h2>
   <!-- Insert generated snippet here -->
 
-  <script src="https://giscus.app/client.js"
-    data-repo="xinchengo/blog-zh"
-    data-repo-id="R_kgDONynfkQ"
-    data-category="Announcements"
-    data-category-id="DIC_kwDONynfkc4CmhkQ"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    crossorigin="anonymous"
-    async>
+  <script src="https://giscus.app/client.js" data-repo="xinchengo/blog-zh" data-repo-id="R_kgDONynfkQ" data-category="Announcements" data-category-id="DIC_kwDONynfkc4CmhkQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async>
   </script>
   <!-- Synchronize Giscus theme with palette -->
   <script>
@@ -966,7 +953,7 @@ efi     /EFI/netboot.xyz/netboot.xyz.efi
       
       
     
-    <a href="http://wpa.qq.com/msgrd?v=3&uin=2773315798&site=qq&menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
+    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2773315798&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M434.1 420.4c-11.5 1.4-44.9-52.7-44.9-52.7 0 31.3-16.1 72.2-51 101.8 16.8 5.2 54.8 19.2 45.8 34.4-7.3 12.3-125.5 7.9-159.6 4-34.1 3.8-152.3 8.3-159.6-4-9-15.2 28.9-29.2 45.8-34.4-34.9-29.5-51.1-70.4-51.1-101.8 0 0-33.3 54.1-44.9 52.7-5.4-.6-12.4-29.6 9.3-99.7 10.3-33 22-60.5 40.1-105.8C60.9 98 109.2-.1 224.3-.1 338-.1 387.5 96 384.6 214.9c18.1 45.2 29.9 72.9 40.1 105.8 21.8 70.1 14.7 99.1 9.3 99.7z"/></svg>
     </a>
   

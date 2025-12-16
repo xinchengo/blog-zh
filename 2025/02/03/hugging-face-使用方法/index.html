@@ -45,8 +45,8 @@
       
         
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        
+        <link rel="stylesheet" href="../../../../assets/external/fonts.googleapis.com/css.49ea35f2.css">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hugging-face" class="md-skip">
+        <a href="#Hugging-Face-使用方法" class="md-skip">
           跳转至
         </a>
       
@@ -496,7 +496,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#前言" class="md-nav__link">
     <span class="md-ellipsis">
       
         前言
@@ -507,7 +507,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diffusers" class="md-nav__link">
+  <a href="#使用-Diffusers-进行文生图" class="md-nav__link">
     <span class="md-ellipsis">
       
         使用 Diffusers 进行文生图
@@ -519,7 +519,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#从小模型开始" class="md-nav__link">
     <span class="md-ellipsis">
       
         从小模型开始
@@ -530,7 +530,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#减少显存使用" class="md-nav__link">
     <span class="md-ellipsis">
       
         减少显存使用
@@ -542,7 +542,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#量化" class="md-nav__link">
     <span class="md-ellipsis">
       
         量化
@@ -553,7 +553,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#其它的优化方法" class="md-nav__link">
     <span class="md-ellipsis">
       
         其它的优化方法
@@ -574,7 +574,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#微调模型和上传自己的模型" class="md-nav__link">
     <span class="md-ellipsis">
       
         微调模型和上传自己的模型
@@ -585,7 +585,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hugging-face-cli" class="md-nav__link">
+  <a href="#Hugging-Face-CLI" class="md-nav__link">
     <span class="md-ellipsis">
       
         Hugging Face CLI
@@ -671,7 +671,7 @@
   
 
 
-<h1 id="hugging-face">Hugging Face 使用方法</h1>
+<h1 id="Hugging-Face-使用方法">Hugging Face 使用方法</h1>
 <div class="admonition warning">
 <p class="admonition-title">本文正在编写中</p>
 </div>
@@ -679,12 +679,12 @@
 <p class="admonition-title">声明</p>
 <p>由于该文章为本人大一时为<a href="https://www.teach.ustc.edu.cn/?attachment_id=17309">“科学与社会”研讨课</a>学习需要而创作。由于作者才疏学浅，在严谨性上可能存在缺陷。</p>
 </div>
-<h2 id="_1">前言</h2>
+<h2 id="前言">前言</h2>
 <p>严格上来说，“使用 AI 做自己想做的事”和“理解、学习 AI 的原理”是两件截然不同的事情。这个难度的区别就好比在 <a href="https://store.steampowered.com/">Steam</a> 上下载<a href="https://store.steampowered.com/app/2358720/Black_Myth_Wukong/">《黑神话·悟空》</a>和编写这样的游戏一样。</p>
 <p>使用 <a href="https://huggingface.co/">Hugging Face</a> 中现成的模型完成文生图、图生图等任务明显属于前者，它的难度并不没有很多人想象中的那么大。我书写本篇文章的目的就是来证明使用现有的工具完成自己想完成的任务对于<strong>有一定计算机基础的人</strong>来说并不是遥不可及的事情，恰恰相反——我相信，在不远的将来，个性化计算 (personalized computing) 将会逐渐走近现实，人们将会对他们周围的电子产品有更多的自主权和控制权，能够熟练的运用电子产品完成自己想做的事情。</p>
 <!-- more -->
 
-<h2 id="diffusers">使用 Diffusers 进行文生图</h2>
+<h2 id="使用-Diffusers-进行文生图">使用 Diffusers 进行文生图</h2>
 <div class="admonition info">
 <p class="admonition-title">声明</p>
 <p>如果你想要进行的是 AI 绘画，而后续不想与 Hugging Face 打太多交道，也不想训练自己的模型，那么 <a href="https://github.com/comfyanonymous/ComfyUI">Comfy UI</a> 是一个更好的选择，请直接学习它，忽略本教程。</p>
@@ -695,7 +695,7 @@
 </blockquote>
 <p>Hugging Face 的官网给出了一部详细的 <a href="https://huggingface.co/docs/diffusers/index">Diffusers 库使用教程</a>。这个教程涵盖的范围包括从使用现成的模型生成图片，到使用数据训练自己的模型的各方各面（不包括原理）。官网上的教程非常详细，是优秀的学习资源。本文旨在从与原教程不同的角度，即实用的态度，来看待 Diffusers 这款工具。</p>
 <p>首先根据<a href="https://huggingface.co/docs/diffusers/installation">教程</a>安装好 Diffusers，这是以下所有实践的前提。</p>
-<h3 id="_2">从小模型开始</h3>
+<h3 id="从小模型开始">从小模型开始</h3>
 <p>Pipeline 是 Diffusers 库为我们方便运行各种模型（不限于文生图模型）提供的一个有用的工具。以下大部分内容翻译自<a href="https://huggingface.co/docs/diffusers/quicktour">官方教程的《概览》部分</a>，如果想对 Pipeline 有更深的了解可以参考这个 <a href="https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb">Google Colab</a>。</p>
 <div class="admonition warning">
 <p class="admonition-title">请注意您的显卡内存</p>
@@ -721,9 +721,9 @@
 <li>最后一行代码展示了这张图片。</li>
 </ul>
 <p><code>DiffusionPipeline</code>，顾名思义就是运行扩散模型 (diffusion) 模型的流水线，这是真哥哥 Diffusers 库中最基本的 Pipeline！也就是说，其他所有的“流水线”都是它的派生。出于本文性质原因，这里不用篇幅专门介绍什么是扩散模型。很多模型在 Diffusers 库中都有相应的 Pipeline，<a href="https://huggingface.co/docs/diffusers/api/pipelines/overview#diffusers-summary">这里</a>有一个详细的表格。</p>
-<h3 id="_3">减少显存使用</h3>
+<h3 id="减少显存使用">减少显存使用</h3>
 <p>你可能会发现刚才的 <code>stable-diffusion-v1-5</code> 已经是一个比较小的模型了——在未经优化的情况下能够在 8GB 显存的显卡上运行。可是，Hugging Face 还有那么多模型没有办法运行怎么办？（如果你尝试在家用电脑上运行过官网上的教程，你可能碰到过很多 <code>OutOfMemoryError</code>）幸运的是，我们可以从模型本身和运行方式上入手，缩小运行模型所需要的显存占用。</p>
-<h4 id="_4">量化</h4>
+<h4 id="量化">量化</h4>
 <p>量化 (quantization) 的意思是，用较少的信息来表示数据，同时尽量不损失过多的准确性。比如说，如果一个模型的权重以 <code>torch.float32</code> 存储，把它们量化为 <code>torch.float16</code> 就可以使模型大小减半，从而容易更容易存储并减少内存使用。较低的精度还可以加速推理过程。这类方法之所以常用是因为在很多机器学习模型中，参数的精度并不重要（或者至少不处于关键位置）</p>
 <p>具体量化的使用方法参见 <a href="https://huggingface.co/docs/diffusers/v0.32.2/en/quantization/overview">官方文档的《量化》章节</a>。量化有很多方法，除了用 16 位浮点数其中官方文档中介绍的有 bitsandbytes、gguf 和 torchao。</p>
 <p>下面我们改进了上面的代码，使用了 16 位浮点数量化优化以上示例的内存，把内存占用从未经优化的 7700 MiB 优化到了 3980 MiB！</p>
@@ -744,7 +744,7 @@
 <p>可以看到，量化并没有明显地降低生成质量（虽然这张照片和上面一张一样，都是稍微挑过的，不太严谨，但是结论是对的）</p>
 </details>
 <p>使用精心设计、更加激进的量化方法，可以进一步地优化模型占用的内存，具体参见<a href="https://huggingface.co/docs/diffusers/quantization/bitsandbytes">官方文档中关于 bitsandbytes 的介绍</a>。</p>
-<h4 id="_5">其它的优化方法</h4>
+<h4 id="其它的优化方法">其它的优化方法</h4>
 <p>具体参见<a href="https://huggingface.co/docs/diffusers/optimization/memory">官方文档的《优化内存》章节</a>，下面是对这些优化方法的极其粗略的介绍：</p>
 <ul>
 <li><code>pipeline.enable_vae_slicing()</code>：生成多张图片时内存不够可以采用此选项。</li>
@@ -752,11 +752,11 @@
 <li><code>pipeline.enable_model_cpu_offload()</code> 和 <code>pipeline.enable_sequential_cpu_offload()</code>：都是把部分参数存在内存里，根据需要“搬运”到显存中去，但这两个选项的程度不同，后者对显存的节省程度最大，对性能的影响也最大。</li>
 </ul>
 <p>学会这些优化方法之后，就可以尝试运行更大的模型了。</p>
-<h2 id="_6">微调模型和上传自己的模型</h2>
+<h2 id="微调模型和上传自己的模型">微调模型和上传自己的模型</h2>
 <div class="admonition warning">
 <p class="admonition-title">此处内容待完成</p>
 </div>
-<h2 id="hugging-face-cli">Hugging Face CLI</h2>
+<h2 id="Hugging-Face-CLI">Hugging Face CLI</h2>
 <div class="admonition warning">
 <p class="admonition-title">此处内容待完成</p>
 </div>
@@ -809,20 +809,7 @@
   <h2 id="__comments">评论</h2>
   <!-- Insert generated snippet here -->
 
-  <script src="https://giscus.app/client.js"
-    data-repo="xinchengo/blog-zh"
-    data-repo-id="R_kgDONynfkQ"
-    data-category="Announcements"
-    data-category-id="DIC_kwDONynfkc4CmhkQ"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    crossorigin="anonymous"
-    async>
+  <script src="https://giscus.app/client.js" data-repo="xinchengo/blog-zh" data-repo-id="R_kgDONynfkQ" data-category="Announcements" data-category-id="DIC_kwDONynfkc4CmhkQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async>
   </script>
   <!-- Synchronize Giscus theme with palette -->
   <script>
@@ -909,7 +896,7 @@
       
       
     
-    <a href="http://wpa.qq.com/msgrd?v=3&uin=2773315798&site=qq&menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
+    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2773315798&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M434.1 420.4c-11.5 1.4-44.9-52.7-44.9-52.7 0 31.3-16.1 72.2-51 101.8 16.8 5.2 54.8 19.2 45.8 34.4-7.3 12.3-125.5 7.9-159.6 4-34.1 3.8-152.3 8.3-159.6-4-9-15.2 28.9-29.2 45.8-34.4-34.9-29.5-51.1-70.4-51.1-101.8 0 0-33.3 54.1-44.9 52.7-5.4-.6-12.4-29.6 9.3-99.7 10.3-33 22-60.5 40.1-105.8C60.9 98 109.2-.1 224.3-.1 338-.1 387.5 96 384.6 214.9c18.1 45.2 29.9 72.9 40.1 105.8 21.8 70.1 14.7 99.1 9.3 99.7z"/></svg>
     </a>
   

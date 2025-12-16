@@ -45,8 +45,8 @@
       
         
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        
+        <link rel="stylesheet" href="../../../../assets/external/fonts.googleapis.com/css.49ea35f2.css">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#海珀蓝记" class="md-skip">
           跳转至
         </a>
       
@@ -496,7 +496,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#总纲" class="md-nav__link">
     <span class="md-ellipsis">
       
         总纲
@@ -507,7 +507,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#nvidia" class="md-nav__link">
+  <a href="#Nvidia-显卡" class="md-nav__link">
     <span class="md-ellipsis">
       
         Nvidia 显卡
@@ -518,7 +518,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#初始配置" class="md-nav__link">
     <span class="md-ellipsis">
       
         初始配置
@@ -529,7 +529,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#中文输入法" class="md-nav__link">
     <span class="md-ellipsis">
       
         中文输入法
@@ -541,7 +541,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#keyd" class="md-nav__link">
+  <a href="#KeyD-的使用" class="md-nav__link">
     <span class="md-ellipsis">
       
         KeyD 的使用
@@ -557,7 +557,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#electron-wayland" class="md-nav__link">
+  <a href="#Electron-应用正确使用-Wayland" class="md-nav__link">
     <span class="md-ellipsis">
       
         Electron 应用正确使用 Wayland
@@ -568,7 +568,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#多显示器的配置" class="md-nav__link">
     <span class="md-ellipsis">
       
         多显示器的配置
@@ -654,18 +654,18 @@
   
 
 
-<h1 id="_1">海珀蓝记</h1>
+<h1 id="海珀蓝记">海珀蓝记</h1>
 <p><a href="https://hyprland.org/">Hyprland</a> 是一个基于 Wayland 的动态平铺式窗口管理器。</p>
 <p>这是我第一次使用平铺式窗口管理器，下面列举一些我的配置心得。由于 Hyprland 正好可以找到“海珀蓝”这三个还算有点诗意的汉字与之对应，所以我就依次为这篇文章命名。</p>
 <!-- more -->
 
-<h2 id="_2">总纲</h2>
+<h2 id="总纲">总纲</h2>
 <p>下面列举一些我最近想要做的事情：</p>
 <ul>
 <li><del>把 Neovim 的 Markdown 内容配置好，至少把下划线配置好，然后禁用掉一些不必要的 MarkdownLint</del>；</li>
 <li><del>在 Fcitx5 为中文模式和英文模式的时候在 Kitty 终端中显示不同的光标图案，这样在使用 NeoVim 的时候可以方便很多</del>；</li>
 </ul>
-<h2 id="nvidia">Nvidia 显卡</h2>
+<h2 id="Nvidia-显卡">Nvidia 显卡</h2>
 <blockquote>
 <p>这个在既有英伟达显卡，又有核显的笔记本电脑上似乎不是很重要，可以忽略本部分。</p>
 </blockquote>
@@ -680,11 +680,11 @@
 <div class="highlight"><pre><span></span><code>env = LIBVA_DRIVER_NAME,nvidia
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 </code></pre></div>
-<h2 id="_3">初始配置</h2>
+<h2 id="初始配置">初始配置</h2>
 <p><a href="https://wiki.hypr.land/Getting-Started/Master-Tutorial/">请先阅读该官方文档</a></p>
 <p>我选择的是 <a href="https://github.com/HyDE-Project/HyDE">HyDE</a>，它能够能以比较有组织的形式管理配置文件，比如会把 HyDE 的配置文件存储在 <code>~/.config/hypr/userprefs.conf</code> 里面而不是在默认的 <code>~/.config/hypr/hyprland.conf</code> 里面。</p>
 <p>默认的终端开始界面比较花哨，在 <code>~/.config/fastfetch/</code> 中进行相应的修改就可以了。</p>
-<h2 id="_4">中文输入法</h2>
+<h2 id="中文输入法">中文输入法</h2>
 <p>在 <code>~/.config/hypr/userprefs.conf</code> 里面加上以下几行：</p>
 <div class="highlight"><pre><span></span><code># Chinese input method (Fcitx5)
 exec-once = fcitx5
@@ -694,7 +694,7 @@ env = SDL_IM_MODULE,fcitx5
 env = XMODIFIERS,@im=fcitx5
 </code></pre></div>
 <p><a href="https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland">参考这篇文章</a></p>
-<h4 id="keyd">KeyD 的使用</h4>
+<h4 id="KeyD-的使用">KeyD 的使用</h4>
 <p><code>keyd</code> 有很多用处，比如用 Caps Lock 键切换中英文输入法，还有自定义一些键位。</p>
 <p>先安装 <code>keyd</code>，在 <code>sudo systemctl enable --now keyd</code> 后，在 <code>/etc/keyd/default.conf</code> 中写下：</p>
 <div class="highlight"><pre><span></span><code>[ids]
@@ -710,8 +710,8 @@ capslock = f13
 }
 </code></pre></div>
 <p>之后再在 Fcitx5 中配置使用 F13 切换输入法，这样就可以完成输入法的配置了。</p>
-<h2 id="electron-wayland">Electron 应用正确使用 Wayland</h2>
-<h2 id="_5">多显示器的配置</h2>
+<h2 id="Electron-应用正确使用-Wayland">Electron 应用正确使用 Wayland</h2>
+<h2 id="多显示器的配置">多显示器的配置</h2>
 <p>需要实现的功能：使用一个快捷键关闭内置显示器。</p>
 <p>把 <code>~/.config/hypr/monitors.conf</code> 改成：</p>
 <div class="highlight"><pre><span></span><code>monitor = eDP-1, 1920x1080@60, 0x0, 1.25
@@ -799,20 +799,7 @@ hyprctl<span class="w"> </span>reload
   <h2 id="__comments">评论</h2>
   <!-- Insert generated snippet here -->
 
-  <script src="https://giscus.app/client.js"
-    data-repo="xinchengo/blog-zh"
-    data-repo-id="R_kgDONynfkQ"
-    data-category="Announcements"
-    data-category-id="DIC_kwDONynfkc4CmhkQ"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    crossorigin="anonymous"
-    async>
+  <script src="https://giscus.app/client.js" data-repo="xinchengo/blog-zh" data-repo-id="R_kgDONynfkQ" data-category="Announcements" data-category-id="DIC_kwDONynfkc4CmhkQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async>
   </script>
   <!-- Synchronize Giscus theme with palette -->
   <script>
@@ -899,7 +886,7 @@ hyprctl<span class="w"> </span>reload
       
       
     
-    <a href="http://wpa.qq.com/msgrd?v=3&uin=2773315798&site=qq&menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
+    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2773315798&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M434.1 420.4c-11.5 1.4-44.9-52.7-44.9-52.7 0 31.3-16.1 72.2-51 101.8 16.8 5.2 54.8 19.2 45.8 34.4-7.3 12.3-125.5 7.9-159.6 4-34.1 3.8-152.3 8.3-159.6-4-9-15.2 28.9-29.2 45.8-34.4-34.9-29.5-51.1-70.4-51.1-101.8 0 0-33.3 54.1-44.9 52.7-5.4-.6-12.4-29.6 9.3-99.7 10.3-33 22-60.5 40.1-105.8C60.9 98 109.2-.1 224.3-.1 338-.1 387.5 96 384.6 214.9c18.1 45.2 29.9 72.9 40.1 105.8 21.8 70.1 14.7 99.1 9.3 99.7z"/></svg>
     </a>
   

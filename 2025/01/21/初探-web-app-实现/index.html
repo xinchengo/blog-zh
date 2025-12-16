@@ -45,8 +45,8 @@
       
         
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        
+        <link rel="stylesheet" href="../../../../assets/external/fonts.googleapis.com/css.49ea35f2.css">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web-app" class="md-skip">
+        <a href="#初探-Web-App-实现" class="md-skip">
           跳转至
         </a>
       
@@ -496,7 +496,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#明确目标" class="md-nav__link">
     <span class="md-ellipsis">
       
         明确目标
@@ -507,7 +507,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#第一步一个显示替代关系的列表" class="md-nav__link">
     <span class="md-ellipsis">
       
         第一步：一个显示替代关系的列表
@@ -519,7 +519,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chatgpt" class="md-nav__link">
+  <a href="#准备-ChatGPT-提示词润色器" class="md-nav__link">
     <span class="md-ellipsis">
       
         准备 ChatGPT 提示词润色器
@@ -530,7 +530,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#copilot" class="md-nav__link">
+  <a href="#正式与-Copilot-对话" class="md-nav__link">
     <span class="md-ellipsis">
       
         正式与 Copilot 对话
@@ -546,7 +546,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#第二步区分同级替代与高级替代" class="md-nav__link">
     <span class="md-ellipsis">
       
         第二步：区分同级替代与高级替代
@@ -558,7 +558,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#分析同级替代和高级替代的判定" class="md-nav__link">
     <span class="md-ellipsis">
       
         分析同级替代和高级替代的判定
@@ -569,7 +569,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#动手修改代码" class="md-nav__link">
     <span class="md-ellipsis">
       
         动手修改代码
@@ -585,7 +585,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#第三步优化界面" class="md-nav__link">
     <span class="md-ellipsis">
       
         第三步：优化界面
@@ -671,7 +671,7 @@
   
 
 
-<h1 id="web-app">初探 Web App 实现</h1>
+<h1 id="初探-Web-App-实现">初探 Web App 实现</h1>
 <div class="admonition warning">
 <p class="admonition-title">本文正在编写中，并且可能长时间处于这一状态</p>
 </div>
@@ -689,7 +689,7 @@
 <p>在这个寒假之际我就以常见的静态 Web App 为例，探讨如果有一个好的点子，如何快速地把自己的点子转化为 Web App。</p>
 <p>由于博主本人之前从来没有接触过 <a href="https://react.dev/">React</a>, <a href="https://vuejs.org/">Vue</a> 等 Javascript 框架（虽然听说过它们的名字），甚至没有什么 Javascript 编程的经历。这次初探的过程应该可以很好的反映初学者第一次接触静态网页开发的心理状态，也希望能给其他初学者带来指引的作用。</p>
 <p>在下面的例子中，我将尽可能地使用 <a href="https://github.com/features/copilot">Github Copilot</a> 作为辅助工具简化开发过程。</p>
-<h2 id="_1">明确目标</h2>
+<h2 id="明确目标">明确目标</h2>
 <p>我将以一个<strong>课程替代助手</strong>为例，探讨如何简单地实现一个 Web App，将想法转化为现实。现在我先解释课程替代助手具体是什么。</p>
 <p><a href="https://catalog.ustc.edu.cn/query/substitute">USTC 教务处网站——公共查询——替代课程查询</a>这个网站中列举了 USTC 课程之间的<strong>替代关系</strong>。替代关系分为两种——<strong>同级替代</strong>和<strong>高级替代</strong>；同级替代关系表示 A 和 B 两组课程可以相互替换，而高级替代关系表示 A 这组课程可以替代 B 这组课程，但反之不然。</p>
 <p>（下面是我的理解，不一定是正确的）替代关系可以用替换来理解，比如说，你选择了 <code>A,B,C,D</code> 四组课程，存在一个替代关系 <code>B,C&lt;-&gt;E,F</code>，还有一个替代关系 <code>B&lt;-&gt;G</code>，那么 <code>A,B,C,D</code> 等价于 <code>A,E,F,D</code> 或者 <code>A,G,C,D</code>，但是不等价于 <code>A,G,E,F,D</code>。总之，<strong>一门课程只能计算一次</strong>。</p>
@@ -704,13 +704,13 @@
 <li>实现教务处<a href="https://catalog.ustc.edu.cn/query/substitute">教务处替代课程查询</a>中的搜索功能，即，使用课程名称与编号查询与其有关的替代关系；</li>
 <li>实现数据的预处理，比如过滤不活跃/不存在的课程，以及输入一个课程或者一组课程，显示所有跟这组课程相关的替代关系。</li>
 </ol>
-<h2 id="_2">第一步：一个显示替代关系的列表</h2>
+<h2 id="第一步一个显示替代关系的列表">第一步：一个显示替代关系的列表</h2>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
 <p>通过简单的提示词交流，Copilot 很快生成了一个具有基本显示替代关系功能的原型界面。</p>
 </div>
 <p>先根据<a href="https://nextjs.org/docs/app/getting-started/installation">Next.js 安装教程</a>中提供的方法，新建一个名为 <code>ustc-csh</code> 的 <code>create-next-app@latest</code> 模板项目。</p>
-<h3 id="chatgpt">准备 ChatGPT 提示词润色器</h3>
+<h3 id="准备-ChatGPT-提示词润色器">准备 ChatGPT 提示词润色器</h3>
 <p>我现在开始使用 <a href="https://chatgpt.com/">ChatGPT</a> 和 <a href="https://github.com/features/copilot">Github Copilot</a> 进行辅助开发。我们考虑让 ChatGPT 先修改我的提示词，再把修改后的提示词喂给 Copilot，以下是我草拟的用于“修改我的提示词”的 ChatGPT 的提示词：</p>
 <blockquote>
 <p>You are a professional prompt engineer especially experienced in prompting with AI code assistants.</p>
@@ -729,7 +729,7 @@
 <p>As English is not my first language, there may be occasional phrasing or grammatical errors in my prompts. I would greatly appreciate your assistance in correcting these. Additionally, since I am still learning to work effectively with AI coding assistants, I may need your expertise in adjusting the prompts to maximize their performance.</p>
 </blockquote>
 <p>将这一个提示词输入新的 ChatGPT 对话，我们就可以得到一个<strong>提示词润色器</strong>了，后面由于篇幅原因，我只列举我和 Github Copilot 的对话，喂给 Copilot 的提示词大多已经过 ChatGPT 润色。</p>
-<h3 id="copilot">正式与 Copilot 对话</h3>
+<h3 id="正式与-Copilot-对话">正式与 Copilot 对话</h3>
 <p>我：</p>
 <blockquote>
 <p>@workspace I want to create a static web app using the create-next-app@latest template in this workspace.</p>
@@ -995,13 +995,13 @@ Ecmascript file had an error</p>
 </code></pre></div>
 <p>效果还是很<strong>开幕雷击</strong>的：在一次修改错误之后，Copilot 就给出了一个基本的列举而课程替代关系的界面。总体效果还是挺令人满意的。</p>
 <p><img alt="效果" src="../../../../assets/20250122.png" /></p>
-<h2 id="_3">第二步：区分同级替代与高级替代</h2>
+<h2 id="第二步区分同级替代与高级替代">第二步：区分同级替代与高级替代</h2>
 <div class="admonition abstract">
 <p class="admonition-title">摘要</p>
 <p>我研究了替代课程查询界面的源码，发现同级替代的存储方式就是两个不同方向的高级替代。</p>
 </div>
 <p>对于想直接知道答案的人，判定的方法是：如果一组关系在列表中出现了两遍，那么它就是相互替代关系，否则就是高级替代关系。</p>
-<h3 id="_4">分析同级替代和高级替代的判定</h3>
+<h3 id="分析同级替代和高级替代的判定">分析同级替代和高级替代的判定</h3>
 <p>现在存在的一个“小”问题是：找不到同级替代和高级替代的判定依据。在<a href="https://catalog.ustc.edu.cn/query/substitute">替代课程查询页面</a>打开浏览器的开发者工具，并用 Network 工具监控流量，能够发现学校替代关系数据的 Json 存储在<a href="https://catalog.ustc.edu.cn/api/teach/course-substitute-pool/list">该链接</a>中（需要 Cookie 才能访问），这个地址下的 <code>list.json</code> 是不包括替代等级的。</p>
 <p>解决的方法有两个：</p>
 <ol>
@@ -1037,7 +1037,7 @@ Ecmascript file had an error</p>
 <p>This function essentially groups courses based on their substitute and original courses, marking them as interchangeable if they match certain criteria.</p>
 </blockquote>
 <p>从解释里我们可以模模糊糊地猜到：如果一个替代关系在 JSON 文件中<strong>出现了两遍</strong>，顺序相反，那么这两组课程之间就可以相互替代，否则就是高级替代。验证之后，发现真的是这个样子！仔细思考也可以发现，这种存储方式实际上是很自然的。</p>
-<h3 id="_5">动手修改代码</h3>
+<h3 id="动手修改代码">动手修改代码</h3>
 <p>如果问我为什么现在不用 Copilot 提示词修改代码，我给出的理由是：现在基本的框架已经搭成了，写提示词花的时间太长。</p>
 <p>此处的不用 Copilot 提示词修改代码并不等于不使用 Copilot，一些解释代码，提取函数等功能还是使用很多的，但是由于过于零碎，此处不再展开了。</p>
 <p>借助 Github Copilot，我实现了去重的 <code>mergeInterchangeable()</code> 函数，代码如下：</p>
@@ -1079,7 +1079,7 @@ Ecmascript file had an error</p>
 <span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setSubstitutions</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
 <span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
 </code></pre></div>
-<h2 id="_6">第三步：优化界面</h2>
+<h2 id="第三步优化界面">第三步：优化界面</h2>
 <div class="admonition abstract"></div>
 <p>这一步也是最难的一步，因为在这里 Github Copilot 真的帮不了太多忙了。优化界面的方法主要靠修改 <a href="https://tailwindcss.com/docs/installation">Tailwind</a> 的标签，比如，给一个 <code>&lt;div&gt;</code> 对象写上 <code>&lt;div class="bg-sky-100"&gt;</code> 会将背景变成浅蓝色。在 <a href="https://tailwindcss.com/">Tailwind CSS 库</a>中，所有的属性设置都是靠这种打标签的方式进行的。</p>
 <p>由于我需要做到的是想让它变成什么样子就变成什么样子，在这里 Copilot 反而帮不了什么忙了，比如要把文字设成粗体，变成蓝色，加间距，需要加什么样子的标签，需要在文档中翻来翻去。加上我非常不熟练，这一个步骤可能花费了我最长的时间。做完这步后，效果如下图所示：</p>
@@ -1133,20 +1133,7 @@ Ecmascript file had an error</p>
   <h2 id="__comments">评论</h2>
   <!-- Insert generated snippet here -->
 
-  <script src="https://giscus.app/client.js"
-    data-repo="xinchengo/blog-zh"
-    data-repo-id="R_kgDONynfkQ"
-    data-category="Announcements"
-    data-category-id="DIC_kwDONynfkc4CmhkQ"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    crossorigin="anonymous"
-    async>
+  <script src="https://giscus.app/client.js" data-repo="xinchengo/blog-zh" data-repo-id="R_kgDONynfkQ" data-category="Announcements" data-category-id="DIC_kwDONynfkc4CmhkQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async>
   </script>
   <!-- Synchronize Giscus theme with palette -->
   <script>
@@ -1233,7 +1220,7 @@ Ecmascript file had an error</p>
       
       
     
-    <a href="http://wpa.qq.com/msgrd?v=3&uin=2773315798&site=qq&menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
+    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2773315798&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="wpa.qq.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M434.1 420.4c-11.5 1.4-44.9-52.7-44.9-52.7 0 31.3-16.1 72.2-51 101.8 16.8 5.2 54.8 19.2 45.8 34.4-7.3 12.3-125.5 7.9-159.6 4-34.1 3.8-152.3 8.3-159.6-4-9-15.2 28.9-29.2 45.8-34.4-34.9-29.5-51.1-70.4-51.1-101.8 0 0-33.3 54.1-44.9 52.7-5.4-.6-12.4-29.6 9.3-99.7 10.3-33 22-60.5 40.1-105.8C60.9 98 109.2-.1 224.3-.1 338-.1 387.5 96 384.6 214.9c18.1 45.2 29.9 72.9 40.1 105.8 21.8 70.1 14.7 99.1 9.3 99.7z"/></svg>
     </a>
   
