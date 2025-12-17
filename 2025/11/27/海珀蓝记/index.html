@@ -518,13 +518,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#初始配置" class="md-nav__link">
+  <a href="#关于-HyDE" class="md-nav__link">
     <span class="md-ellipsis">
       
-        初始配置
+        关于 HyDE
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="关于 HyDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#使用-HyDE-的一些感受" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 HyDE 的一些感受
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -664,8 +681,13 @@
 <ul>
 <li><del>把 Neovim 的 Markdown 内容配置好，至少把下划线配置好，然后禁用掉一些不必要的 MarkdownLint</del>；</li>
 <li><del>在 Fcitx5 为中文模式和英文模式的时候在 Kitty 终端中显示不同的光标图案，这样在使用 NeoVim 的时候可以方便很多</del>；</li>
+<li>修复死亡按钮这个 Bug，要不写一个 workaround，要不用一个 dedicated script for multi-monitor handling；</li>
 </ul>
 <h2 id="Nvidia-显卡">Nvidia 显卡</h2>
+<div class="admonition info">
+<p class="admonition-title">HyDE 的提醒</p>
+<p>HyDE 在有 NVidia 显卡的电脑上会自动完成下面的配置，无需手动操作。</p>
+</div>
 <blockquote>
 <p>这个在既有英伟达显卡，又有核显的笔记本电脑上似乎不是很重要，可以忽略本部分。</p>
 </blockquote>
@@ -680,10 +702,14 @@
 <div class="highlight"><pre><span></span><code>env = LIBVA_DRIVER_NAME,nvidia
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 </code></pre></div>
-<h2 id="初始配置">初始配置</h2>
+<h2 id="关于-HyDE">关于 HyDE</h2>
 <p><a href="https://wiki.hypr.land/Getting-Started/Master-Tutorial/">请先阅读该官方文档</a></p>
 <p>我选择的是 <a href="https://github.com/HyDE-Project/HyDE">HyDE</a>，它能够能以比较有组织的形式管理配置文件，比如会把 HyDE 的配置文件存储在 <code>~/.config/hypr/userprefs.conf</code> 里面而不是在默认的 <code>~/.config/hypr/hyprland.conf</code> 里面。</p>
 <p>默认的终端开始界面比较花哨，在 <code>~/.config/fastfetch/</code> 中进行相应的修改就可以了。</p>
+<h3 id="使用-HyDE-的一些感受">使用 HyDE 的一些感受</h3>
+<p>HyDE 最大的特点就是使用有层次的配置文件管理方法，把“主题配置”和“用户配置”分开；默认配置达到了一个比较开箱即用的体验，用户配置则允许我们在次基础上加以个性化；</p>
+<p>也许有人会嗔怪 HyDE 不够“纯粹”，应该像搭积木一样开启一段“从零开始的 <code>.conf</code> 生活”，但这就是一个价值观的问题了。我觉得 AI 时代的学习，很多时候并不是从基础（bare-bones）开始，而是直接接触一个复杂的概念体系，然后不断查漏补缺不理解的知识点，在需要时进行一些必要的探索，这也是“终身学习”的精神；私以为，使用 HyDE 这种“预先配置好的高楼大厦”，之后再了解其细节是符合 AI 时代的学习理念的。</p>
+<p>但是确实，透过一层浓雾看到 Hyprland 的本质，需要花费精力，也不像搭建自己的房子一样给人成就感。这也是依赖模板的问题所在。</p>
 <h2 id="中文输入法">中文输入法</h2>
 <p>在 <code>~/.config/hypr/userprefs.conf</code> 里面加上以下几行：</p>
 <div class="highlight"><pre><span></span><code># Chinese input method (Fcitx5)
@@ -749,7 +775,7 @@ hyprctl<span class="w"> </span>reload
 <p>并在 <code>~/.config/hypr/keybindings.conf</code> 中写下：</p>
 <div class="highlight"><pre><span></span><code>binddl = $mainMod, D, $d toggle internal monitor , exec, ~/.config/hypr/toggle_laptop_screen.sh
 </code></pre></div>
-<p>但是目前有一个 Bug，就是在没有连接外接显示器的时候，按快捷键无法解除内置显示器不显示的状态。</p>
+<p>但是目前有一个 Bug，就是在没有连接外接显示器的时候，按快捷键无法解除内置显示器不显示的状态（也许这可以称为“死亡按钮”）</p>
 
 
 
@@ -772,7 +798,7 @@ hyprctl<span class="w"> </span>reload
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月14日 15:16:22 UTC">2025年12月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月17日 04:56:15 UTC">2025年12月17日</span>
   </span>
 
     
