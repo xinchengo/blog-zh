@@ -64,7 +64,7 @@ plugins:
   # Automatically self-host external assets
   - privacy:
       assets_exclude:
-        - unpkg.com/mathjax@3/*
+        - cdn.jsdelivr.net/npm/mathjax@4/*
         - giscus.app/*
   # Add suppport for adding the date of last update and creation of a document
   - git-revision-date-localized:
@@ -79,7 +79,7 @@ plugins:
 extra_javascript:
   # Mathjax support
   - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js
 
 extra:
   social:
