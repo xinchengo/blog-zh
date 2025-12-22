@@ -1,5 +1,4 @@
-docs/.obsidian
-draft/.obsidian
+.obsidian
 site/
 .cache/
 .DS_Store
