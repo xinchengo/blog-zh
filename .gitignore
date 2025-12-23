@@ -4,3 +4,7 @@ site/
 .DS_Store
 
 .venv/
+
+# Playground folder
+/docs/playground/
+/docs/posts/playground/

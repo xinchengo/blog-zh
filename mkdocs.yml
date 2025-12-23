@@ -36,6 +36,9 @@ theme:
     # Enable code copy button for every code block
     - content.code.copy
 
+exclude_docs: |
+  playground/
+
 markdown_extensions:
   # Mathjax support
   - pymdownx.arithmatex:
