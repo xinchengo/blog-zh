@@ -528,6 +528,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#Primal-Dual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primal-Dual
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -568,7 +579,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#Primal-Dual" class="md-nav__link">
+  <a href="#Primal-Dual_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Primal-Dual
@@ -583,8 +594,86 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#SVM-的优化" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SVM 的优化
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#决策树" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        决策树
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="决策树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#分裂判据" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分裂判据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分裂判据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#分类判据的优劣" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分类判据的优劣
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#剪枝" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        剪枝
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#集成学习" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        集成学习
+      
+    </span>
+  </a>
   
 </li>
       
@@ -637,7 +726,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 2 分钟阅读时间
+                              需要 5 分钟阅读时间
                             
                           </span>
                         </div>
@@ -668,11 +757,21 @@
 <p><a href="https://github.com/ChangshuoShen/USTC-AI3002-25fall">人工智能与机器学习基础</a>的作业三和实验三下周三就要截止了，还是有必要简略地了解一下 SVM，决策树和集成学习是什么。这篇文章记录我完成作业时的简略笔记。</p>
 <div class="admonition info">
 <p class="admonition-title">关于该文章的书写进度</p>
-<p>这篇文章仍在撰写中，将在完成作业时撰写完成。</p>
+<p>这篇文章仍在撰写中，将在完成作业与实验时撰写完成。</p>
 </div>
 <!-- more -->
 
 <h2 id="支持向量机">支持向量机</h2>
+<p>可能有用的资料：</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Support_vector_machine">Support Vector Machine</a>：维基百科中的支持向量机</li>
+<li><a href="https://en.wikipedia.org/wiki/Sequential_minimal_optimization">Sequential Minimal Optimization</a>：维基百科中的 SMO 算法</li>
+</ul>
+<p>本篇文章还没有完成的部分：</p>
+<ul>
+<li>SVM 与 VC 维理论的联系</li>
+<li>SVM 优化——归约到二次规划问题——Sequential Minimal Optimization</li>
+</ul>
 <h3 id="普通-SVM">普通 SVM</h3>
 <h4 id="目标函数">目标函数</h4>
 <p>下面我们证明对于线性可分数据集，（硬间隔）SVM 的目标是：</p>
@@ -699,7 +798,19 @@ y_i(w^Tx_i+b)\ge 1,\quad\exists i~~\text{s.t.}~\text{``}=\text{''} \\
 \end{gather}
 \]</div>
 <p>这样我们就完成了硬间隔 SVM 的目标函数推导。</p>
+<h4 id="Primal-Dual">Primal-Dual</h4>
+<p>详细过程见<a href="#Primal-Dual_1">软间隔 SVM 的推导</a>，这里直接放上结论（软间隔 SVM 只是加上了一项）：</p>
+<div class="arithmatex">\[
+\begin{matrix}
+\displaystyle\max_{\boldsymbol \alpha}&amp;\displaystyle\sum_{i=1}^N\alpha_i -\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)\\
+\text{s.t.} &amp; \displaystyle \sum_{i=1}^N\alpha_iy_i = 0, \quad \alpha_i\ge 0
+\end{matrix}
+\]</div>
 <h3 id="软间隔-SVM">软间隔 SVM</h3>
+<div class="admonition notes">
+<p class="admonition-title">关于严谨性</p>
+<p>此“软间隔”SVM 指的其实是 L2 正则化的软间隔 SVM，由于这是我完成作业的笔记，所以会出现一些不严谨的地方。</p>
+</div>
 <h4 id="目标函数_1">目标函数</h4>
 <p>我们引入松弛因子，将正则化条件变化为：</p>
 <div class="arithmatex">\[
@@ -724,7 +835,7 @@ y_i(w^Tx_i + b) \ge 1 - \zeta_i
 \]</div>
 <p>我们在最小化 <span class="arithmatex">\(\frac{1}{2}\|w\|^2\)</span> 的同时，也在最小化 <span class="arithmatex">\(w\)</span> 的 VC 维，使模型尽可能地简单。</p>
 <p><mark>TODO</mark>：软间隔 SVM 原理的深入分析</p>
-<h4 id="Primal-Dual">Primal-Dual</h4>
+<h4 id="Primal-Dual_1">Primal-Dual</h4>
 <p>由 Lagrange 乘子法：</p>
 <div class="arithmatex">\[
 \begin{gather}
@@ -734,6 +845,87 @@ h_{i} = 0,~\forall 1\le i\le l\\
 \implies \mathcal L(w,\boldsymbol\alpha,\boldsymbol\beta) = f(w)+\sum_{i}\alpha_i g_i(w) + \sum_{j}\beta_j h_j(w)
 \end{gather}
 \]</div>
+<p>代入：</p>
+<div class="arithmatex">\[
+\begin{gather}
+f(w,b,\zeta) = \frac{1}{2}\|w\|^2+C\sum_{i=1}^{N}\zeta_i^2\\
+g_i = 1 - \zeta_i - y_i(w\cdot x_i+b),\quad g_{i+N} = -\zeta_i\\
+\implies \mathcal L(w,b,\zeta,\boldsymbol \alpha,\boldsymbol \mu) = \frac{1}{2}\|w\|^2+C\sum_{i=1}^N\zeta_{i}^2-\sum_{i=1}^N\alpha_i(y_i(w\cdot x_i+b) - (1-\zeta_i))-\sum_{i=1}^N\mu_{i}\zeta_i \\
+\implies p^\ast = \min_{w,b,\zeta}f(w,b,\zeta)=\min_{w,b}\max_{\boldsymbol \alpha,\boldsymbol\mu:\alpha_i,\mu_i\ge 0}\mathcal L(w,b,\zeta,\boldsymbol \alpha,\boldsymbol \mu) \\
+d^\ast = \max_{\boldsymbol\alpha,\boldsymbol \mu:\alpha_i,\mu_i\ge 0}\min_{w,b,\zeta}\mathcal L(w,b,\zeta,\boldsymbol \alpha,\boldsymbol \mu)
+\end{gather}
+\]</div>
+<p>为了写出问题的对偶形式，我们要求出满足 Karush-Kuhn-Tucker 条件的一组 <span class="arithmatex">\((w,b,\boldsymbol \alpha, \boldsymbol \mu)\)</span>，首先带入 KKT 条件的第一个要求（驻点）：</p>
+<div class="arithmatex">\[
+\begin{gather}
+\frac{\partial \mathcal L}{\partial w} = w - \sum_{i=1}^N\alpha_iy_ix_i=0\implies w=\sum_{u=1}^N\alpha_iy_ix_i\\
+\frac{\partial \mathcal L}{\partial b} = -\sum_{i=1}^N\alpha_iy_i=0\implies \sum_{i=1}^N\alpha_iy_i = 0\\
+\frac{\partial \mathcal L}{\partial \zeta_i} = 2C\zeta_i-\alpha_i-\mu_i=0\implies \zeta_i=\frac{\alpha_i + \mu_i}{2C}
+\end{gather}
+\]</div>
+<p>考虑用 KKT 条件的其他项简化该式：</p>
+<div class="arithmatex">\[
+\begin{gather}
+\mu_i\zeta_i=0,\quad \mu_i\ge 0,\quad \zeta_i\ge 0 \\
+\implies \mu_i=0\quad \implies \zeta_i = \frac{\alpha_i}{2C}
+\end{gather}
+\]</div>
+<p>带入软间隔 SVM 的对偶形式 <span class="arithmatex">\(d^\ast\)</span> 可以得到：</p>
+<div class="arithmatex">\[
+\begin{gather}
+\frac{1}{2}\|w\|^2=\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j) \\
+C\sum_{i=1}^N\zeta_i^2 = \frac{1}{4C}\sum_{i=1}^N\alpha_i^2\\
+\begin{aligned}
+-\sum_{i=1}^N\alpha_i(y_i(w\cdot x_i+b) - (1-\zeta_i))&amp;= -\sum_{i=1}^N\alpha_iy_ix_i\cdot w-b\sum_{i=1}^N\alpha_iy_i+\sum_{i=1}^N\alpha_i-\sum_{i=1}^N\alpha_i\zeta_i\\
+&amp;=-\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-0+\sum_{i=1}^N\alpha_i-\frac{1}{2C}\sum_{i=1}^N\alpha^2
+\end{aligned}\\
+-\sum_{i=1}^N\mu_i\zeta_i=0\\
+\implies \min_{w,b,\zeta}\mathcal L(w,b,\zeta,\boldsymbol \alpha, \boldsymbol \mu)=\sum_{i=1}^N\alpha_i - \frac{1}{4C}\sum_{i=1}^N\alpha_i^2-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)
+\end{gather}
+\]</div>
+<p>整理知，软间隔 SVM 的对偶形式为：</p>
+<div class="arithmatex">\[
+\begin{matrix}
+\displaystyle\max_{\boldsymbol \alpha}&amp;\displaystyle\sum_{i=1}^N\alpha_i - \frac{1}{4C}\sum_{i=1}^N\alpha_i^2-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)\\
+\text{s.t.} &amp; \displaystyle \sum_{i=1}^N\alpha_iy_i = 0, \quad \alpha_i\ge 0
+\end{matrix}
+\]</div>
+<h3 id="SVM-的优化">SVM 的优化</h3>
+<p>将 SVM 转化为对偶问题后，我们还要对对偶问题进行优化。下面以普通 SVM 为例，它实质上就是一个二次规划问题：</p>
+<div class="arithmatex">\[
+\begin{matrix}
+\displaystyle\max_{\boldsymbol \alpha}&amp;\displaystyle\mathbf{1}^T\boldsymbol\alpha-\frac{1}{2}\boldsymbol \alpha^T(X^TX\odot yy^T)\boldsymbol \alpha\\
+\text{s.t.} &amp; \boldsymbol \alpha^Ty = 0, \quad \alpha_i\ge 0
+\end{matrix}
+\]</div>
+<p>这样就有很多经典的算法可以求解此类问题了，比如序列最小优化算法（Sequential Minimal Optimization, SMO）</p>
+<h2 id="决策树">决策树</h2>
+<h3 id="分裂判据">分裂判据</h3>
+<p>如何衡量决策树分裂的优劣？常见的方法有：</p>
+<ul>
+<li>错误率（classification error）：<span class="arithmatex">\(R\)</span> 中的一个随机样本，我们永远预测最多的标签，预测错误的概率；</li>
+<li>基尼不纯度（Gini Impurity）：<span class="arithmatex">\(R\)</span> 中的一个随机样本，我们按照标签的分布随机预测一个标签，预测错误的概率；</li>
+<li>熵增/信息增益（entropy/information gain）：已知分类对标签进行编码的期望位数；</li>
+</ul>
+<p>具体来说，我们定义一个域（结点）<span class="arithmatex">\(R\)</span> 的类占比：</p>
+<div class="arithmatex">\[
+\begin{gather}
+p_k=\mathbb P(Y=k\mid X\in R),\quad k=1,2,\cdots,K \\
+I_{\text{err}}(R)=1-\max_{k}p_k \\
+I_{\text{gini}}(R)=\sum_{k=1}^Kp_k(1-p_k)=1-\sum_{k=1}^Kp_k^2 \\
+I_{\text{ent}}(R) = -\sum_{k=1}^Kp_k\log p_k
+\end{gather}
+\]</div>
+<h4 id="分类判据的优劣">分类判据的优劣</h4>
+<p>分类错误率的问题——可能对部分“看似有效但局部不稳定”的分裂不敏感。</p>
+<p>用分类错误率作为分类标准可能导致过拟合，</p>
+<h3 id="剪枝">剪枝</h3>
+<p>决策树的剪枝分为两种：预剪枝（pre-pruning）和后剪枝（post-pruning）；预剪枝有时候也成为提前停止（early stopping）；</p>
+<ul>
+<li><strong>主要区别</strong>：“预剪枝”在生成决策树的过程中判断是否继续分裂，“后剪枝”在计算完过拟合的决策树后再判断把那些子树替换为叶结点后“损失”最小；“预剪枝”计算简单，但不精准（比如异或问题很难判断是否应当停止）；“后剪枝”计算复杂度相对较高，但是更为准确；</li>
+<li><strong>使用场景</strong>：“后剪枝”适用于数据集较小，对时间要求较低的场景，“预剪枝”相反。</li>
+</ul>
+<h2 id="集成学习">集成学习</h2>
 
 
 
@@ -756,7 +948,7 @@ h_{i} = 0,~\forall 1\le i\le l\\
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月23日 14:31:44 UTC">2025年12月23日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月24日 08:06:27 UTC">2025年12月24日</span>
   </span>
 
     
