@@ -78,6 +78,8 @@ plugins:
       lang: zh
   - blog:
       blog_dir: .
+  # Support for Obsidian style callouts
+  - callouts
 
 extra_javascript:
   # Mathjax support
