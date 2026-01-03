@@ -1185,11 +1185,13 @@ I_{\text{ent}}(R) = -\sum_{k=1}^Kp_k\log p_k
 <p>AdaBoost 算法的流程如下：</p>
 <ol>
 <li>初始化数据集权重：<span class="arithmatex">\(\alpha_i = \frac{1}{N}\)</span>；</li>
-<li>对于 <span class="arithmatex">\(t = 1,\cdots, T\)</span>：</li>
+<li>对于 <span class="arithmatex">\(t = 1,\cdots, T\)</span>：<ul>
 <li>用 <span class="arithmatex">\(\alpha_i\)</span> 训练模型 <span class="arithmatex">\(f_t\)</span>；</li>
 <li><span class="arithmatex">\(\hat{w}_t = \frac{1}{2}\ln\left(1-\epsilon_t\over \epsilon_t\right)\)</span>；</li>
 <li><span class="arithmatex">\(\alpha_i \gets \begin{cases}\alpha_i e^{-\hat{w}_t} &amp; f_t(x_i)=y_i\\ \alpha_i e^{\hat{w}_t} &amp; f_t(x_i)\ne y_i\end{cases}\)</span>，也可以写作 <span class="arithmatex">\(\alpha_{i,t+1} = \alpha_{i,t} \exp\left(-y_i\hat w_tf_t(x_i)\right)\)</span></li>
 <li>归一化 <span class="arithmatex">\(\alpha_i\)</span>；</li>
+</ul>
+</li>
 <li><span class="arithmatex">\(\hat{y} = \operatorname{sgn}\left(\sum_{t=1}^T\hat{w}_t f_t(\boldsymbol{x})\right)\)</span>；</li>
 </ol>
 <h4 id="训练样本权重的更新">训练样本权重的更新</h4>
@@ -1255,28 +1257,34 @@ Z_t &amp;= \sum_{i=1}^n\alpha_{i,t}\exp\left(-y_i\hat{w}_tf_t(x_i)\right)\\
 <p>在 Boosting 中，我们解的结果局限于一个加法模型的形式。得到这种形式的一个可行的方法是<strong>泛函梯度下降</strong>，这就是 Gradient Boosting 的基本思想。</p>
 <p>泛函梯度下降的算法大致如下所示：</p>
 <ol>
-<li>初始化</li>
-</ol>
-<p>$$
-   F_0(x)=\arg\min_c\sum_{i}\ell(y_i,c)
-   $$</p>
-<ol>
-<li>对于 <span class="arithmatex">\(m=1,\cdots,M\)</span>：</li>
+<li>
+<p>初始化</p>
+<div class="arithmatex">\[
+F_0(x)=\arg\min_c\sum_{i}\ell(y_i,c)
+\]</div>
+</li>
+<li>
+<p>对于 <span class="arithmatex">\(m=1,\cdots,M\)</span>：</p>
+<ul>
 <li>计算伪残差（pseudo-residual）：</li>
+</ul>
+<div class="arithmatex">\[
+g^{(m)}_i=-\frac{\partial \ell(y_i, F(x_i))}{\partial F(x_i)}
+\]</div>
+<ul>
+<li>用 <span class="arithmatex">\((x_i, g_i^{(m)})\)</span> 训练 <span class="arithmatex">\(f_m(x)\)</span> 这个弱学习器；</li>
+<li><span class="arithmatex">\(F_m = F_{m-1} + \nu f_m\)</span>：注意 <span class="arithmatex">\(\nu\)</span> 这个乘子往往是显式计算的最优解（如在 AdaBoost 中）</li>
+<li>这个迭代过程更数学上的表示可以写成（<span class="arithmatex">\(\operatorname{\Phi}_{\mathcal H}\)</span> 指的是在假设类 <span class="arithmatex">\(\mathcal H\)</span> 上的投影）：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{gather}
+f_m = \operatorname{\Pi}_{\mathcal H}\left(-\nabla \mathcal L(F_{m-1})\right)\\
+F_m = F_{m-1} + \eta_mf_m\\
+\eta_m = \arg \min_{\eta} \mathcal L(F_{m-1}+\eta f_m)\quad \text{or}\quad\text{Learning Rate}
+\end{gather}
+\]</div>
+</li>
 </ol>
-<p>$$
-   g^{(m)}_i=-\frac{\partial \ell(y_i, F(x_i))}{\partial F(x_i)}
-   $$
-   - 用 <span class="arithmatex">\((x_i, g_i^{(m)})\)</span> 训练 <span class="arithmatex">\(f_m(x)\)</span> 这个弱学习器；
-   - <span class="arithmatex">\(F_m = F_{m-1} + \nu f_m\)</span>：注意 <span class="arithmatex">\(\nu\)</span> 这个乘子往往是显式计算的最优解（如在 AdaBoost 中）
-   - 这个迭代过程更数学上的表示可以写成（<span class="arithmatex">\(\operatorname{\Phi}_{\mathcal H}\)</span> 指的是在假设类 <span class="arithmatex">\(\mathcal H\)</span> 上的投影）：</p>
-<p>$$
-   \begin{gather}
-   f_m = \operatorname{\Pi}<em>{\mathcal H}\left(-\nabla \mathcal L(F</em>{m-1})\right)\
-   F_m = F_{m-1} + \eta_mf_m\
-   \eta_m = \arg \min_{\eta} \mathcal L(F_{m-1}+\eta f_m)\quad \text{or}\quad\text{Learning Rate}
-   \end{gather}
-   $$</p>
 <h4 id="指数损失到-AdaBoost-的推导">指数损失到 AdaBoost 的推导</h4>
 <h4 id="Logistic-Loss-与-LogitBoost">Logistic Loss 与 LogitBoost</h4>
 <p>考虑二维 Logistic 损失的情况：</p>
@@ -1295,17 +1303,19 @@ Z_t &amp;= \sum_{i=1}^n\alpha_{i,t}\exp\left(-y_i\hat{w}_tf_t(x_i)\right)\\
 <p>因此，我们每步迭代要做（以决策树的集成模型为例）：</p>
 <ol>
 <li>用决策树拟合 <span class="arithmatex">\((x_i, r_{m,i})\)</span> 得到叶子结点区域 <span class="arithmatex">\(R_{m,j}\)</span>；</li>
-<li>对每个叶子结点求最佳输出常数（关于如何求最佳输出常数的内容不在本篇内容范围内）：</li>
+<li>
+<p>对每个叶子结点求最佳输出常数（关于如何求最佳输出常数的内容不在本篇内容范围内）：</p>
+<div class="arithmatex">\[
+c_{m,j} = \arg \min_c\sum_{x\in R_{m,j}}\ell(y_i, F_{m-1}(x_i)+c)
+\]</div>
+</li>
+<li>
+<p>更新模型：</p>
+<div class="arithmatex">\[
+F_m(x)=F_{m-1}(x)+\sum_{j}c_{m,j}\mathbb 1[x\in R_{m,j}]
+\]</div>
+</li>
 </ol>
-<p>$$
-   c_{m,j} = \arg \min_c\sum_{x\in R_{m,j}}\ell(y_i, F_{m-1}(x_i)+c)
-   $$</p>
-<ol>
-<li>更新模型：</li>
-</ol>
-<p>$$
-   F_m(x)=F_{m-1}(x)+\sum_{j}c_{m,j}\mathbb 1[x\in R_{m,j}]
-   $$</p>
 <h3 id="泛函梯度下降">泛函梯度下降</h3>
 <p>一些可能有用的资料：</p>
 <ul>
@@ -1334,7 +1344,7 @@ Z_t &amp;= \sum_{i=1}^n\alpha_{i,t}\exp\left(-y_i\hat{w}_tf_t(x_i)\right)\\
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月31日 09:19:29 UTC">2025年12月31日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月2日 15:09:24 UTC">2026年1月2日</span>
   </span>
 
     
