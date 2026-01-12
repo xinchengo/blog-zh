@@ -1,4 +1,5 @@
 .obsidian
+.vscode/
 site/
 .cache/
 .DS_Store
