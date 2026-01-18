@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2025/02/03/hugging-face-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2026/01/18/agentic-ai-%E4%B9%8B%E5%88%9D%E6%8E%A2/">
       
       
-        <link rel="prev" href="../../../01/27/kerastuner-%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <link rel="prev" href="../../../../2025/12/23/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
       
-      
-        <link rel="next" href="../../08/home-assistant-%E4%B9%8B%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>Hugging Face 使用方法 - xinchengo 的博客</title>
+        <title>Agentic AI 之初探 - xinchengo 的博客</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#Hugging-Face-使用方法" class="md-skip">
+        <a href="#Agentic-AI-之初探" class="md-skip">
           跳转至
         </a>
       
@@ -112,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hugging Face 使用方法
+              Agentic AI 之初探
             
           </span>
         </div>
@@ -526,33 +524,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#前言" class="md-nav__link">
+  <a href="#MCP" class="md-nav__link">
     <span class="md-ellipsis">
       
-        前言
+        MCP
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#使用-Diffusers-进行文生图" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用 Diffusers 进行文生图
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用 Diffusers 进行文生图">
+    <nav class="md-nav" aria-label="MCP">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#从小模型开始" class="md-nav__link">
+  <a href="#MCP-的架构" class="md-nav__link">
     <span class="md-ellipsis">
       
-        从小模型开始
+        MCP 的架构
       
     </span>
   </a>
@@ -560,22 +547,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#减少显存使用" class="md-nav__link">
+  <a href="#MCP-服务器" class="md-nav__link">
     <span class="md-ellipsis">
       
-        减少显存使用
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="减少显存使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#量化" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        量化
+        MCP 服务器
       
     </span>
   </a>
@@ -583,10 +558,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#其它的优化方法" class="md-nav__link">
+  <a href="#MCP-客户端" class="md-nav__link">
     <span class="md-ellipsis">
       
-        其它的优化方法
+        MCP 客户端
       
     </span>
   </a>
@@ -597,6 +572,40 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#例还原魔方的-MCP-Server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例：还原魔方的 MCP Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="例：还原魔方的 MCP Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#代码的实现过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码的实现过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#结论" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结论
+      
+    </span>
+  </a>
+  
+</li>
         
       </ul>
     </nav>
@@ -604,21 +613,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#微调模型和上传自己的模型" class="md-nav__link">
+  <a href="#Vibe-Coding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        微调模型和上传自己的模型
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Hugging-Face-CLI" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hugging Face CLI
+        Vibe Coding
       
     </span>
   </a>
@@ -662,7 +660,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-02-03 00:00:00+00:00" class="md-ellipsis">2025年2月3日</time>
+                        <time datetime="2026-01-18 00:00:00+00:00" class="md-ellipsis">2026年1月18日</time>
                       </div>
                     </li>
                     
@@ -701,95 +699,155 @@
   
 
 
-<h1 id="Hugging-Face-使用方法">Hugging Face 使用方法</h1>
-<div class="admonition warning">
-<p class="admonition-title">本文正在编写中</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">声明</p>
-<p>由于该文章为本人大一时为<a href="https://www.teach.ustc.edu.cn/?attachment_id=17309">“科学与社会”研讨课</a>学习需要而创作。由于作者才疏学浅，在严谨性上可能存在缺陷。</p>
-</div>
-<h2 id="前言">前言</h2>
-<p>严格上来说，“使用 AI 做自己想做的事”和“理解、学习 AI 的原理”是两件截然不同的事情。这个难度的区别就好比在 <a href="https://store.steampowered.com/">Steam</a> 上下载<a href="https://store.steampowered.com/app/2358720/Black_Myth_Wukong/">《黑神话·悟空》</a>和编写这样的游戏一样。</p>
-<p>使用 <a href="https://huggingface.co/">Hugging Face</a> 中现成的模型完成文生图、图生图等任务明显属于前者，它的难度并不没有很多人想象中的那么大。我书写本篇文章的目的就是来证明使用现有的工具完成自己想完成的任务对于<strong>有一定计算机基础的人</strong>来说并不是遥不可及的事情，恰恰相反——我相信，在不远的将来，个性化计算 (personalized computing) 将会逐渐走近现实，人们将会对他们周围的电子产品有更多的自主权和控制权，能够熟练的运用电子产品完成自己想做的事情。</p>
+<h1 id="Agentic-AI-之初探">Agentic AI 之初探</h1>
+<p>文本章主要介绍 MCP Server，以及使用 AI Agents 进行 Vibe Coding 的一些记录。目前只有对与 MCP Server 的简单介绍，Vibe Coding 的部分改日再完成。</p>
+<p>转眼间已经是 2026 年初，这离我第一次听说 ChatGPT 已经有 3 年的历史了。</p>
 <!-- more -->
 
-<h2 id="使用-Diffusers-进行文生图">使用 Diffusers 进行文生图</h2>
-<div class="admonition info">
-<p class="admonition-title">声明</p>
-<p>如果你想要进行的是 AI 绘画，而后续不想与 Hugging Face 打太多交道，也不想训练自己的模型，那么 <a href="https://github.com/comfyanonymous/ComfyUI">Comfy UI</a> 是一个更好的选择，请直接学习它，忽略本教程。</p>
-</div>
-<blockquote>
-<p>🤗 Diffusers 是一个用于生成图像、音频甚至分子3D结构的最先进预训练扩散模型的首选库。无论您是在<strong>寻找一个简单的推理解决方案</strong>，还是想训练自己的扩散模型，🤗 Diffusers 都是一个支持两者的模块化工具箱。我们的库设计时注重<strong>可用性</strong>而非性能，<strong>简单</strong>性而非易用性，以及可定制性而非抽象性。</p>
-<p>——使用 <a href="https://chat.deepseek.com/">DeepSeek</a> 翻译自 <a href="https://huggingface.co/docs/diffusers/index">Diffusers 官方教程</a></p>
-</blockquote>
-<p>Hugging Face 的官网给出了一部详细的 <a href="https://huggingface.co/docs/diffusers/index">Diffusers 库使用教程</a>。这个教程涵盖的范围包括从使用现成的模型生成图片，到使用数据训练自己的模型的各方各面（不包括原理）。官网上的教程非常详细，是优秀的学习资源。本文旨在从与原教程不同的角度，即实用的态度，来看待 Diffusers 这款工具。</p>
-<p>首先根据<a href="https://huggingface.co/docs/diffusers/installation">教程</a>安装好 Diffusers，这是以下所有实践的前提。</p>
-<h3 id="从小模型开始">从小模型开始</h3>
-<p>Pipeline 是 Diffusers 库为我们方便运行各种模型（不限于文生图模型）提供的一个有用的工具。以下大部分内容翻译自<a href="https://huggingface.co/docs/diffusers/quicktour">官方教程的《概览》部分</a>，如果想对 Pipeline 有更深的了解可以参考这个 <a href="https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb">Google Colab</a>。</p>
-<div class="admonition warning">
-<p class="admonition-title">请注意您的显卡内存</p>
-<p>以下示例要求 <strong>8 GB 及以上</strong>的显卡内存才能正常运行！如果你的显卡内存低于这个值，请移步下一节。</p>
-</div>
-<p>这是<a href="https://huggingface.co/docs/diffusers/quicktour#diffusionpipeline">官网中教程</a>中的第一个生成图片的示例，这个例子消耗了 7700 MiB 的显存（<code>nvidia-smi</code> 中结果）：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">diffusers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiffusionPipeline</span>
+<p>曾经，Prompt Engineering 甚嚣尘上，人们纷纷相信写的一手好提示词就是跟上 AI 时代的全部；然而随着 24 年底和 25 年初 gpt-o1 和 Deepseek-R1 的横空出世，模型内置的「思维链」可以理解写得很烂的提示词，提示词工程这个词渐渐变得无人问津了。</p>
+<p>现阶段，对于提高 LLM 工具的能力，Agentic AI 是一个比较主流的方向；即，赋予大语言模型和环境交互的能力，让它设定目标，从而在最小的人类干预下完成某个特定的功能。</p>
+<!--
+「红专并进，理实交融」是科大的校训，然而在科大的人工智能专业，成绩优异的比比皆是，对 AI 编程、如何用 AI 提升个人效率缺乏了解的却不在少数
+-->
 
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">DiffusionPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;stable-diffusion-v1-5/stable-diffusion-v1-5&quot;</span><span class="p">,</span> <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;An image of a squirrel in Picasso style&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">image</span>
-</code></pre></div>
-<details class="note">
-<summary>一张生成结果</summary>
-<p><img alt="生成结果" src="../../../../assets/20250204.png" /></p>
-</details>
-<p>这个示例做的是：</p>
+<h2 id="MCP">MCP</h2>
 <ul>
-<li>第三行代码做的是从 Hugging Face 官网的存储库上下载 <code>stable-diffusion-v1-5</code> 这个模型（如果本地没有缓存的话），再把模型加载到 <code>pipeline</code> 里。</li>
-<li>第四行代码把这个 <code>pipeline</code> 加载在<a href="https://www.nvidia.com">英伟达</a>显卡上。</li>
-<li>第五行代码根据提示词，运行这个 <code>pipeline</code>，生成了一张图片。</li>
-<li>最后一行代码展示了这张图片。</li>
+<li>官方文档：<a href="https://modelcontextprotocol.io/docs/getting-started/intro">What is MCP?</a></li>
 </ul>
-<p><code>DiffusionPipeline</code>，顾名思义就是运行扩散模型 (diffusion) 模型的流水线，这是真哥哥 Diffusers 库中最基本的 Pipeline！也就是说，其他所有的“流水线”都是它的派生。出于本文性质原因，这里不用篇幅专门介绍什么是扩散模型。很多模型在 Diffusers 库中都有相应的 Pipeline，<a href="https://huggingface.co/docs/diffusers/api/pipelines/overview#diffusers-summary">这里</a>有一个详细的表格。</p>
-<h3 id="减少显存使用">减少显存使用</h3>
-<p>你可能会发现刚才的 <code>stable-diffusion-v1-5</code> 已经是一个比较小的模型了——在未经优化的情况下能够在 8GB 显存的显卡上运行。可是，Hugging Face 还有那么多模型没有办法运行怎么办？（如果你尝试在家用电脑上运行过官网上的教程，你可能碰到过很多 <code>OutOfMemoryError</code>）幸运的是，我们可以从模型本身和运行方式上入手，缩小运行模型所需要的显存占用。</p>
-<h4 id="量化">量化</h4>
-<p>量化 (quantization) 的意思是，用较少的信息来表示数据，同时尽量不损失过多的准确性。比如说，如果一个模型的权重以 <code>torch.float32</code> 存储，把它们量化为 <code>torch.float16</code> 就可以使模型大小减半，从而容易更容易存储并减少内存使用。较低的精度还可以加速推理过程。这类方法之所以常用是因为在很多机器学习模型中，参数的精度并不重要（或者至少不处于关键位置）</p>
-<p>具体量化的使用方法参见 <a href="https://huggingface.co/docs/diffusers/v0.32.2/en/quantization/overview">官方文档的《量化》章节</a>。量化有很多方法，除了用 16 位浮点数其中官方文档中介绍的有 bitsandbytes、gguf 和 torchao。</p>
-<p>下面我们改进了上面的代码，使用了 16 位浮点数量化优化以上示例的内存，把内存占用从未经优化的 7700 MiB 优化到了 3980 MiB！</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">diffusers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiffusionPipeline</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">DiffusionPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="s2">&quot;stable-diffusion-v1-5/stable-diffusion-v1-5&quot;</span><span class="p">,</span>
-    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
-    <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;An image of a squirrel in Picasso style&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">image</span>
-</code></pre></div>
-<details class="note">
-<summary>一张生成结果</summary>
-<p><img alt="生成结果" src="../../../../assets/20250204-2.png" /></p>
-<p>可以看到，量化并没有明显地降低生成质量（虽然这张照片和上面一张一样，都是稍微挑过的，不太严谨，但是结论是对的）</p>
-</details>
-<p>使用精心设计、更加激进的量化方法，可以进一步地优化模型占用的内存，具体参见<a href="https://huggingface.co/docs/diffusers/quantization/bitsandbytes">官方文档中关于 bitsandbytes 的介绍</a>。</p>
-<h4 id="其它的优化方法">其它的优化方法</h4>
-<p>具体参见<a href="https://huggingface.co/docs/diffusers/optimization/memory">官方文档的《优化内存》章节</a>，下面是对这些优化方法的极其粗略的介绍：</p>
+<p>MCP（Model Context Protocol，模型上下文协议）是一种将人工智能应用程序连接到外部系统的开源标准。</p>
+<p><img alt="" src="../../../../assets/external/mintcdn.com/mcp/bEUxYpZqie0DsluH/images/mcp-simple-diagram.f7d8ed03.png"></p>
+<p>现阶段主要聚焦的是：</p>
 <ul>
-<li><code>pipeline.enable_vae_slicing()</code>：生成多张图片时内存不够可以采用此选项。</li>
-<li><code>pipeline.enable_vae_tiling()</code>：生成很大的图片的时候可以采用此选项。</li>
-<li><code>pipeline.enable_model_cpu_offload()</code> 和 <code>pipeline.enable_sequential_cpu_offload()</code>：都是把部分参数存在内存里，根据需要“搬运”到显存中去，但这两个选项的程度不同，后者对显存的节省程度最大，对性能的影响也最大。</li>
+<li>如何在<strong>应用</strong>上用 MCP 扩展大模型的能力</li>
+<li>如何做一些简单的自定义——即，编写一些简单的 MCP Server，以在 AI Coding 任务中增进自我</li>
 </ul>
-<p>学会这些优化方法之后，就可以尝试运行更大的模型了。</p>
-<h2 id="微调模型和上传自己的模型">微调模型和上传自己的模型</h2>
-<div class="admonition warning">
-<p class="admonition-title">此处内容待完成</p>
-</div>
-<h2 id="Hugging-Face-CLI">Hugging Face CLI</h2>
-<div class="admonition warning">
-<p class="admonition-title">此处内容待完成</p>
-</div>
+<h3 id="MCP-的架构">MCP 的架构</h3>
+<ul>
+<li>MCP 主机：管理一个或多个 MCP 客户端的 AI 应用程序；</li>
+<li>MCP 客户端：从 MCP 服务器抓取内容提供给 MCP 主机的组件；</li>
+<li>MCP 服务器：向 MCP 客户端提供内容的的程序；</li>
+</ul>
+<p>比如，Visual Studio Code 可以看作一个 MCP 主机，它通过一个 MCP 客户端与 <a href="https://docs.sentry.io/product/sentry-mcp/">Sentry MCP server</a> 联络，同时它也可以通过另外一个 MCP 客户端与其他的 MCP 服务器（比如本地文件系统）联络。</p>
+<p>MCP 服务器可以在本地运行（使用 STDIO 运输），也可以在某个远程服务器上运行（使用流式 HTTP 传输）。</p>
+<p>详细地了解 MCP 的架构可以参考<a href="https://modelcontextprotocol.io/docs/learn/architecture">官方文档 Architecture Overview</a></p>
+<h3 id="MCP-服务器">MCP 服务器</h3>
+<p>（以下的内容都摘自 <a href="https://modelcontextprotocol.io/docs/learn/server-concepts">MCP 官方文档</a>）</p>
+<p>MCP 服务器由 3 个重要的模块构成：</p>
+<ul>
+<li>工具（Tools）：LLM 可以<strong>主动</strong>调用的函数，由模型控制；</li>
+<li>资源（Resources）：被动的数据源，由应用控制；</li>
+<li>提示（Prompts）：提示词模版，由用户控制；</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>目的</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tools/list</code></td>
+<td>列举所有可用工具</td>
+<td>工具定义的列表</td>
+</tr>
+<tr>
+<td><code>tools/call</code></td>
+<td>执行某个特定工具</td>
+<td>工具执行结果</td>
+</tr>
+<tr>
+<td><code>resources/list</code></td>
+<td>列举所有直接资源</td>
+<td>资源简介的列表</td>
+</tr>
+<tr>
+<td><code>resources/templates/list</code></td>
+<td>列举所有资源模版</td>
+<td>资源模版的列表</td>
+</tr>
+<tr>
+<td><code>resources/read</code></td>
+<td>获取资源内容</td>
+<td>带元数据的资源</td>
+</tr>
+<tr>
+<td><code>resources/subscribe</code></td>
+<td>监视资源变化</td>
+<td>确认关注</td>
+</tr>
+<tr>
+<td><code>prompts/list</code></td>
+<td>列举所有可用提示</td>
+<td>提示词简介的列表</td>
+</tr>
+<tr>
+<td><code>prompts/get</code></td>
+<td>获取提示细节</td>
+<td>完整提示词定义</td>
+</tr>
+</tbody>
+</table>
+<p>一个工具（Tool）的定义：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchFlights&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Search for available flights&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">i</span><span class="kc">n</span><span class="err">pu</span><span class="kc">t</span><span class="err">Schema</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">proper</span><span class="kc">t</span><span class="err">ies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">origi</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Departure city&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="err">des</span><span class="kc">t</span><span class="err">i</span><span class="kc">nat</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Arrival city&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="err">da</span><span class="kc">te</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">f</span><span class="err">orma</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Travel date&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">required</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;destination&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>一个资源（Resource）的定义：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;uriTemplate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weather://forecast/{city}/{date}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weather-forecast&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Weather Forecast&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Get weather forecast for any city and date&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;mimeType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>一个提示（Prompt）的定义：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;plan-vacation&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plan a vacation&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Guide through vacation planning process&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;destination&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;days&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;budget&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;interests&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="MCP-客户端">MCP 客户端</h3>
+<p>TBC</p>
+<h2 id="例还原魔方的-MCP-Server">例：还原魔方的 MCP Server</h2>
+<p>这又需要回到我这篇文章的标题了，Agentic AI之初探。顾名思义，Agent 是可以和环境自由交互的模型。</p>
+<p>B站上出现过很多诸如用大语言模型去玩狼人杀，下象棋的视频，其实在这些场景中，下象棋的每一步都可以看作大模型在调用一个函数，虽然在这些视频中并没有明确的写明。这种场景其实用 MCP server 的方式可以最好的去实现。</p>
+<p>下面我们想实现的就是一个用于还原魔方的 MCP Server，它支持以下几种调用：</p>
+<ol>
+<li>给魔方拍张快照，调用这个方法后，模型可以看到现在魔方状态的一张照片；</li>
+<li>执行某种旋转，将魔方整体旋转，按照某个方向旋转 90 度，或者把某个可视的面旋转 90 度；</li>
+</ol>
+<p>虽然用电脑还原魔方有比用大模型好得多的方法，比如各种启发式搜索，但是在这里为了展现大模型的通用智能，这个测试还是有点意思的。</p>
+<p>在 Github 上找到了<a href="https://github.com/fritzprix/rubiks-cube-mcp-server">一个与其有关的开源项目</a>但是用 Claude Code 半天也没有让它跑起来；这让我想起一个词叫做 Digital Slop，即大模型生成的垃圾内容。这个 Repository 的 README 写的特别长，一看就是 AI 写的，也许就属于这种类型。</p>
+<h3 id="代码的实现过程">代码的实现过程</h3>
+<p>代码使用到了一个 Python 的开源库 <a href="https://github.com/trincaog/magiccube">MagicCube</a>。</p>
+<p>我主要使用了 vibe coding 的方法来去编写这个示例的代码，上午我尝试使用 TRAE 来编写，结果以失败告终，下午转而用 Claude Code 接 GLM 的 API 来去写，代码重构了一遍，但还是问题比较大，主要是调用API的时候，等很长时间大语言模型也没有什么反应，可能是思考长度太长了，也有可能是语法就有问题。</p>
+<p>实践表明，当我们用魔方展开图表示魔方状态时，大模型对魔方的还原能力很弱。这表明了大语言模型的空间推理能力有限。</p>
+<p>Vibe Coding 的结果存储在了 <a href="https://github.com/xinchengo/rubiks-mcp">xinchengo/rubiks-mcp</a> 中（虽然结果极其有限）</p>
+<h3 id="结论">结论</h3>
+<p>现阶段大模型解决魔方的能力很弱很弱，比如<a href="https://chatgpt.com/share/696cf64c-fe8c-8001-8da5-74ec75d9f3ee">ChatGPT</a>和<a href="https://chat.deepseek.com/share/c1mzeqsl4yd99gx59p">DeepSeek</a>，这说明它们的空间推理能力是缺失的。</p>
+<p>这个例子不能成功实现，并不是因为 AI 编程的能力很弱，而是选取的主题不太合适，不太契合目前大语言模型的发展现状。</p>
+<h2 id="Vibe-Coding">Vibe Coding</h2>
+<p>TBC</p>
 
 
 
@@ -812,7 +870,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 15:27:22 UTC">2025年12月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月18日 15:15:46 UTC">2026年1月18日</span>
   </span>
 
     
@@ -822,7 +880,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年2月4日 14:26:54 UTC">2025年2月4日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月18日 15:15:46 UTC">2026年1月18日</span>
   </span>
 
     
