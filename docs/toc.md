@@ -1,5 +1,12 @@
 # 目录
 
+## Curated Lists
+
+人工智能方面：
+
+- 机器学习方面：[支持向量机，决策树与集成学习](posts/ai/20251223-AI3002 实验三记.md)、[强化学习](posts/ai/20251229-强化学习.md)；
+- 杂项：[Optical Flow](posts/ai/20251215-Optical Flow.md)
+
 ## 一些有用链接
 
 - [ChatGPT](https://chatgpt.com/), [Grok](https://grok.com/), [DeepSeek](https://chat.deepseek.com/)

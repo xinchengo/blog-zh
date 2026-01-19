@@ -63,6 +63,9 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+  # Footnotes support
+  - footnotes
+
 plugins:
   # Automatically self-host external assets
   - privacy:
