@@ -8,11 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2026/01/18/agentic-ai-%E4%B9%8B%E5%88%9D%E6%8E%A2/">
+        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2025/12/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%B0/">
       
       
-        <link rel="prev" href="../../../../2025/12/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%B0/">
+        <link rel="prev" href="../../23/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
       
+      
+        <link rel="next" href="../../../../2026/01/18/agentic-ai-%E4%B9%8B%E5%88%9D%E6%8E%A2/">
       
       
         
@@ -23,7 +25,7 @@
     
     
       
-        <title>Agentic AI 之初探 - xinchengo 的博客</title>
+        <title>强化学习记 - xinchengo 的博客</title>
       
     
     
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#Agentic-AI-之初探" class="md-skip">
+        <a href="#强化学习记" class="md-skip">
           跳转至
         </a>
       
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Agentic AI 之初探
+              强化学习记
             
           </span>
         </div>
@@ -524,22 +526,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#MCP" class="md-nav__link">
+  <a href="#题记" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP
+        题记
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="MCP">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Genres-of-RL" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genres of RL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#RL-Basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL Basics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RL Basics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#MCP-的架构" class="md-nav__link">
+  <a href="#Markov-Decision-Process" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP 的架构
+        Markov Decision Process
       
     </span>
   </a>
@@ -547,10 +571,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#MCP-服务器" class="md-nav__link">
+  <a href="#Bellman-Operators" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP 服务器
+        Bellman Operators
       
     </span>
   </a>
@@ -558,10 +582,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#MCP-客户端" class="md-nav__link">
+  <a href="#Intro-to-Value-Based-Methods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP 客户端
+        Intro to Value-Based Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Intro-to-Policy-Based-Methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intro to Policy-Based Methods
       
     </span>
   </a>
@@ -574,22 +609,34 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#例还原魔方的-MCP-Server" class="md-nav__link">
+  <a href="#Constrained-RL" class="md-nav__link">
     <span class="md-ellipsis">
       
-        例：还原魔方的 MCP Server
+        Constrained RL
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="例：还原魔方的 MCP Server">
+    <nav class="md-nav" aria-label="Constrained RL">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#代码的实现过程" class="md-nav__link">
+  <a href="#Maximum-Entropy-RL" class="md-nav__link">
     <span class="md-ellipsis">
       
-        代码的实现过程
+        Maximum-Entropy RL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maximum-Entropy RL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Entropy-Regularization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entropy Regularization
       
     </span>
   </a>
@@ -597,10 +644,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#结论" class="md-nav__link">
+  <a href="#Legendre-Fenchel-Duality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        结论
+        Legendre-Fenchel Duality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Soft-Value-Based-Methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soft Value-Based Methods
       
     </span>
   </a>
@@ -611,15 +669,20 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#Vibe-Coding" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#RL-with-KL-constraints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vibe Coding
+        RL with KL-constraints
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -660,9 +723,16 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2026-01-18 00:00:00+00:00" class="md-ellipsis">2026年1月18日</time>
+                        <time datetime="2025-12-29 00:00:00+00:00" class="md-ellipsis">2025年12月29日</time>
                       </div>
                     </li>
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
+                          <time datetime="2026-01-19 00:00:00+00:00" class="md-ellipsis">2026年1月19日</time>
+                        </div>
+                      </li>
                     
                     
                     
@@ -672,7 +742,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 2 分钟阅读时间
+                              需要 6 分钟阅读时间
                             
                           </span>
                         </div>
@@ -699,155 +769,219 @@
   
 
 
-<h1 id="Agentic-AI-之初探">Agentic AI 之初探</h1>
-<p>文本章主要介绍 MCP Server，以及使用 AI Agents 进行 Vibe Coding 的一些记录。目前只有对与 MCP Server 的简单介绍，Vibe Coding 的部分改日再完成。</p>
-<p>转眼间已经是 2026 年初，这离我第一次听说 ChatGPT 已经有 3 年的历史了。</p>
+<h1 id="强化学习记">强化学习记</h1>
+<h2 id="题记">题记</h2>
+<p>强化学习是人工智能领域一个不能绕开的话题。今天趁着<a href="https://github.com/ChangshuoShen/USTC-AI3002-25fall">《人工智能与机器学习基础》</a>课上讲到强化学习，我在博客上打开这篇文章，等着以后再行扩充。</p>
+<p>今年《人工智能与机器学习基础》课程的大作业的主题正好也是强化学习，我觉得能趁这一次大作业把强化学习的原理弄懂也是一件很不错的事情。</p>
 <!-- more -->
 
-<p>曾经，Prompt Engineering 甚嚣尘上，人们纷纷相信写的一手好提示词就是跟上 AI 时代的全部；然而随着 24 年底和 25 年初 gpt-o1 和 Deepseek-R1 的横空出世，模型内置的「思维链」可以理解写得很烂的提示词，提示词工程这个词渐渐变得无人问津了。</p>
-<p>现阶段，对于提高 LLM 工具的能力，Agentic AI 是一个比较主流的方向；即，赋予大语言模型和环境交互的能力，让它设定目标，从而在最小的人类干预下完成某个特定的功能。</p>
-<!--
-「红专并进，理实交融」是科大的校训，然而在科大的人工智能专业，成绩优异的比比皆是，对 AI 编程、如何用 AI 提升个人效率缺乏了解的却不在少数
--->
-
-<h2 id="MCP">MCP</h2>
+<div class="admonition info">
+<p class="admonition-title">Further improvement</p>
+<p>I have <a href="https://chatgpt.com/share/696e3856-f39c-8001-9dc4-dfc2e67a8d41">discussed</a> this blog with ChatGPT and it listed several areas for improvement, this serves as the guideline of improving this article.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">About the use of AI in this article</p>
+<p>The contents, although not directly copied from, are largely based on my conversations with <a href="https://chatgpt.com">ChatGPT</a>, with the conversation links listed below:</p>
+<p><a href="https://chatgpt.com/share/696e3915-cfd0-8001-821d-9cefd058b3de">C1</a>, <a href="https://chatgpt.com/share/696e3938-9360-8001-bb76-ed3c2cafa014">Br1</a>, <a href="https://chatgpt.com/share/696e3953-d4ec-8001-85ba-4688aec208dc">Br2</a>, <a href="https://chatgpt.com/share/696e3967-d824-8001-bf87-f63b7ac9a210">Br3</a></p>
+</div>
+<p>Some resources:</p>
 <ul>
-<li>官方文档：<a href="https://modelcontextprotocol.io/docs/getting-started/intro">What is MCP?</a></li>
+<li><a href="https://arxiv.org/abs/2412.05265"><em>Reinforcement Learning - An Overview</em> By Kevin Murphy</a></li>
 </ul>
-<p>MCP（Model Context Protocol，模型上下文协议）是一种将人工智能应用程序连接到外部系统的开源标准。</p>
-<p><img alt="" src="../../../../assets/external/mintcdn.com/mcp/bEUxYpZqie0DsluH/images/mcp-simple-diagram.f7d8ed03.png"></p>
-<p>现阶段主要聚焦的是：</p>
+<h2 id="Genres-of-RL">Genres of RL</h2>
+<p>What is Reinforcement Learning?</p>
 <ul>
-<li>如何在<strong>应用</strong>上用 MCP 扩展大模型的能力</li>
-<li>如何做一些简单的自定义——即，编写一些简单的 MCP Server，以在 AI Coding 任务中增进自我</li>
+<li>Inspired from <a href="https://en.wikipedia.org/wiki/Law_of_effect">Law of Effect</a>, a psychological principle in <a href="https://en.wikipedia.org/wiki/Behaviorism">behavioral conditioning</a> which states that "responses that produce a satisfying effect in a particular situation become more likely to occur again in that situation"<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>—the idea of <strong>reinforcement</strong></li>
+<li>Core components: Agent, Actions, Rewards, Environment, Feedback</li>
 </ul>
-<h3 id="MCP-的架构">MCP 的架构</h3>
+<p><img alt="the Reinforcement Learning agent-environment loop" src="../../../../assets/external/encrypted-tbn1.gstatic.com/licensed-image.fa61abd5.jpg"></p>
+<p>Different axes on the types of RL:</p>
 <ul>
-<li>MCP 主机：管理一个或多个 MCP 客户端的 AI 应用程序；</li>
-<li>MCP 客户端：从 MCP 服务器抓取内容提供给 MCP 主机的组件；</li>
-<li>MCP 服务器：向 MCP 客户端提供内容的的程序；</li>
+<li>Value-Based <span class="arithmatex">\(\leftrightarrow\)</span> Policy-Based (<span class="arithmatex">\(\leftrightarrow\)</span> Actor-Critic)</li>
+<li>Model-Based <span class="arithmatex">\(\leftrightarrow\)</span> Model-Free</li>
+<li>On-Policy <span class="arithmatex">\(\leftrightarrow\)</span> Off-Policy</li>
 </ul>
-<p>比如，Visual Studio Code 可以看作一个 MCP 主机，它通过一个 MCP 客户端与 <a href="https://docs.sentry.io/product/sentry-mcp/">Sentry MCP server</a> 联络，同时它也可以通过另外一个 MCP 客户端与其他的 MCP 服务器（比如本地文件系统）联络。</p>
-<p>MCP 服务器可以在本地运行（使用 STDIO 运输），也可以在某个远程服务器上运行（使用流式 HTTP 传输）。</p>
-<p>详细地了解 MCP 的架构可以参考<a href="https://modelcontextprotocol.io/docs/learn/architecture">官方文档 Architecture Overview</a></p>
-<h3 id="MCP-服务器">MCP 服务器</h3>
-<p>（以下的内容都摘自 <a href="https://modelcontextprotocol.io/docs/learn/server-concepts">MCP 官方文档</a>）</p>
-<p>MCP 服务器由 3 个重要的模块构成：</p>
+<p>They are characterized by their different parametrization and optimization techniques.</p>
+<p>In mainstream RL, the environment is often described as an MDP (rather than POMDP due to its complexity; therefore, in these methods, the problem can be defined as:</p>
+<blockquote>
+<p>Given an MDP, find a <strong>policy</strong> that maximizes <strong>cumulative reward</strong>.</p>
+</blockquote>
+<h2 id="RL-Basics">RL Basics</h2>
+<h3 id="Markov-Decision-Process">Markov Decision Process</h3>
+<div class="arithmatex">\[
+(\mathcal S, \mathcal A,P,r,\gamma)
+\]</div>
+<h3 id="Bellman-Operators">Bellman Operators</h3>
+<p>Bellman Expectation Operators:</p>
+<div class="arithmatex">\[
+\begin{gather}
+(\mathcal T^\pi V)(s)=\mathbb E_{a\sim\pi(\cdot\mid s)}[r(s,a)+\gamma\mathbb E_{s^\prime\sim P(\cdot|s,a)}V(s^\prime)]\\
+(\mathcal T^\pi Q)(s,a)=r(s,a) + \gamma \mathbb E_{s'\sim P(\cdot|s,a)}
+\mathbb E_{a'\sim\pi(\cdot|s')} Q(s',a')
+\end{gather}
+\]</div>
+<p>Bellman Optimality Operators:</p>
+<div class="arithmatex">\[
+\begin{gather}
+(\mathcal T^* V)(s)
+=
+\max_{a\in\mathcal A}\left[
+r(s,a) + \gamma \mathbb E_{s'\sim P(\cdot|s,a)} V(s')\right]\\
+(\mathcal T^* Q)(s,a)
+=
+r(s,a) + \gamma \mathbb E_{s'\sim P(\cdot|s,a)}
+\max_{a'} Q(s',a')
+\end{gather}
+\]</div>
+<p>For <span class="arithmatex">\(\gamma \in (0, 1)\)</span> these properties hold:</p>
 <ul>
-<li>工具（Tools）：LLM 可以<strong>主动</strong>调用的函数，由模型控制；</li>
-<li>资源（Resources）：被动的数据源，由应用控制；</li>
-<li>提示（Prompts）：提示词模版，由用户控制；</li>
+<li><span class="arithmatex">\(\mathcal T^{\pi}\)</span> and <span class="arithmatex">\(\mathcal T^{\ast}\)</span> are <span class="arithmatex">\(\gamma\)</span><strong>-contractions</strong><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> in <span class="arithmatex">\(\|\cdot\|_\infty\)</span></li>
+<li>Each has a unique <strong>fixed point</strong>: <span class="arithmatex">\(V^{\pi}=\mathcal T^{\pi} V^{\pi}, \quad V^{\ast}=\mathcal T^{\ast} V^{\ast}\)</span>, derived with <a href="https://en.wikipedia.org/wiki/Banach_fixed-point_theorem">Banach fixed-point theorem</a></li>
 </ul>
+<h3 id="Intro-to-Value-Based-Methods">Intro to Value-Based Methods</h3>
+<p>The optimal value satisfies:</p>
+<div class="arithmatex">\[
+V^{\ast}=T^{\ast}V^{\ast}\quad\text{or}\quad Q^{\ast}=\mathcal T^{\ast}Q^{\ast}
+\]</div>
+<p>Since <span class="arithmatex">\(\mathcal T^\ast\)</span> is a <a href="https://en.wikipedia.org/wiki/Contraction_(operator_theory)">contraction</a>, the iteration process <span class="arithmatex">\(V_{k+1}=\mathcal T^{\ast}V_k\)</span> converges—<strong>value iteration</strong>, however, the expectations are not explicitly solvable.</p>
+<p>Therefore we employ <a href="https://en.wikipedia.org/wiki/Stochastic_approximation#Robbins–Monro_algorithm">Robbins-Monro stochastic approximation</a> to <span class="arithmatex">\(Q^\ast = \mathcal T^\ast Q^\ast\)</span>, obtaining:</p>
+<div class="arithmatex">\[
+Q_{t+1}(s_t,a_t)\gets Q_t(s_t,a_t)+\alpha_t\left[r + \gamma \max_{a^\prime}Q_t(s_{t+1},a^\prime)-Q_t(s_t,a_t)\right]
+\]</div>
+<p>This is the <strong>Q-learning</strong> algorithm.</p>
+<h3 id="Intro-to-Policy-Based-Methods">Intro to Policy-Based Methods</h3>
+<p><strong>Policy iteration</strong> is a bit subtler than value iteration, it consists of two Bellman-based Steps</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{Policy evaluation:}\quad &amp; V^{\pi_k}=\mathcal T^{\pi_k}V^{\pi_k} \\
+\text{Policy improvement:}\quad &amp; \begin{aligned}\pi_{k+1}(s)&amp;=\arg\max_a \left[r(s,a)+\gamma\mathbb E_{s^\prime}V^{\pi_k}(s^\prime)\right]\\&amp;=\arg\max_a Q^{\pi_k}(s,a)\end{aligned}\\
+\implies\quad&amp;\mathcal T^{\pi_{k+1}}V^{\pi_k} = \mathcal T^{\ast}V^{\pi_k}
+\end{aligned}
+\]</div>
+<p>Policy-based methods are <em>softened</em> or <em>approximate</em> policy iteration. They are often used in scenarios where the action space is large / continuous.</p>
+<p>When the policy is not derived from a explicitly-stored <span class="arithmatex">\(Q(s,a)\)</span> but instead parametrized by <span class="arithmatex">\(\theta\)</span>, the policy improvement step can be rewritten as:</p>
+<div class="arithmatex">\[
+\pi_{k+1}\approx\arg \max_{\pi \in \Pi_\theta}\mathbb E_{a\sim\pi}\left[Q^{\pi_k}(s,a)\right]
+\]</div>
+<p>for a fixed critic <span class="arithmatex">\(Q^{\pi_k}\)</span>:</p>
+<div class="arithmatex">\[
+J(\theta)=\mathbb E_{s\sim d^{\pi_k}}\mathbb E_{a\sim \pi_\theta(\cdot|s)}[Q^{\pi_k}(s, a)]
+\]</div>
+<p>The derivation of <span class="arithmatex">\(J\)</span> relies in the <em>state distribution</em> thus intractable, however, by the <strong>Policy Gradient Theorem</strong><sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>, since <span class="arithmatex">\(Q^{\pi_\theta}\)</span> is a Bellman fixed point:</p>
+<div class="arithmatex">\[
+\nabla_\theta J(\theta)=\mathbb E[\nabla_\theta \log \pi_\theta(a|s) Q^{\pi_k}(s,a)]
+\]</div>
+<p>this provides a possible approximation of policy improvement. <strong>Actor-Critic Methods</strong> refer to the policy iteration after this approximation.</p>
+<h2 id="Constrained-RL">Constrained RL</h2>
+<h3 id="Maximum-Entropy-RL">Maximum-Entropy RL</h3>
+<h4 id="Entropy-Regularization">Entropy Regularization</h4>
+<p>Recall the objective in standard RL (overall reward with discount factor):</p>
+<div class="arithmatex">\[
+J(\pi)=\mathbb E_\pi\left[\sum_{t=0}^\infty \gamma^t r(s_t,a_t)\right]
+\]</div>
+<p>Introduce Entropy-regularized objective<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>:</p>
+<div class="arithmatex">\[
+\begin{gather}
+J_\alpha(\pi)=\left[\sum_{t=0}^\infty\gamma^t\left(r(s_t,a_t)+\alpha\mathcal H(\pi(\cdot|s_t))\right)\right]\\
+\text{with}\quad \mathcal H(\pi(\cdot|s)) = -\mathbb E_{a\sim \pi}\log \pi(a|s)
+\end{gather}
+\]</div>
+<p>With the entropy augmentation term, we can define the entropy-augmented value-functions and the Bellman expectation operator:</p>
+<div class="arithmatex">\[
+\begin{gather}
+V^{\pi}_\alpha(s)=\mathbb E_{\pi}\left[\sum_{t=0}^\infty\gamma^t(r(s_t,a_t)+\alpha\mathcal H(\pi(\cdot|s_t)))\middle|s_0=s\right] \\
+Q^{\pi}_\alpha(s,a)=r(s,a)+\gamma \mathbb E_{s^\prime}V_\alpha^\pi(s^\prime)\\
+(\mathcal T_\alpha^\pi V)(s)=\mathbb E_{a\sim\pi}[r(s,a)+\gamma \mathbb E_{s^\prime} V(s^\prime)-\alpha \log \pi(a|s)]
+\end{gather}
+\]</div>
+<h4 id="Legendre-Fenchel-Duality">Legendre-Fenchel Duality</h4>
+<p>The <strong>key part</strong> that clarified policy-based methods is <strong>entropy-regularized policy improvement</strong>, with the introduction of entropy, the optimum is unique and explicitly solvable with <a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange Multipliers</a>, in the form of a <a href="https://en.wikipedia.org/wiki/Softmax_function">Softmax function</a>:</p>
+<div class="arithmatex">\[
+\begin{gather}
+\pi_{k+1}=\arg \max_{\pi} \mathbb E_{a\sim\pi}[Q^{\pi_k}_\alpha(s,a) - \alpha \log \pi(a|s)] \\
+\sum_{a}\pi(a|s)=1,\quad\pi(a|s)\ge 0\\
+\quad
+\implies \mathcal L(\pi,\lambda)=\sum_a\pi(a|s) Q(s, a)-\alpha\sum_a\pi(a|s)\log \pi(a|s)+\lambda\left(\sum_a\pi(a|s)-1\right)\\
+{\partial \mathcal L\over \partial \pi(a|s)}=Q(s,a)-\alpha(\log\pi(a|s)+1)+\lambda =0\\
+\implies \pi(a|s) = \exp{Q(s, a)\over \alpha}\exp{\lambda-\alpha\over \alpha},\quad \text{with normalization}~\sum_a\pi(a|s)=1
+\\
+\implies \pi_{k+1}(a|s)={\exp\left({{1\over\alpha}Q^{\pi_k}_\alpha(s,a)}\right)\over\sum_{a^\prime}\left({{1\over\alpha}Q^{\pi_k}_\alpha(s,a^\prime)}\right)}
+\end{gather}
+\]</div>
+<p>(For simplicity, in these steps we follow the assumption of <em>discrete policy</em>)</p>
+<p>This defines the <strong>soft Bellman optimality operator</strong>:</p>
+<div class="arithmatex">\[
+\begin{gather}
+V(s) = \mathbb E_{a\sim \pi}[Q(s,a)-\alpha \log \pi(a|s)]\\
+\text{with the explicit policy:}\quad V^{\ast}(s)=\sum_a\pi^{\ast}(a|s)\Big[Q(s,a)-\alpha\log \pi^\ast(a|s)\Big]\\
+\text{with:}\quad \log \pi^{\ast}(a|s) = {Q(s, a)\over \alpha}-\log\sum_{a^\prime}\exp{Q(s, a^\prime)\over \alpha}\\
+\begin{aligned}
+\implies \quad V^{\ast}(s)&amp;=\sum_a\pi^{\ast}(a|s)\left[Q(s, a)-\alpha\left({Q(s, a)\over \alpha} - \log Z(s)\right)\right]\\
+&amp;=\alpha \log Z(s)\sum_{a}\pi^\ast(a|s)\\
+&amp;=\alpha\log Z(s)\\
+&amp;=\alpha \log \sum_a \exp{Q(s ,a)\over \alpha}
+\end{aligned}\\
+\implies\quad  \boxed{(\mathcal T^\ast_\alpha V)(s)=\alpha\log \sum_{a}\exp{r(s,a)+\gamma \mathbb E_{s^\prime}V(s^\prime)\over \alpha}}
+\end{gather}
+\]</div>
+<p>From a <em>variational</em> perspective, the entire derivation can be summarized as:</p>
+<div class="arithmatex">\[
+\max_{\pi}\mathbb E_{a\sim\pi}[Q(s, a) - \alpha \log \pi(a|s)] = \alpha\log \sum_{a}\exp{Q(s,a)\over a}
+\]</div>
+<p>which is a <strong><a href="https://en.wikipedia.org/wiki/Convex_conjugate">Legendre-Fenchel duality</a></strong> between <em>entropy</em> and the <em>log-sum-exp</em> function.</p>
+<h4 id="Soft-Value-Based-Methods">Soft Value-Based Methods</h4>
+<p>When we solve the entropy-augmented Bellman optimality equation exactly as in <a href="#Intro-to-Value-Based-Methods">value based methods</a>:</p>
+<div class="arithmatex">\[
+\begin{gather}
+Q^\ast_\alpha=\mathcal T^{\ast}_\alpha Q^\ast_\alpha \\
+\pi^\ast(a|s) = {\exp(\frac1\alpha Q^\ast_\alpha(s,a))\over \int\exp(\frac1\alpha Q^\ast_\alpha(s,a^\prime))\mathrm d a^\prime}
+\end{gather}
+\]</div>
+<p>we obtain <strong>soft Q-learning</strong> algorithm, the derived policy is called the <strong>Boltzmann (a.k.a. Gibbs) policy</strong>. Recall Gibbs distribution in statistical mechanics:</p>
+<div class="arithmatex">\[
+p(x)=\frac1Ze^{-\frac{E(x)}{kT}}
+\]</div>
+<p>the following correspondence exist:</p>
 <table>
 <thead>
 <tr>
-<th>方法</th>
-<th>目的</th>
-<th>返回值</th>
+<th>Statistical mechanics</th>
+<th>RL</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>tools/list</code></td>
-<td>列举所有可用工具</td>
-<td>工具定义的列表</td>
+<td>Energy <span class="arithmatex">\(E(x)\)</span></td>
+<td><span class="arithmatex">\(-Q(s,a)\)</span></td>
 </tr>
 <tr>
-<td><code>tools/call</code></td>
-<td>执行某个特定工具</td>
-<td>工具执行结果</td>
+<td>Temperature <span class="arithmatex">\(T\)</span></td>
+<td><span class="arithmatex">\(\alpha\)</span></td>
 </tr>
 <tr>
-<td><code>resources/list</code></td>
-<td>列举所有直接资源</td>
-<td>资源简介的列表</td>
-</tr>
-<tr>
-<td><code>resources/templates/list</code></td>
-<td>列举所有资源模版</td>
-<td>资源模版的列表</td>
-</tr>
-<tr>
-<td><code>resources/read</code></td>
-<td>获取资源内容</td>
-<td>带元数据的资源</td>
-</tr>
-<tr>
-<td><code>resources/subscribe</code></td>
-<td>监视资源变化</td>
-<td>确认关注</td>
-</tr>
-<tr>
-<td><code>prompts/list</code></td>
-<td>列举所有可用提示</td>
-<td>提示词简介的列表</td>
-</tr>
-<tr>
-<td><code>prompts/get</code></td>
-<td>获取提示细节</td>
-<td>完整提示词定义</td>
+<td>Partition function <span class="arithmatex">\(Z\)</span></td>
+<td><span class="arithmatex">\(\sum_a \exp\frac Q a\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>一个工具（Tool）的定义：</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchFlights&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Search for available flights&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="err">i</span><span class="kc">n</span><span class="err">pu</span><span class="kc">t</span><span class="err">Schema</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="err">proper</span><span class="kc">t</span><span class="err">ies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="err">origi</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Departure city&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="err">des</span><span class="kc">t</span><span class="err">i</span><span class="kc">nat</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Arrival city&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="err">da</span><span class="kc">te</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">f</span><span class="err">orma</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Travel date&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="err">required</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;destination&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>一个资源（Resource）的定义：</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;uriTemplate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weather://forecast/{city}/{date}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weather-forecast&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Weather Forecast&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Get weather forecast for any city and date&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;mimeType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>一个提示（Prompt）的定义：</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;plan-vacation&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plan a vacation&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Guide through vacation planning process&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;destination&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;days&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;budget&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;interests&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="MCP-客户端">MCP 客户端</h3>
-<p>TBC</p>
-<h2 id="例还原魔方的-MCP-Server">例：还原魔方的 MCP Server</h2>
-<p>这又需要回到我这篇文章的标题了，Agentic AI之初探。顾名思义，Agent 是可以和环境自由交互的模型。</p>
-<p>B站上出现过很多诸如用大语言模型去玩狼人杀，下象棋的视频，其实在这些场景中，下象棋的每一步都可以看作大模型在调用一个函数，虽然在这些视频中并没有明确的写明。这种场景其实用 MCP server 的方式可以最好的去实现。</p>
-<p>下面我们想实现的就是一个用于还原魔方的 MCP Server，它支持以下几种调用：</p>
+<h3 id="RL-with-KL-constraints">RL with KL-constraints</h3>
+<div class="footnote">
+<hr />
 <ol>
-<li>给魔方拍张快照，调用这个方法后，模型可以看到现在魔方状态的一张照片；</li>
-<li>执行某种旋转，将魔方整体旋转，按照某个方向旋转 90 度，或者把某个可视的面旋转 90 度；</li>
+<li id="fn:1">
+<p>Wikipedia Article: <a href="https://en.wikipedia.org/wiki/Law_of_effect">Law of Effect</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Berkeley Handout: <a href="https://people.eecs.berkeley.edu/~jiantao/2902021spring/scribe/EE290_Lecture_17.pdf">EE290 Lecture 17</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://www.andrew.cmu.edu/course/10-403/slides/S19maxentRL.pdf">CMU Slide</a> on Entropy-regularized RL&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://papers.nips.cc/paper_files/paper/1999/hash/464d828b85b0bed98e80ade0a5c43b0f-Abstract.html">Sutton et al, NIPS 1999</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
 </ol>
-<p>虽然用电脑还原魔方有比用大模型好得多的方法，比如各种启发式搜索，但是在这里为了展现大模型的通用智能，这个测试还是有点意思的。</p>
-<p>在 Github 上找到了<a href="https://github.com/fritzprix/rubiks-cube-mcp-server">一个与其有关的开源项目</a>但是用 Claude Code 半天也没有让它跑起来；这让我想起一个词叫做 Digital Slop，即大模型生成的垃圾内容。这个 Repository 的 README 写的特别长，一看就是 AI 写的，也许就属于这种类型。</p>
-<h3 id="代码的实现过程">代码的实现过程</h3>
-<p>代码使用到了一个 Python 的开源库 <a href="https://github.com/trincaog/magiccube">MagicCube</a>。</p>
-<p>我主要使用了 vibe coding 的方法来去编写这个示例的代码，上午我尝试使用 TRAE 来编写，结果以失败告终，下午转而用 Claude Code 接 GLM 的 API 来去写，代码重构了一遍，但还是问题比较大，主要是调用API的时候，等很长时间大语言模型也没有什么反应，可能是思考长度太长了，也有可能是语法就有问题。</p>
-<p>实践表明，当我们用魔方展开图表示魔方状态时，大模型对魔方的还原能力很弱。这表明了大语言模型的空间推理能力有限。</p>
-<p>Vibe Coding 的结果存储在了 <a href="https://github.com/xinchengo/rubiks-mcp">xinchengo/rubiks-mcp</a> 中（虽然结果极其有限）</p>
-<h3 id="结论">结论</h3>
-<p>现阶段大模型解决魔方的能力很弱很弱，比如<a href="https://chatgpt.com/share/696cf64c-fe8c-8001-8da5-74ec75d9f3ee">ChatGPT</a>和<a href="https://chat.deepseek.com/share/c1mzeqsl4yd99gx59p">DeepSeek</a>，这说明它们的空间推理能力是缺失的。</p>
-<p>这个例子不能成功实现，并不是因为 AI 编程的能力很弱，而是选取的主题不太合适，不太契合目前大语言模型的发展现状。</p>
-<h2 id="Vibe-Coding">Vibe Coding</h2>
-<p>TBC</p>
+</div>
 
 
 
@@ -870,7 +1004,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月18日 15:15:46 UTC">2026年1月18日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 14:14:35 UTC">2026年1月19日</span>
   </span>
 
     
@@ -880,7 +1014,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月18日 15:15:46 UTC">2026年1月18日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月30日 15:20:35 UTC">2025年12月30日</span>
   </span>
 
     
