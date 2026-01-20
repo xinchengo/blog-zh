@@ -605,10 +605,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#Temporal-Difference-Learning" class="md-nav__link">
+  <a href="#SARSA" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Temporal Difference Learning
+        SARSA
       
     </span>
   </a>
@@ -884,14 +884,11 @@ V^{\ast}=T^{\ast}V^{\ast}\quad\text{or}\quad Q^{\ast}=\mathcal T^{\ast}Q^{\ast}
 Q_{t+1}(s_t,a_t)\gets Q_t(s_t,a_t)+\alpha_t\left[r + \gamma \max_{a^\prime}Q_t(s_{t+1},a^\prime)-Q_t(s_t,a_t)\right]
 \]</div>
 <p>This is the <strong>Q-learning</strong> algorithm.</p>
-<h4 id="Temporal-Difference-Learning">Temporal Difference Learning</h4>
-<p>Similarly, Robbins-Monro approximation can be employed on <span class="arithmatex">\(V^\pi = \mathcal T^\pi V^\pi\)</span>, resulting in <strong>Temporal Difference Learning, TD</strong>:</p>
+<h4 id="SARSA">SARSA</h4>
+<p>Similarly, Robbins-Monro approximation can be employed on <span class="arithmatex">\(V^\pi = \mathcal T^\pi V^\pi\)</span>, resulting in <strong>SARSA</strong>:</p>
 <div class="arithmatex">\[
 V(s_t) \gets V(s_t)+\alpha\left[r_t+\gamma V(s_{t+1})-V(s_t)\right]
 \]</div>
-<blockquote>
-<p>The formations of TD learning and Q learning are analogous.</p>
-</blockquote>
 <h3 id="Intro-to-Policy-Based-Methods">Intro to Policy-Based Methods</h3>
 <p><strong>Policy iteration</strong> is a bit subtler than value iteration, it consists of two Bellman-based Steps</p>
 <div class="arithmatex">\[
@@ -1055,7 +1052,7 @@ p(x)=\frac1Ze^{-\frac{E(x)}{kT}}
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月20日 02:07:20 UTC">2026年1月20日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月20日 15:09:34 UTC">2026年1月20日</span>
   </span>
 
     
