@@ -74,8 +74,10 @@ plugins:
         - giscus.app/*
   # Add suppport for adding the date of last update and creation of a document
   - git-revision-date-localized:
-      enable_creation_date: true
+      strict: false
+      enable_creation_date: false
       fallback_to_build_date: true
+      enable_git_follow: false
   - meta # support for .meta.yml
   - search:
       lang: zh
