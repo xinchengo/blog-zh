@@ -1,7 +1,14 @@
 window.MathJax = {
-  loader: {load: ['[tex]/boldsymbol']},
+  loader: {load: [
+    '[tex]/boldsymbol', 
+    '[tex]/mathtools'
+  ]},
   tex: {
-    packages: {'[+]': ['boldsymbol']},
+    packages: {'[+]': 
+      [
+        'boldsymbol',
+        'mathtools'
+      ]},
     inlineMath: [["\\(", "\\)"]],
     displayMath: [["\\[", "\\]"]],
     processEscapes: true,
