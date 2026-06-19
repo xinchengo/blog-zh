@@ -580,10 +580,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#不用标准库提取用户栈的信息" class="md-nav__link">
+  <a href="#扩展不用标准库提取用户栈的信息" class="md-nav__link">
     <span class="md-ellipsis">
       
-        不用标准库提取用户栈的信息
+        （扩展）不用标准库提取用户栈的信息
       
     </span>
   </a>
@@ -591,10 +591,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#Libc-的启动流程" class="md-nav__link">
+  <a href="#扩展Libc-的启动流程" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Libc 的启动流程
+        （扩展）Libc 的启动流程
       
     </span>
   </a>
@@ -603,6 +603,56 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#socket-和-Linux-中的网络栈" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        socket 和 Linux 中的网络栈
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="socket 和 Linux 中的网络栈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#聊天程序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        聊天程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#基于-socket-的-TCP-服务器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基于 socket 的 TCP 服务器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Linux-驱动编写" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux 驱动编写
+      
+    </span>
+  </a>
   
 </li>
       
@@ -655,7 +705,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 3 分钟阅读时间
+                              需要 4 分钟阅读时间
                             
                           </span>
                         </div>
@@ -901,7 +951,7 @@ Sun 14 Jun 2026 05:33:30 PM CST
 </code></pre></div>
 <p>系统中，环境变量就是通过用户栈传递给程序的，程序可以通过 <code>getenv()</code> 函数来获取环境变量的值。<code>locale.h</code> 中的 <code>setlocale()</code> 函数也是通过环境变量来设置程序的本地化信息的。</p>
 <p><code>auxv</code> 主要被用于优化 <code>malloc()</code> 等函数的性能，因为它包含了系统的一些关键信息，比如页面大小、CPU 架构等。</p>
-<h3 id="不用标准库提取用户栈的信息">不用标准库提取用户栈的信息</h3>
+<h3 id="扩展不用标准库提取用户栈的信息">（扩展）不用标准库提取用户栈的信息</h3>
 <p>标准库的作用类似于帮我们定义了程序的一个入口点 <code>main()</code>，并在这个入口点之前做了一些准备工作，比如解析用户栈的信息，设置环境变量等：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// 我们写的部分</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
@@ -909,13 +959,75 @@ Sun 14 Jun 2026 05:33:30 PM CST
 <span class="p">}</span>
 
 <span class="c1">// 标准库帮我们做的部分</span>
-<span class="c1">// attribute??</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">_start</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="o">???</span>
+<span class="n">__attribute__</span><span class="p">((</span><span class="k">noreturn</span><span class="p">))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">start_c</span><span class="p">(</span><span class="n">usize</span><span class="w"> </span><span class="o">*</span><span class="n">sp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 解析用户栈的信息，获取 argc、argv、envp、auxv 等</span>
+<span class="w">    </span><span class="c1">// ...</span>
+
+<span class="w">    </span><span class="c1">// 调用 main() 函数</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 退出程序</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="n">ret</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="Libc-的启动流程">Libc 的启动流程</h3>
+<p>绕开标准库，我们也可以直接在 <code>_start()</code> 函数中解析用户栈的信息，并调用 <code>main()</code> 函数，这一部分作为扩展内容，感兴趣的话可以参考以下的 Codex / Claude Code 提示词并阅读 Vibe Coding 的返回结果：</p>
+<div class="highlight"><pre><span></span><code>Write a demo (stack.c) that works in Alpine Linux that don&#39;t use stdlib (musl or glibc), entrypoint in _start, and prints the argc/argv/envp/auxv information
+</code></pre></div>
+<p>Vibe Coding 出来的程序输出多半是这个样子的：</p>
+<!-- TODO: 补充真实的程序位置 -->
+
+<div class="highlight"><pre><span></span><code>$ ./stack alpha beta
+initial stack @ 0x0000ffffe3029ad0
+argc = 3
+
+argv:
+argv[0] @ 0x0000ffffe3029ef2 = &quot;./stack&quot;
+argv[1] @ 0x0000ffffe3029efa = &quot;alpha&quot;
+argv[2] @ 0x0000ffffe3029f00 = &quot;beta&quot;
+argv[3] @ 0x0000000000000000 = (null)
+
+envp:
+envp[0] @ 0x0000ffffe3029f05 = &quot;CONTAINER_SHELL=/bin/sh&quot;
+......
+envp[7] @ 0x0000ffffe3029fe1 = &quot;DEMO_ENV=hello&quot;
+envp[8] @ 0x0000000000000000 = (null)
+
+auxv:
+auxv[0] AT_SYSINFO_EHDR(33) = 0x0000ffffb329e000
+auxv[1] AT_MINSIGSTKSZ(51) = 0x0000000000001270
+auxv[2] AT_HWCAP(16) = 0x000000002fb3fffb
+......
+auxv[11] AT_UID(11) = 0x00000000000001f5
+auxv[12] AT_EUID(12) = 0x00000000000001f5
+auxv[13] AT_GID(13) = 0x0000000000000014
+auxv[14] AT_EGID(14) = 0x0000000000000014
+auxv[15] AT_SECURE(23) = 0x0000000000000000
+auxv[16] AT_RANDOM(25) = 0x0000ffffe3029cc8 
+......
+auxv[23] AT_NULL(0) = 0x0000000000000000
+</code></pre></div>
+<h3 id="扩展Libc-的启动流程">（扩展）Libc 的启动流程</h3>
 <!-- https://github.com/rofl0r/musl/blob/master/src/env/__libc_start_main.c -->
+
+<p>此部分为扩展内容，感兴趣的话可以在参考 Github 中 <code>musl</code> 中 <code>__libc_start_main()</code> 函数的实现（<a href="https://github.com/rofl0r/musl/blob/master/src/env/__libc_start_main.c">链接</a>），了解一下 C 运行时（C Runtime, CRT）的启动流程。</p>
+<p>以下列出一些重点：</p>
+<p><code>crt0</code>, <code>crt1</code>, <code>crti</code> 和 <code>crtn</code> 是 C 运行时（C Runtime, CRT）启动流程中重要的组件，其中：
+- <code>crt0</code> 和 <code>crt1</code>：负责定义程序的入口点 <code>_start()</code>，并在这个入口点之前做一些准备工作，比如解析用户栈的信息，设置环境变量等；在 <code>musl</code> 和 <code>glibc</code> 中，<code>_start()</code> 函数会调用 <code>__libc_start_main()</code> 函数来完成这些准备工作（可见 <a href="https://github.com/rofl0r/musl/blob/master/crt/crt1.c">Github</a>) 
+- <code>crti</code> 和 <code>crtn</code>：分别包含了 C 运行时的初始化和清理函数。</p>
+<p>我们正常编译一个 C 程序时，链接器会自动将标准库提供的这些组件链接到最终的可执行文件中，这就是为什么我们能够用 <code>main()</code> 函数作为入口。</p>
+<p>在 <code>__libc_start_main</code> 中，<code>musl</code> 主要做的事情有：</p>
+<ul>
+<li>初始化线程局部存储（Thread Local Storage, TLS）和栈保护（Stack Protector）等安全机制；</li>
+<li>初始化内存管理；</li>
+<li>……</li>
+</ul>
+<p>更多内容请自行返回或者询问 AI。</p>
+<h2 id="socket-和-Linux-中的网络栈">socket 和 Linux 中的网络栈</h2>
+<p>好像，你被流放到的地方也不像是一个小岛啊……</p>
+<p>当你意识到这个岛上不止有 <code>pipe</code> 还有一个东西叫 <code>socket</code> 的时候，一股难以言表的喜悦之情涌上了你的心头。</p>
+<h3 id="聊天程序">聊天程序</h3>
+<h3 id="基于-socket-的-TCP-服务器">基于 socket 的 TCP 服务器</h3>
+<h2 id="Linux-驱动编写">Linux 驱动编写</h2>
 
 
 
@@ -936,7 +1048,7 @@ Sun 14 Jun 2026 05:33:30 PM CST
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月15日 01:36:32 UTC">2026年6月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月19日 09:42:40 UTC">2026年6月19日</span>
   </span>
 
     
