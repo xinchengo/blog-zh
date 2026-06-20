@@ -1,13 +1,11 @@
 window.MathJax = {
   loader: {load: [
-    '[tex]/boldsymbol', 
-    '[tex]/mathtools'
+    '[tex]/autoload', 
   ]},
   tex: {
     packages: {'[+]': 
       [
-        'boldsymbol',
-        'mathtools'
+        'autoload',
       ]},
     inlineMath: [["\\(", "\\)"]],
     displayMath: [["\\[", "\\]"]],
