@@ -10,10 +10,7 @@
 
 ---
 
-- 以 Macbook Air (13.6 inch, 2022) 作为主力机；Mac OS / iTerm2 / VS Code / ChatGPT Atlas。
-- 很早就用过 Linux，~~但是 25 年 10 月才开始使用 Arch Linux / Hyprland / Kitty / NeoVim / Firefox / mpv 当主力机（因为一些复杂的原因）~~。
-- 个人觉得没有太多软件洁癖，~~比如我的 NeoVim 使用的是 [LazyVim](https://www.lazyvim.org/)，Hyprland 用了 [HyDE](https://hydeproject.pages.dev/)；我比较提倡“从一个好用的配置开始，再慢慢定制化”的理念，我觉得这个理念比较契合我们在 AI 时代学习知识的方式；我觉得 VSCode 也很好用，但是 NeoVim 的快捷键更好记（空格+若干字母），对手更友好。~~
-- NeoVim 的笔记我写在了[青冥上河图](posts/linux/20251209-NeoVim.md)中，Hyprland 的笔记我写在了[海珀蓝记](posts/linux/20251127-Hyprland.md)中。
+- 以 Macbook Air (13.6 inch, 2022) 作为主力机；
 
 ---
 
