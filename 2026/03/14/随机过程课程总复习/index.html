@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2026/01/18/agentic-ai-%E4%B9%8B%E5%88%9D%E6%8E%A2/">
+        <link rel="canonical" href="https://xinchengo.github.io/blog-zh/2026/03/14/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E8%AF%BE%E7%A8%8B%E6%80%BB%E5%A4%8D%E4%B9%A0/">
       
       
-        <link rel="prev" href="../../../../2025/12/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%B0/">
+        <link rel="prev" href="../../../01/18/agentic-ai-%E4%B9%8B%E5%88%9D%E6%8E%A2/">
       
       
-        <link rel="next" href="../../../03/14/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E8%AF%BE%E7%A8%8B%E6%80%BB%E5%A4%8D%E4%B9%A0/">
+        <link rel="next" href="../../17/%E8%AF%AD%E8%A8%80%E7%A7%91%E5%AD%A6/">
       
       
         
@@ -32,7 +32,7 @@
     
     
       
-        <title>Agentic AI 之初探 - xinchengo 的博客</title>
+        <title>《随机过程》课程总复习 - xinchengo 的博客</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#Agentic-AI-之初探" class="md-skip">
+        <a href="#随机过程课程总复习" class="md-skip">
           跳转至
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Agentic AI 之初探
+              《随机过程》课程总复习
             
           </span>
         </div>
@@ -508,22 +508,22 @@
     <ul class="md-nav__list" data-md-component="toc">
       
         <li class="md-nav__item">
-  <a href="#MCP" class="md-nav__link">
+  <a href="#前置知识" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP
+        前置知识
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="MCP">
+    <nav class="md-nav" aria-label="前置知识">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#MCP-的架构" class="md-nav__link">
+  <a href="#一些常用的积分" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP 的架构
+        一些常用的积分
       
     </span>
   </a>
@@ -531,21 +531,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#MCP-服务器" class="md-nav__link">
+  <a href="#留数与积分计算" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP 服务器
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#MCP-客户端" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MCP 客户端
+        留数与积分计算
       
     </span>
   </a>
@@ -558,22 +547,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#例还原魔方的-MCP-Server" class="md-nav__link">
+  <a href="#Poisson-过程" class="md-nav__link">
     <span class="md-ellipsis">
       
-        例：还原魔方的 MCP Server
+        Poisson 过程
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="例：还原魔方的 MCP Server">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Markov-过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markov 过程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markov 过程">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#代码的实现过程" class="md-nav__link">
+  <a href="#离散时间-Markov-链" class="md-nav__link">
     <span class="md-ellipsis">
       
-        代码的实现过程
+        离散时间 Markov 链
       
     </span>
   </a>
@@ -581,10 +581,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#结论" class="md-nav__link">
+  <a href="#分支过程" class="md-nav__link">
     <span class="md-ellipsis">
       
-        结论
+        分支过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#连续时间-Markov-链" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        连续时间 Markov 链
       
     </span>
   </a>
@@ -597,10 +608,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#Vibe-Coding" class="md-nav__link">
+  <a href="#平稳过程" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vibe Coding
+        平稳过程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="平稳过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#功率谱密度" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        功率谱密度
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Brown-运动" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brown 运动
       
     </span>
   </a>
@@ -644,7 +683,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2026-01-18 00:00:00+00:00" class="md-ellipsis">2026年1月18日</time>
+                        <time datetime="2026-03-14 00:00:00+00:00" class="md-ellipsis">2026年3月14日</time>
                       </div>
                     </li>
                     
@@ -656,7 +695,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              阅读时长 4 分钟
+                              阅读时长 3 分钟
                             
                           </span>
                         </div>
@@ -679,155 +718,192 @@
   
 
 
-<h1 id="Agentic-AI-之初探">Agentic AI 之初探</h1>
-<p>文本章主要介绍 MCP Server，以及使用 AI Agents 进行 Vibe Coding 的一些记录。目前只有对与 MCP Server 的简单介绍，Vibe Coding 的部分改日再完成。</p>
-<p>转眼间已经是 2026 年初，这离我第一次听说 ChatGPT 已经有 3 年的历史了。</p>
+<h1 id="随机过程课程总复习">《随机过程》课程总复习</h1>
 <!-- more -->
 
-<p>曾经，Prompt Engineering 甚嚣尘上，人们纷纷相信写的一手好提示词就是跟上 AI 时代的全部；然而随着 24 年底和 25 年初 gpt-o1 和 Deepseek-R1 的横空出世，模型内置的「思维链」可以理解写得很烂的提示词，提示词工程这个词渐渐变得无人问津了。</p>
-<p>现阶段，对于提高 LLM 工具的能力，Agentic AI 是一个比较主流的方向；即，赋予大语言模型和环境交互的能力，让它设定目标，从而在最小的人类干预下完成某个特定的功能。</p>
-<!--
-「红专并进，理实交融」是科大的校训，然而在科大的人工智能专业，成绩优异的比比皆是，对 AI 编程、如何用 AI 提升个人效率缺乏了解的却不在少数
--->
-
-<h2 id="MCP">MCP</h2>
+<h2 id="前置知识">前置知识</h2>
+<p>先需要列举一些对于该课程可能有用的一些知识：</p>
+<h3 id="一些常用的积分">一些常用的积分</h3>
+<p>这些积分必须要牢记：</p>
+<div class="arithmatex">\[
+\begin{gather*}
+\int_{0}^{\infty} e^{-(a + bj)x} \, \mathrm d x = \frac{1}{a + bj} = \frac{a}{a^2 + b^2} - j \frac{b}{a^2 + b^2} \\
+\implies \int_{0}^{\infty} e^{-ax} \cos(bx) \, \mathrm d x = \frac{a}{a^2 + b^2} \quad, \quad \int_{0}^{\infty} e^{-ax} \sin(bx) \, \mathrm d x = \frac{b}{a^2 + b^2}
+\end{gather*}
+\]</div>
+<h3 id="留数与积分计算">留数与积分计算</h3>
+<p>留数定理：</p>
+<div class="arithmatex">\[
+\int_{\partial D} f(z)\, \mathrm d z = 2\pi j \sum_{k=1}^n \operatorname{Res}(f, z_k)
+\]</div>
+<p>有限点处留数的计算：</p>
+<div class="arithmatex">\[
+\begin{gather*}
+\operatorname{Res}(f, a) = \frac{1}{(m-1)!} \lim_{z \to a} [(z-a)^m f(z)]^{(m-1)} \\
+m = 1 \implies \operatorname{Res}(f, a) = \lim_{z \to a} (z - a) f(z)
+\end{gather*}
+\]</div>
+<p>结合复变函数中的一些引理（特别是 Jordan 引理）可以构造一些围道（比如半圆）计算一些实数轴上的积分。</p>
+<h2 id="Poisson-过程">Poisson 过程</h2>
+<p>定义：初始为 0，满足独立增量的过程，满足：</p>
+<div class="arithmatex">\[
+P\{N(s+t)-N(s)=k\} = e^{-\lambda t}\frac{(\lambda t)^k}{k!}
+\]</div>
+<p>Poisson 过程还可以用一些其他的视角来看待，也需要掌握：</p>
+<p><em>联合密度的视角</em>，给定 <span class="arithmatex">\(N(t)=n\)</span>，则等待时间 <span class="arithmatex">\(W_1, W_2, \cdots, W_n\)</span> 的联合密度为：</p>
+<div class="arithmatex">\[
+f_{W_1, W_2, \ldots, W_n}(w_1, w_2, \ldots, w_n) = \frac{n!}{t^n},\quad 0 &lt; w_1 &lt; w_2 &lt; \cdots &lt; w_n &lt; t
+\]</div>
+<p><em>间隔时间的视角</em>，记第 <span class="arithmatex">\(n-1\)</span> 与 <span class="arithmatex">\(n\)</span> 次事件的间隔时间为 <span class="arithmatex">\(X_n\)</span>，则：</p>
+<div class="arithmatex">\[
+X_n \sim \operatorname{Exp}(\lambda)
+\]</div>
+<h2 id="Markov-过程">Markov 过程</h2>
+<h3 id="离散时间-Markov-链">离散时间 Markov 链</h3>
+<p>核心：Markov 性（第 <span class="arithmatex">\(t+s\)</span> 时刻只与 <span class="arithmatex">\(s\)</span> 时刻相关）</p>
+<p>离散时间 Markov 链一般用转移概率矩阵 <span class="arithmatex">\(P = (p_{ij})_{nn}\)</span> 来表示，表示从 <span class="arithmatex">\(i\)</span> 到 <span class="arithmatex">\(j\)</span> 的概率，每一行对应一个状态，行和为 <span class="arithmatex">\(1\)</span>。</p>
+<p>单个状态（比如初始状态 <span class="arithmatex">\(\pi\)</span> 是）<strong>行向量</strong></p>
+<hr />
+<p>Chapman-Kolmogorov 方程：</p>
+<div class="arithmatex">\[
+P^{(n+m)}_{ij} = \sum_{k=0}^\infty P_{ik}^{(m)}P_{kj}^{(n)}
+\]</div>
+<p>另外，随着我们讨论的深入，我们需要引入一些概念：</p>
 <ul>
-<li>官方文档：<a href="https://modelcontextprotocol.io/docs/getting-started/intro">What is MCP?</a></li>
+<li>
+<p><strong>周期</strong> <span class="arithmatex">\(d(i)\)</span>：所有满足 <span class="arithmatex">\(P^{(n)}_{ii} &gt; 0\)</span> 的 <span class="arithmatex">\(n\)</span> 的最大公约数，如果不存在这样的 <span class="arithmatex">\(n\ge1\)</span> 则认为周期为 <span class="arithmatex">\(\infty\)</span>；<span class="arithmatex">\(d(i)=1\)</span> 称为非周期；</p>
+</li>
+<li>
+<p>正则：存在 <span class="arithmatex">\(n\)</span> 使得 <span class="arithmatex">\(P^n\)</span> 的元素全部非零；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(f^{(n)}_{ij}=P\{X_n=j,X_k\ne j,k=1,2,\cdots,n-1|X_0=i\}\)</span>：从。<span class="arithmatex">\(i\)</span> 出发在 <span class="arithmatex">\(n\)</span> 步转移首次到达 <span class="arithmatex">\(j\)</span> 的概率；<span class="arithmatex">\(f_{ij} = \sum_{n=1}^{\infty} f^{(n)}_{ij}\)</span>，即会到达 <span class="arithmatex">\(j\)</span> 的概率；</p>
+</li>
+<li>
+<p>常返 <span class="arithmatex">\(\Leftrightarrow~f_{ii}=1\)</span>；瞬过 <span class="arithmatex">\(\Leftrightarrow~f_{ii}&lt; 1\)</span>；</p>
+</li>
+<li>
+<p>常返时 <span class="arithmatex">\(T_i\)</span>：首次返回 <span class="arithmatex">\(i\)</span> 的时刻，<span class="arithmatex">\(\mu_i = ET_i=\sum_{n=1}^\infty n f_{ii}^{(n)}\)</span>；根据常返时可以将状态分为零常返 <span class="arithmatex">\(\mu_i=\infty\)</span> 和正常返 <span class="arithmatex">\(\mu_i &lt; \infty\)</span>；</p>
+</li>
+<li>
+<p>正常返，非周期称为遍历</p>
+</li>
 </ul>
-<p>MCP（Model Context Protocol，模型上下文协议）是一种将人工智能应用程序连接到外部系统的开源标准。</p>
-<p><img alt="" src="../../../../assets/external/mintcdn.com/mcp/bEUxYpZqie0DsluH/images/mcp-simple-diagram.f7d8ed03.png.webp"></p>
-<p>现阶段主要聚焦的是：</p>
+<p>周期性、常返性是一种等价类共有的性质</p>
+<p>基本极限定理：</p>
 <ul>
-<li>如何在<strong>应用</strong>上用 MCP 扩展大模型的能力</li>
-<li>如何做一些简单的自定义——即，编写一些简单的 MCP Server，以在 AI Coding 任务中增进自我</li>
+<li>
+<p><span class="arithmatex">\(i\)</span> 是瞬过或零常返：<span class="arithmatex">\(\lim_{n\to\infty} P_{ii}^{(n)} = 0\)</span>；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(i\)</span> 是周期为 <span class="arithmatex">\(d\)</span> 的常返状态：<span class="arithmatex">\(\lim_{n\to\infty}P_{ii}^{(nd)}= \frac{d}{\mu_i}\)</span>;</p>
+</li>
+<li>
+<p><span class="arithmatex">\(i\)</span> 是非周期的正常返状态：<span class="arithmatex">\(\lim_{n\to\infty} P^{(n)}_{ii} = \frac1{\mu_i}\)</span></p>
+</li>
 </ul>
-<h3 id="MCP-的架构">MCP 的架构</h3>
+<p>平稳分布（定义为不动点）定理：对于不可约、遍历的 Markov 链，其平稳分布是唯一的、且就是极限分布</p>
+<h3 id="分支过程">分支过程</h3>
+<p>使用生成函数 <span class="arithmatex">\(\phi(s)\)</span> 来研究：</p>
+<div class="arithmatex">\[
+\phi(s) = \sum_{k=0}^{\infty} p_k s^k, \quad \phi_{n+1}(s) = \phi_n(\phi(s)
+\]</div>
+<p>则：</p>
 <ul>
-<li>MCP 主机：管理一个或多个 MCP 客户端的 AI 应用程序；</li>
-<li>MCP 客户端：从 MCP 服务器抓取内容提供给 MCP 主机的组件；</li>
-<li>MCP 服务器：向 MCP 客户端提供内容的的程序；</li>
+<li>
+<p>群体消亡概率是 <span class="arithmatex">\(\pi=\phi(\pi)\)</span> 的最小正解；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mu=EZ_1\le 1\Leftrightarrow \pi=1\)</span></p>
+</li>
 </ul>
-<p>比如，Visual Studio Code 可以看作一个 MCP 主机，它通过一个 MCP 客户端与 <a href="https://docs.sentry.io/product/sentry-mcp/">Sentry MCP server</a> 联络，同时它也可以通过另外一个 MCP 客户端与其他的 MCP 服务器（比如本地文件系统）联络。</p>
-<p>MCP 服务器可以在本地运行（使用 STDIO 运输），也可以在某个远程服务器上运行（使用流式 HTTP 传输）。</p>
-<p>详细地了解 MCP 的架构可以参考<a href="https://modelcontextprotocol.io/docs/learn/architecture">官方文档 Architecture Overview</a></p>
-<h3 id="MCP-服务器">MCP 服务器</h3>
-<p>（以下的内容都摘自 <a href="https://modelcontextprotocol.io/docs/learn/server-concepts">MCP 官方文档</a>）</p>
-<p>MCP 服务器由 3 个重要的模块构成：</p>
-<ul>
-<li>工具（Tools）：LLM 可以<strong>主动</strong>调用的函数，由模型控制；</li>
-<li>资源（Resources）：被动的数据源，由应用控制；</li>
-<li>提示（Prompts）：提示词模版，由用户控制；</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>目的</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tools/list</code></td>
-<td>列举所有可用工具</td>
-<td>工具定义的列表</td>
-</tr>
-<tr>
-<td><code>tools/call</code></td>
-<td>执行某个特定工具</td>
-<td>工具执行结果</td>
-</tr>
-<tr>
-<td><code>resources/list</code></td>
-<td>列举所有直接资源</td>
-<td>资源简介的列表</td>
-</tr>
-<tr>
-<td><code>resources/templates/list</code></td>
-<td>列举所有资源模版</td>
-<td>资源模版的列表</td>
-</tr>
-<tr>
-<td><code>resources/read</code></td>
-<td>获取资源内容</td>
-<td>带元数据的资源</td>
-</tr>
-<tr>
-<td><code>resources/subscribe</code></td>
-<td>监视资源变化</td>
-<td>确认关注</td>
-</tr>
-<tr>
-<td><code>prompts/list</code></td>
-<td>列举所有可用提示</td>
-<td>提示词简介的列表</td>
-</tr>
-<tr>
-<td><code>prompts/get</code></td>
-<td>获取提示细节</td>
-<td>完整提示词定义</td>
-</tr>
-</tbody>
-</table>
-<p>一个工具（Tool）的定义：</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchFlights&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Search for available flights&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="err">i</span><span class="kc">n</span><span class="err">pu</span><span class="kc">t</span><span class="err">Schema</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="err">proper</span><span class="kc">t</span><span class="err">ies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="err">origi</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Departure city&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="err">des</span><span class="kc">t</span><span class="err">i</span><span class="kc">nat</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Arrival city&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="err">da</span><span class="kc">te</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">f</span><span class="err">orma</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Travel date&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="err">required</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;destination&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>一个资源（Resource）的定义：</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;uriTemplate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weather://forecast/{city}/{date}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weather-forecast&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Weather Forecast&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Get weather forecast for any city and date&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;mimeType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>一个提示（Prompt）的定义：</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;plan-vacation&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plan a vacation&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Guide through vacation planning process&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;destination&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;days&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;budget&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;interests&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="MCP-客户端">MCP 客户端</h3>
-<p>TBC</p>
-<h2 id="例还原魔方的-MCP-Server">例：还原魔方的 MCP Server</h2>
-<p>这又需要回到我这篇文章的标题了，Agentic AI之初探。顾名思义，Agent 是可以和环境自由交互的模型。</p>
-<p>B站上出现过很多诸如用大语言模型去玩狼人杀，下象棋的视频，其实在这些场景中，下象棋的每一步都可以看作大模型在调用一个函数，虽然在这些视频中并没有明确的写明。这种场景其实用 MCP server 的方式可以最好的去实现。</p>
-<p>下面我们想实现的就是一个用于还原魔方的 MCP Server，它支持以下几种调用：</p>
+<h3 id="连续时间-Markov-链">连续时间 Markov 链</h3>
+<p>定义：随机过程 <span class="arithmatex">\(\{X(t), t \ge 0\}\)</span>，满足：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; P\left\{X(t+s) = j\mid X(s)=i,X(x)=X(u),0\le u &lt; s\right\} \\
+&amp;\qquad \qquad ~~~~\, = P\{X(t+s)=j\mid X(s)=i\} 
+\end{aligned}
+\]</div>
+<h2 id="平稳过程">平稳过程</h2>
+<h3 id="功率谱密度">功率谱密度</h3>
+<p>我们常用协方差函数和功率谱密度来研究一个平稳过程，Wiener-Khintchine 公式连接着它们两者：</p>
+<div class="arithmatex">\[
+R(\tau) \xleftrightarrow{\text{FFT}} S(\omega)
+\]</div>
+<p>对平稳序列，FFT 应换为 DTFT。由于 <span class="arithmatex">\(R(\tau)\)</span> 和 <span class="arithmatex">\(S(\omega)\)</span> 都是偶函数，Wiener-Khintchine 一般写成余弦变换的形式（注意正交基发生了变化）。</p>
+<p>留数定理对该题非常有用，需要牢记。</p>
+<p>有理谱密度应该符合以下两个条件：</p>
 <ol>
-<li>给魔方拍张快照，调用这个方法后，模型可以看到现在魔方状态的一张照片；</li>
-<li>执行某种旋转，将魔方整体旋转，按照某个方向旋转 90 度，或者把某个可视的面旋转 90 度；</li>
+<li>实、偶函数；</li>
+<li>分母不能有实根；</li>
+<li>分母多项式次数至少应比分子高 <span class="arithmatex">\(2\)</span> 次；</li>
 </ol>
-<p>虽然用电脑还原魔方有比用大模型好得多的方法，比如各种启发式搜索，但是在这里为了展现大模型的通用智能，这个测试还是有点意思的。</p>
-<p>在 Github 上找到了<a href="https://github.com/fritzprix/rubiks-cube-mcp-server">一个与其有关的开源项目</a>但是用 Claude Code 半天也没有让它跑起来；这让我想起一个词叫做 Digital Slop，即大模型生成的垃圾内容。这个 Repository 的 README 写的特别长，一看就是 AI 写的，也许就属于这种类型。</p>
-<h3 id="代码的实现过程">代码的实现过程</h3>
-<p>代码使用到了一个 Python 的开源库 <a href="https://github.com/trincaog/magiccube">MagicCube</a>。</p>
-<p>我主要使用了 vibe coding 的方法来去编写这个示例的代码，上午我尝试使用 TRAE 来编写，结果以失败告终，下午转而用 Claude Code 接 GLM 的 API 来去写，代码重构了一遍，但还是问题比较大，主要是调用API的时候，等很长时间大语言模型也没有什么反应，可能是思考长度太长了，也有可能是语法就有问题。</p>
-<p>实践表明，当我们用魔方展开图表示魔方状态时，大模型对魔方的还原能力很弱。这表明了大语言模型的空间推理能力有限。</p>
-<p>Vibe Coding 的结果存储在了 <a href="https://github.com/xinchengo/rubiks-mcp">xinchengo/rubiks-mcp</a> 中（虽然结果极其有限）</p>
-<h3 id="结论">结论</h3>
-<p>现阶段大模型解决魔方的能力很弱很弱，比如<a href="https://chatgpt.com/share/696cf64c-fe8c-8001-8da5-74ec75d9f3ee">ChatGPT</a>和<a href="https://chat.deepseek.com/share/c1mzeqsl4yd99gx59p">DeepSeek</a>，这说明它们的空间推理能力是缺失的。</p>
-<p>这个例子不能成功实现，并不是因为 AI 编程的能力很弱，而是选取的主题不太合适，不太契合目前大语言模型的发展现状。</p>
-<h2 id="Vibe-Coding">Vibe Coding</h2>
-<p>TBC</p>
+<h2 id="Brown-运动">Brown 运动</h2>
+<p><strong>定义</strong>：<span class="arithmatex">\(\{X(t), t \geq 0\}\)</span> 是一个 Brown 运动，如果满足以下条件：</p>
+<ol>
+<li><span class="arithmatex">\(X(0) = 0\)</span>；</li>
+<li><span class="arithmatex">\(X\)</span> 有平稳独立增量；</li>
+<li><span class="arithmatex">\(\forall t &gt; 0\)</span>，<span class="arithmatex">\(X(t)\sim N(0, c^2t)\)</span>（<span class="arithmatex">\(c=1\)</span> 时称为标准 Brown 运动）。</li>
+</ol>
+<p>记：</p>
+<div class="arithmatex">\[
+f_t(x) = \frac{1}{\sqrt{2\pi t}} e^{-\frac{x^2}{2 t}}
+\]</div>
+<p>则 <span class="arithmatex">\(\forall 0&lt;t_1&lt;t_2&lt;\cdots&lt;t_n\)</span>，<span class="arithmatex">\((X(t_1), X(t_2), \cdots, X(t_n))\)</span> 的联合概率密度函数为：</p>
+<div class="arithmatex">\[
+f_{t_1, t_2, \ldots, t_n}(x_1, x_2, \ldots, x_n) = f_{t_1}(x_1) \prod_{i=2}^n f_{t_i - t_{i-1}}(x_i - x_{i-1})
+\]</div>
+<p>推论（协方差函数）：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    \operatorname{Cov}(X(s), X(t)) &amp;= \operatorname{Cov}(X(s), X(s) + (X(t) - X(s))) \\
+    &amp;= \operatorname{Cov}(X(s), X(s)) + \operatorname{Cov}(X(s), X(t) - X(s))) \\
+    &amp;= s + 0 = s \\
+    \implies \operatorname{Cov}(X(s), X(t)) &amp; = \min(s, t)
+\end{aligned}
+\]</div>
+<p>&lt;!--</p>
+<p>第一章</p>
+<p>条件概率，随机和的期望和多阶矩等的计算</p>
+<p>矩母函数：知道一些常用概率分布的矩母函数，以及矩母函数的基本性质（特别注意泊松分布，指数分布（注意限定条件），正态分布的）</p>
+<p>习题 1:16
+完成不理想的作业：习题 1 的第 11 题</p>
+<p>第二章</p>
+<p>三种定义：</p>
+<p>第一种定义：平稳独立增量
+第二种定义：无穷小分析法
+第三种定义：到达间隔服从指数分布，到达时刻服从 Gamma 分布</p>
+<p>Poisson 合成，Poisson 稀疏
+Poisson 过程的若干推广：非时奇 Poisson，复合 Poisson
+更新过程</p>
+<p>通常与随机和一起考察
+完成不理想的作业：习题 2 的 11 和 12 题</p>
+<p>第三章</p>
+<p>掌握定义，概率转移矩阵，Chapman-Kolmogorov 方程
+    利用 Markov 性计算首达时相关的概率值和期望值</p>
+<p>利用转移概率图来划分等价类（可约，不可约）
+    吸收态</p>
+<p>状态的性质：周期性、顺过、常返（正常返、零常返）</p>
+<p>掌握极限分布、平稳分布的概念</p>
+<p>完成不理想的作业：习题 3 的 8, 19, 21, 26，附加题 2</p>
+<p>第四章 平稳过程</p>
+<p>掌握严平稳过程和宽平稳过程的定义，掌握如何判断一个过程是否（宽）平稳
+    平稳和平稳增量的区别
+    基本概念：自相关函数、协方差函数
+    Gauss 平稳过程</p>
+<p>知道平稳过程的遍历性定理：均值遍历性的判断
+    习题 4 16
+完成不理想的作业：习题 4 的 1</p>
+<p>协方差函数和谱密度函数
+    判断一个函数是否是协方差或者谱密度函数
+    Wiener-Khintchine 公式</p>
+<p>习题 4 27 28
+脉冲函数和白噪声过程</p>
+<p>第五章 Brown 运动</p>
+<p>定义和基本性质
+首达时概率分布的计算思想
+--&gt;</p>
 
 
 
