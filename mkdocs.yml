@@ -70,7 +70,7 @@ plugins:
   # Automatically self-host external assets
   - privacy:
       assets_exclude:
-        - cdn.jsdelivr.net/npm/mathjax@4/*
+        - cdn.jsdelivr.net/npm/mathjax*
         - giscus.app/*
   - meta # support for .meta.yml
   - search:
@@ -83,7 +83,8 @@ plugins:
 extra_javascript:
   # Mathjax support
   - javascripts/mathjax.js
-  - https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg-nofont.js
+  # - https://cdn.jsdelivr.net/npm/@mathjax/mathjax-stix3-font/tex-mml-chtml-mathjax-stix3.js
 
 extra:
   social:
