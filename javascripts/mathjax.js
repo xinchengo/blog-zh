@@ -1,11 +1,15 @@
 window.MathJax = {
   loader: {load: [
     '[tex]/autoload', 
+    '[tex]/ams',
+    '[tex]/mathtools',
   ]},
   tex: {
     packages: {'[+]': 
       [
         'autoload',
+        'ams',
+        'mathtools',
       ]},
     inlineMath: [["\\(", "\\)"]],
     displayMath: [["\\[", "\\]"]],
@@ -15,6 +19,9 @@ window.MathJax = {
   options: {
     ignoreHtmlClass: ".*|",
     processHtmlClass: "arithmatex",
+  },
+  output: {
+    font: 'mathjax-fira',
   },
 };
 
