@@ -539,6 +539,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#随机变量和" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        随机变量和
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#收敛" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        收敛
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -552,6 +574,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Poisson 过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Poisson-过程的推广" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Poisson 过程的推广
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -616,6 +655,17 @@
   
     <nav class="md-nav" aria-label="平稳过程">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#遍历性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        遍历性
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#功率谱密度" class="md-nav__link">
@@ -693,7 +743,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              阅读时长 4 分钟
+                              阅读时长 6 分钟
                             
                           </span>
                         </div>
@@ -717,7 +767,8 @@
 
 
 <h1 id="随机过程课程总复习">《随机过程》课程总复习</h1>
-<p>这是我在《随机过程 B》课程总复习期间整理的笔记</p>
+<p>这是我在《随机过程 B》课程总复习期间整理的笔记。</p>
+<p>由于该课程考试形式为半开卷，根据这篇笔记我生成了 A4 正反两面的<a href="https://ipfs.tail1a401d.ts.net/ipfs/QmXFCvNiWViNV6kPJ9dquPN5YACAh7T1PnbV6JVD4BLxQc?filename=random_process_cheatsheet.pdf">小抄</a>，这个小抄的特点是字体较大，对眼睛较为友好，有足够空间可以补充不熟的知识点，欢迎各位同学使用。</p>
 <!-- more -->
 
 <h2 id="前置知识">前置知识</h2>
@@ -743,6 +794,46 @@ m = 1 \implies \operatorname{Res}(f, a) = \lim_{z \to a} (z - a) f(z)
 \end{gather*}
 \]</div>
 <p>结合复变函数中的一些引理（特别是 Jordan 引理）可以构造一些围道（比如半圆）计算一些实数轴上的积分。</p>
+<h3 id="随机变量和">随机变量和</h3>
+<p>矩母函数：</p>
+<div class="arithmatex">\[
+\begin{gathered}
+g(t) = E(\exp\{tX\}) = \int \exp\{tx\}\,\mathrm d F(x) \\
+g_{X+Y}(t) = g_{X}(t)g_Y(t), \quad E[X_n] = g^{(n)}(0) \\
+\end{gathered}
+\]</div>
+<p>随机和的矩母函数（也可以用全方差公式 <span class="arithmatex">\(\operatorname{Var}(Y) = E[\operatorname{Var}(Y| N)] + \operatorname{Var}(E[Y|N])\)</span> 证明）</p>
+<div class="arithmatex">\[
+\begin{gathered}
+E[e^{tY}|N=n] = [g_X(t)]^n \\
+\implies g_Y(t) = E\{E[\exp\{tY\}|N]\} = E[(g_X(t))^N] \\
+\implies \begin{array}{l}
+g^\prime_Y(t) = E[N(g_X(t))^{N-1}g^\prime_X(t)] \\
+g^{\prime\prime}_Y(t) = E[N(N-1)(g_X(t))^{N-2}(g^\prime_X(t))^2) + N(g_X(t))^{N-1)}g^{\prime\prime}_X(t)]
+\end{array} \\
+\implies \begin{aligned}
+EY &amp;= E[N E(X)] = EN\cdot EX \\
+EY^2 &amp;= EN \cdot \operatorname{Var}X + EN^2 \cdot E^2 X \\
+\operatorname{Var} Y &amp;= EN \cdot \operatorname{Var} X + E^2 X \cdot \operatorname{Var}N
+\end{aligned}
+\end{gathered}
+\]</div>
+<p>生成函数：</p>
+<div class="arithmatex">\[
+\begin{gathered}
+\phi_X(s) = E(s^X) = \sum_{k=0}^\infty p_ks^k \\
+EX = \left. \phi^\prime_X(s) \right|_{s=1},\quad E\{X^\underline{r}\}=\left. \frac{\mathrm d^r}{\mathrm d s^r} \phi_X(s) \right |_{s=1}\\
+Y = \sum_{i=1}^NX_i\implies \phi_Y(s)=E\left\{ (\phi_X(s))^N\right\} = \phi_N(\phi_X(s))
+\end{gathered}
+\]</div>
+<h3 id="收敛">收敛</h3>
+<p>三种收敛：</p>
+<ul>
+<li>依概率收敛：<span class="arithmatex">\(X_n \xrightarrow{p} X \Leftrightarrow\)</span> <span class="arithmatex">\(\lim_{n\to\infty} P(|X_n - X| \ge \epsilon) = 0\)</span>；</li>
+<li>几乎必然收敛：<span class="arithmatex">\(X_n\rightarrow X,\text{a.s.} \Leftrightarrow\)</span> <span class="arithmatex">\(P\left(\lim_{n\to\infty} (X_n - X) = 0\right) = 1\)</span>；</li>
+<li>均方收敛：<span class="arithmatex">\(X_n \xrightarrow{L_2} X \Leftrightarrow\)</span> <span class="arithmatex">\(\lim_{n\to \infty} E(X_n - X)^2 = 0\)</span>；</li>
+<li>关系：均方收敛和几乎必然收敛都蕴含依概率收敛；</li>
+</ul>
 <h2 id="Poisson-过程">Poisson 过程</h2>
 <p>定义：初始为 0，满足独立增量的过程，满足：</p>
 <div class="arithmatex">\[
@@ -759,6 +850,29 @@ f_{W_1, W_2, \ldots, W_n}(w_1, w_2, \ldots, w_n) = \frac{n!}{t^n},\quad 0 &lt; w
     X_n \sim \operatorname{Exp}(\lambda), 
         \quad W_n \sim \Gamma(n,\lambda) \\
 \end{gathered}
+\]</div>
+<h3 id="Poisson-过程的推广">Poisson 过程的推广</h3>
+<p><em>非时齐 Poisson 过程</em>中 <span class="arithmatex">\(\lambda\)</span> 不是常数，而是 <span class="arithmatex">\(P\{N(t+h) - N(t) \ge 1\} = \lambda(t) h + o(h)\)</span>，此时有：</p>
+<div class="arithmatex">\[
+P\{N(t+h)-N(t)=k\} = \frac{\left(\int_{t}^{t+h}\lambda(u)\,\mathrm d u\right)\exp\left(-\int_{t}^{t+h}\lambda(u)\,\mathrm d u\right)}{k!}
+\]</div>
+<p>事件的发生服从一个 Poisson 过程，每一次事件附带一个随机变量，<span class="arithmatex">\(X(t) = \sum_{i=1}^{N(t)} Y_i\)</span>，其中 <span class="arithmatex">\(Y_i\)</span> 独立同分布，有分布函数 <span class="arithmatex">\(G(y)\)</span>，<span class="arithmatex">\(EY=\mu,~\operatorname{Var} Y = \tau^2\)</span>，<span class="arithmatex">\(N(t)\)</span> 是参数为 <span class="arithmatex">\(\lambda\)</span> 的 Poisson 过程，则称 <span class="arithmatex">\(X(t)\)</span> 为<em>复合 Poisson 过程</em>。</p>
+<div class="arithmatex">\[
+\begin{gathered}
+    Y_1 \sim G(y) \implies P\{Y_1 + Y_2 \le y\}
+        = \int_{-\infty}^{\infty} G(y-z)\,\mathrm d G(z) \\
+    \begin{aligned} \implies
+        P\{X(t) \le x\} &amp;= P\left\{\sum_{k=1}^{N(t)} Y_k \le x\right\} \\
+        &amp;= \sum_{n=0}^\infty P\left\{\sum_{k=1}^{N(t)}Y_k \le x \mid N(t) = n\right\} P\left\{N(t) = n\right\} \\
+        &amp;= \sum_{n=0}^\infty P\left\{\sum_{k=1}^n Y_k \le x\right\} \frac{(\lambda t)^n e^{-\lambda t}}{n!} \\
+        &amp;= \sum_{n=0}^\infty \frac{(\lambda t)^n e^{-\lambda t}}{n!} G^{(n)}(x)
+    \end{aligned}
+\end{gathered}
+\]</div>
+<p>复合 Poisson 过程的研究也可以使用随机变量和的方法。</p>
+<p><em>更新过程</em>让时间间隔 <span class="arithmatex">\(X_i\)</span> 服从一般的分布函数 <span class="arithmatex">\(F(x)\)</span>，<span class="arithmatex">\(W_0=0,~W_n=\sum_{i=1}^n X_i\)</span>，则称 <span class="arithmatex">\(N(t) = \max\{n:W_n\le t\}\)</span> 为更新过程，更新过程满足下式，其中 <span class="arithmatex">\(F^{(n)}(t)\)</span> 指 <span class="arithmatex">\(F(t)\)</span> 的 <span class="arithmatex">\(n\)</span> 次卷积（可以用矩母函数求这个卷积）：</p>
+<div class="arithmatex">\[
+P\{N(t)= n\} = F^{(n)}(t) - F^{(n+1)}(t)
 \]</div>
 <h2 id="Markov-过程">Markov 过程</h2>
 <h3 id="离散时间-Markov-链">离散时间 Markov 链</h3>
@@ -806,6 +920,19 @@ P^{(n+m)}_{ij} = \sum_{k=0}^\infty P_{ik}^{(m)}P_{kj}^{(n)}
 </ul>
 <p>平稳分布（定义为不动点）定理：对于不可约、遍历的 Markov 链，其平稳分布是唯一的、且就是极限分布</p>
 <h3 id="分支过程">分支过程</h3>
+<p>分支过程也可以看作一个随机变量和的问题，设 <span class="arithmatex">\(EZ_1 = \mu,~\operatorname{Var} Z_1 = \sigma^2\)</span>，则由随机变量和均值方差的递推公式，有：</p>
+<div class="arithmatex">\[
+\begin{gathered}
+E X_{n+1} = \mu^n \\
+\begin{aligned}
+\operatorname{Var} X_{n+1} &amp;= \sigma^2\mu^n[1+\mu+\cdots+\mu^n] \\
+&amp;= \begin{cases}
+\sigma^2\mu^n\frac{1-\mu^{n+1}}{1-\mu},&amp;\mu\ne 1 \\
+(n+1)\sigma^2,&amp; \mu=1
+\end{cases}
+\end{aligned}
+\end{gathered}
+\]</div>
 <p>使用生成函数 <span class="arithmatex">\(\phi(s)\)</span> 来研究：</p>
 <div class="arithmatex">\[
 \phi(s) = \sum_{k=0}^{\infty} p_k s^k, \quad \phi_{n+1}(s) = \phi_n(\phi(s)
@@ -837,22 +964,27 @@ P^{(n+m)}_{ij} = \sum_{k=0}^\infty P_{ik}^{(m)}P_{kj}^{(n)}
 \end{gathered}
 \]</div>
 <p>宽平稳过程：均值为常数，二阶矩存在且协方差仅与时间差有关</p>
-<p>对于宽平稳过程我们常研究其均值遍历性，对于 <span class="arithmatex">\(X= \{X(t),-\infty&lt;t&lt;\infty\}\)</span>：</p>
+<p>Gauss 过程：<span class="arithmatex">\(G=\{G(t),-\infty &lt; t &lt; \infty\}\)</span>，若对 <span class="arithmatex">\(\forall k, t_1\le t_2 \le \cdots \le t_k\)</span>，则 <span class="arithmatex">\((G(t_1), G(t_2), \cdots, G(t_k))\)</span> 的联合分布为 <span class="arithmatex">\(k\)</span> 维正态分布，则称 <span class="arithmatex">\(G\)</span> 为 Gauss 过程</p>
+<h3 id="遍历性">遍历性</h3>
+<p>对于宽平稳过程我们常研究其均值或协方差遍历性，对于 <span class="arithmatex">\(X= \{X(t),-\infty&lt;t&lt;\infty\}\)</span>，若满足以下式子，则称为满足均值或协方差遍历性（对于 <span class="arithmatex">\([0,\infty)\)</span> 上的随机过程定义类似：</p>
 <div class="arithmatex">\[
 \begin{gathered}
 \bar{X} = \lim_{T\to \infty} \frac{1}{2T} \int_{-T}^{T} X(t)\,\mathrm d t\overset{L_2}{=}m \\
-\bar{X} = \lim_{N\to \infty} \frac{1}{2N+1}\sum_{k=-N}^NX(k)\overset{L_2}{=}m
+\bar{X} = \lim_{N\to \infty} \frac{1}{2N+1}\sum_{k=-N}^NX(k)\overset{L_2}{=}m \\
+\hat{R}(\tau) = \lim_{T\to \infty} \frac{1}{2T}\int_{-T}^{T}(X(t)-m)(X(t+\tau)-m)\,\mathrm dt\overset{L_2}{=}R(\tau) \\
+\hat{R}(\tau) = \lim_{N\to \infty} \frac{1}{2N+1}\sum_{k=-N}^N (X(k+\tau) - \hat m_N)(X(k)-\hat m_N)\overset{L_2}{=}R(\tau)
 \end{gathered}
 \]</div>
 <p>均值遍历性定理：</p>
 <ul>
 <li>
-<p>对于平稳序列 <span class="arithmatex">\(X=\{X_n,n=0,\pm 1,\cdots\}\)</span>，则 <span class="arithmatex">\(X\)</span> 有遍历性的充要条件为 <span class="arithmatex">\(\lim_{N\to\infty}\frac1N\sum_{\tau=0}^{N-1}R(\tau)=0\)</span>；</p>
+<p>对于平稳序列 <span class="arithmatex">\(X=\{X_n,n=0,\pm 1,\cdots\}\)</span>，则 <span class="arithmatex">\(X\)</span> 有遍历性的充要条件为 <span class="arithmatex">\(\lim_{N\to\infty}\frac1N\sum_{\tau=0}^{N-1}R(\tau)=0\)</span>；（特别地，若 <span class="arithmatex">\(R(\tau) \to 0,~\tau \to \infty\)</span>，则均值遍历性成立）</p>
 </li>
 <li>
-<p>对于平稳过程 <span class="arithmatex">\(X=\{X(t),-\infty&lt;t&lt;\infty\}\)</span>，<span class="arithmatex">\(X\)</span> 有遍历性的充要条件为 <span class="arithmatex">\(\lim_{t\to\infty}\frac1T\int_{0}^{2T}(1-\frac{\tau}{2T})R(\tau)\,\mathrm d\tau=0\)</span>；</p>
+<p>对于平稳过程 <span class="arithmatex">\(X=\{X(t),-\infty&lt;t&lt;\infty\}\)</span>，<span class="arithmatex">\(X\)</span> 有遍历性的充要条件为 <span class="arithmatex">\(\lim_{t\to\infty}\frac1T\int_{0}^{2T}(1-\frac{\tau}{2T})R(\tau)\,\mathrm d\tau=0\)</span>；（特别地，若 <span class="arithmatex">\(\int_{-\infty}^{\infty} |R(\tau)| \,\mathrm d \tau &lt; \infty\)</span> ，则均值遍历性成立）</p>
 </li>
 </ul>
+<p>协方差的遍历性较为复杂，但是，当 <span class="arithmatex">\(X=\{X_n,n=0,\pm 1,\cdots\}\)</span> 是均值为 <span class="arithmatex">\(0\)</span> 的 Gauss 过程，若 <span class="arithmatex">\(\lim_{N\to \infty}\frac{1}{N}\sum_{k=0}^{N-1} R^2(k) = 0\)</span>，则满足遍历性</p>
 <h3 id="功率谱密度">功率谱密度</h3>
 <p>我们常用协方差函数和功率谱密度来研究一个平稳过程，Wiener-Khintchine 公式连接着它们两者：</p>
 <div class="arithmatex">\[
